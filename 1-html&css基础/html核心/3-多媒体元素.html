@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    controls：是否显示播放器上的控件，如果一个属性是布尔属性，可以只写属性名，此时代表此属性为true。不写就是false
+    autoplay: 自动播放（谷歌不给用，除非配合muted静音）
+    muted: 静音播放
+    loop: 循环播放
+   -->
+  <video 
+    controls
+    autoplay
+    muted
+    loop
+    src="file://E:/迅雷下载/楚汉传奇-80.mp4" 
+    style="width: 500px;">
+  </video>
+
+  <!-- 音频元素和视频元素属性一样了 -->
+  <audio src="file://E:/照片备份/音乐/黄家驹-真的爱你.mp3" controls autoplay muted loop></audio>
+</body>
+</html>

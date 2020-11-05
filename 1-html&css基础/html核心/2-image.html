@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<!-- 
+  figure:语义化，将一组相关的元素包在一起，让浏览器知道下面这段文字是描述图片的
+ -->
+
+  <figure>
+    <!-- 图片一般和a标签连用 -->
+    <a href="http:\\www.baidu.com" target="_blank">
+      <img usemap="#domainMap" src="../../source/image/domain.jpg" alt="暂时无法显示">
+    </a>
+    <!-- 描述图片标题 -->
+    <figcaption>
+      领域模型
+    </figcaption>
+    <p>后端领域模型设计</p>
+  </figure>
+
+
+  <map name="domainMap">
+    <!-- 
+      shape:区域形状 
+        圆形、矩形...
+      coords:坐标  
+        以图片左上角为原点
+      href:点击后跳转地址 
+      target=跳转方式
+    -->
+    <area shape="circle" coords="215,200,60" href="https://www.baidu.com/s?ie=UTF-8&wd=WebController" target="_blank"
+      alt="nothing">
+  </map>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    ol：代表有序列表 order list
+      属性：
+        type：有序列表前跟的序号，可以是A 1 i；但是建议使用css控制
+        reversed:序号从小到大
+      子元素：
+        li：ol的子元素，代表一个列表项
+
+
+    ul: 无序列表，
+   -->
+  <h3>前端学习路线，有序</h3>
+  <ol type="A" style="list-style-type:georgian;" reversed>
+    <li>html</li>
+    <li>css</li>
+    <li>js</li>
+    <li>frameword</li>
+  </ol>
+
+
+  <!-- 
+    无序列表
+      语义化的标签，也可以使用样式改变每一项前面的样式
+    通常用来制作菜单 新闻连标
+   -->
+  <h3>本人描述，无序</h3>
+  <ul style="list-style-type:decimal;">
+    <li>高</li>
+    <li>富</li>
+    <li>帅</li>
+    <li>好</li>
+  </ul>
+
+
+  <!-- 
+    
+    定义列表，通常用于术语的定义
+    dl = definition list
+    dt = definition title
+    dd = definition description
+   -->
+   <h3>定义列表</h3>
+  <dl>
+    <dt>java script</dt>
+    <dd>前端脚本语言</dd>
+    <dt>java</dt>
+    <dd>后端用的</dd>
+  </dl>
+
+
+</body>
+</html>
