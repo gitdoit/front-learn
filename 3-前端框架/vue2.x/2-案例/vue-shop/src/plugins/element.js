@@ -1,0 +1,22 @@
+import Vue from 'vue'
+import { Radio, Button, Menu, MenuItem, Submenu, Form, FormItem, Input, Select, Header, Main, Row, Col, Card, Container, Table, TableColumn, Checkbox, CheckboxGroup } from 'element-ui'
+
+Vue.use(Button)
+Vue.use(Menu)
+Vue.use(MenuItem)
+Vue.use(Submenu)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Select)
+Vue.use(Header)
+Vue.use(Main)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Card)
+Vue.use(Container)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(Radio)

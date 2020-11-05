@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div {
+
+    /* 
+      元素内部文字颜色
+      1、可以取预设值
+      2、可以用 #fff 
+      3、可以三原色 rgb(红，绿，蓝) 每种颜色255种取值
+     */
+    color: rgb(255, 0, 0);
+
+    /* 
+      字体大小
+        em是相对字体大小，相对于父元素来说，如果父类及父类的父类等都没有
+        就是用默认的基准字号(16px)；
+        例如父类的字体大小是10px，那么2em就是 20px
+     */
+    font-size: 2em;
+    /* 
+      字体粗细
+        可以取数字或者预设值；normal = 500 bold=700
+        除此之外并不是每个数字如100，200，300 都有效果
+     */
+    font-weight: normal;
+    /* 
+      文字类型
+        必须用户计算机中有这个字体，才有效果。
+        所以为了兼容，可以使用多个备用如
+        font-family: 微软雅黑,consolas
+        此时如果没有微软雅黑，使用consolas，还没就忽视
+        如果用户的电脑是上古机器，可以启用sans-serif即非衬线制
+        意思就是说字体圆滑的由计算机选择的字体
+     */
+     font-family: consolas,微软雅黑;
+     
+     /* 
+      字体样式
+        1、italic 倾斜；其中<i>，<em>标签默认的就是倾斜
+      */
+      font-style: italic;
+
+      /* 
+       文本修饰
+         1、line-through 中间加横线，表示废弃的；<del>元素的默认取值
+         2、underline 下划线，是a元素的默认值
+         3、none 没有线，这个用来把a元素的下划线去掉
+       */
+       text-decoration: line-through;
+       /* 
+        首行文本缩进
+          2em表示缩进两个字
+          2px表示缩进两个像素
+        */
+        text-indent: 2em;
+
+        /* 
+         行高
+           每行文本的高度
+           1、当行高和父元素高度相同时，单行文本会居中
+           2、一般取值1.5 等，意义为当前元素字体大小的1.5倍
+         */
+         line-height: 50px;
+
+         /* 
+          文字间隙
+            表示文字之间的间隙
+          */
+          letter-spacing: 10px;
+
+          /* 
+            文字对齐方式
+           */
+           text-align: center;
+  }
+</style>
+
+<body>
+  <div>
+    lorem sdf sdfsdf sdf
+  </div>
+</body>
+
+</html>

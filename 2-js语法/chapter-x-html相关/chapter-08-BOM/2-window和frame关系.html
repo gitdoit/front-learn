@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<frameset rows="160,*">
+    <frame src="topFrame.html" name="topFrame">
+    <frameset cols="50%,50%">
+        <frame src="leftFrame.html" name="left">
+        <frame src="rightFrame.html" name="rightFrame">
+    </frameset>
+</frameset>
+
+<script>
+    /**顺序关系是从上到下，从左到右*/
+    var top = window.frames[0];
+    var left = window.frames[1];
+    var right = window.frames[2];
+    console.info(top.name)
+
+    /**
+     * top对象始终指向最高层框架，而window则是指向当前框架(可能是子框架)
+     * parent是指向父框架，没有框架的情况下parent等于top等于window
+     *
+     * */
+
+</script>
+</html>

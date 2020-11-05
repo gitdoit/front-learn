@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    /**
+     * 超时调用
+     * 第一个参数是执行的代码，可以传字符串，像是eval那样，通常传一个函数；
+     * 第二个是延时时间；
+     * 返回值是一个计划执行任务的id
+     *
+     * 由于js是单线程语言，同一时间只能有一个任务在执行
+     * 所以会有一个任务队列，将当前任务放入队列，如果没有队列为空则立即执行该任务。
+     * 而超时调用的功能就是在推迟指定时间后将该任务放入队列
+     */
+    let timeout = setTimeout(() => {
+        alert('延时一秒')
+    },1000);
+
+    /**
+     * 在任务被执行之前，都可以调用这个函数取消执行
+     */
+    clearTimeout(timeout);
+
+
+    let interval = setInterval(() => {
+        console.info("一秒一次")
+    },1000);
+
+    clearInterval(interval);
+</script>
+
+</body>
+</html>

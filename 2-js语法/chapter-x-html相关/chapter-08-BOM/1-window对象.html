@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /**
+     * window对象是BOM的核心，它既是JS访问浏览器窗口的一个接口，又是Global对象
+     *
+     * */
+    var age = 22;
+
+    function sayAge() {
+        return age;
+    }
+
+    // 默认挂到window上
+    console.info(window.age);
+    console.info(window.sayAge());
+
+    // 这两者的区别是什么？
+    window.name = '张三';
+
+    // 没问题，可以删除
+    delete window.name;
+    // 不能删，因为这个属性的 configurable为false
+    //delete window.age;
+
+
+</script>
+</body>
+</html>

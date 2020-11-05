@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="out" style="background-color: aqua;width: 500px;height: 500px;">
+    <button id="btn" style="background-color: red;height: 50px;width: 100px;margin-left: 30px">点击我</button>
+    <button id="btn2" style="background-color: red;height: 50px;width: 100px;margin-left: 30px">阻止事件传播</button>
+    <a href="http://www.baidu.com" id="a">这是一个超链接</a>
+    <a href="http://www.baidu.com" id="aa">这是一个超链接</a>
+</div>
+<script>
+
+
+    /**
+     * 重要
+     * event.eventPhase
+     *  1：捕获触发
+     *  2：当前阶段
+     *  3、冒泡触发
+     * event.target表示真正点击的目标
+     *
+     * 大圆套小圆，都注册了点击事件
+     * 当你点击内圆时
+     *      外圆上的 event.eventPhase=1或3(根据函数注册类型)，target=内圆
+     *      内圆上的 event.eventPhase=2，target=自己
+     * 当你点击外圆时
+     *      外圆上的 event.eventPhase=2，target=自己
+     *
+     *
+     *
+     * */
+
+    document.body.addEventListener('click', function () {
+        // true
+        // event.currentTarget === document.body;
+        // true
+        // this === document.body;
+        alert('body上的点击事件被触发了')
+    }, true);
+
+    document.getElementById('btn2').addEventListener('click', function () {
+        // 取消后续的冒泡或捕获，bubbles为true时可调用
+        // 这样注册在body上的点击事件不会被触发，前提是它注册的是冒泡
+        if (event.bubbles) {
+            event.stopPropagation();
+        }
+        alert('点击了按钮！'+event.bubbles)
+    },true);
+
+    document.getElementById('a').addEventListener('click',function () {
+       alert('点击了超链接！');
+       event.preventDefault();
+    });
+
+    /**
+     * 事件对象
+     * bubbles 表明事件是否冒泡
+     * 事件有很多种，不只是click，还有onload啥的
+     * 所以这些事件属性...
+     *
+     */
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+        // 当前是否冒泡触发
+        console.info(event.bubbles);
+        // 能否取消事件的默认行为
+        console.info(event.cancelable + '===');
+        // 触发该事件函数的元素对象
+        console.info(event.currentTarget);
+        // 为true表示已经调用了preventDefault
+        console.info(event.defaultPrevented);
+        // 程序处理阶段，1 捕获阶段 2、目标阶段 3、冒泡阶段
+        console.info(event.eventPhase);
+        // 事件的目标,同心圆 ，点击里面的 那么target就是里面的那个
+        console.info(event.target);
+        // 是否来自用户点击，而不是脚本触发
+        console.info(event.isTrusted);
+        // 事件类型，click...
+        console.info(event.type);
+
+
+        //取消默认行为，例如<a>标签的点击是跳转到指定路径上，这里可以取消
+        if (event.cancelable) {
+            event.preventDefault();
+        }
+
+        // 阻止后续的冒泡或者捕获，同时组织任何事件处理程序被调用
+        event.stopImmediatePropagation();
+
+
+    }, false)
+
+
+</script>
+</body>
+</html>

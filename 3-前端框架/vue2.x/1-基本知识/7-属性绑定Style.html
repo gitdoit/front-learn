@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .red {
+        background-color: red;
+
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .size200 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .inline {
+        display: inline-block;
+    }
+</style>
+<body>
+<div id="app">
+    <h1>直接在内联样式中使用样式对象</h1>
+    <div :style="{width:'200px',height:'200px',backgroundColor:'red'}"></div>
+    <hr>
+    <h1>绑定data中的对象</h1>
+    <div :style="blue"></div>
+    <hr>
+    <h1>绑定数组</h1>
+    <div :style="[blue,left]"></div>
+
+</div>
+<script src="lib/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            blue: {
+                width: '200px', height: '200px', backgroundColor: 'blue'
+            },
+            left: 'margin-left: 150px'
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

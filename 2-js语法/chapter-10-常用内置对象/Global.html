@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * Global对象也就是全局对象
+    * 在浏览器中运行的js脚本，Global对象就是window
+    * 
+    * 诸如 isNaN()、 isFinite()、 parseInt()以及 parseFloat()，实际上全都是 Global
+    * 对象的方法。除此之外， Global 对象还包含其他一些方法。
+    * 
+    *
+    * */
+
+    /**************************URL编码方法****************************************/
+
+    var uri = "http://www.baidu.conm/a b c/你好";
+    // 像是 : / 不会转义 空格中文啥的会
+    console.info("encodeURI :%s",encodeURI(uri));
+    // 会把: /也转了
+    console.info("encodeURIComponent: %s",encodeURIComponent(uri));
+
+    /**************************eval()****************************************/
+    //eval()方法会将字符串转换成代码，并在当前环境中执行
+    var msg = "你好！";
+    eval('console.info(msg);');
+
+    // 还可以通过它来定义方法，环境就是执行eval的这个环境
+    eval('function sayHi(){console.info("你好！我来自eval")}');
+    sayHi();
+    window.Math.min(1,2,3,4)
+</script>
+</body>
+</html>

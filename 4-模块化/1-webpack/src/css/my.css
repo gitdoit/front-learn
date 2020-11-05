@@ -1,0 +1,9 @@
+body{
+    background-color: lightcoral;
+}
+#box {
+    width: 550px;
+    height: 500px;
+    background-color: black;
+    background: url('../images/img.jpg');
+}

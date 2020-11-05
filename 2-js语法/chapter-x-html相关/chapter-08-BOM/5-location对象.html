@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    let queryStringArgs = getQueryStringArgs("name");
+    alert(queryStringArgs)
+
+
+    /**查询字符串
+     * href="?name=sdfsf&abg=sdfsdf"
+     * */
+    function getQueryStringArgs(key) {
+        const qs = (location.search.length > 0 ? location.search.substring(1) : "");
+        const items = qs.length > 0 ? qs.split("&") : [];
+        let find = items.find(item => {
+            return item.startsWith(key);
+        });
+        return find ? find.split("=")[0] : "";
+    }
+
+    /**
+     *
+     * 位置操作
+     * 假设初始url=http://www.baidu.com/ss/
+     * */
+    //location.assign("http://www.baidu.com")  相当于 location.href = "http://www.baidu.com"
+
+    // 将url修改为 http://www.baidu.com/ss/#section1
+    location.hash="#section1";
+
+    // 将url修改为 http://www.google.com/ss/
+    location.host="http://www.google.com/ss/"
+
+    // 添加查询字符串,http://www.baidu.com/ss/?name=abc
+    location.search="?name=abc"
+
+    /**
+     * 禁止后退
+     * 上面的方法可以通过后退按钮，返回到上一步
+     * 这里演示不能后退
+     * */
+    location.replace("http://www.baidu.com");
+
+    /**
+     * 刷新当前页面
+     * */
+
+    // 可能会使用缓存
+    location.reload();
+
+    // 强制不能使用缓存
+    location.reload(true);
+
+
+
+
+</script>
+</body>
+</html>

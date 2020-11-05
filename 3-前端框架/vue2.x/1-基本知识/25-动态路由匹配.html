@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <!-- 
+    使用通配符的方式对具有相同规则的地址进行匹配
+    例如，在配置路由规则的时候path:'/user/:id' 可以匹配 /user/1 /user/2 ....等
+    还能在被显示的组件中使用 $route.params.id来获取
+   -->
+  <div id="app">
+    <router-link to="/user/1">用户</router-link>
+    <router-link to="/user/2">用户2</router-link>
+    <router-link to="/user/3">用户3</router-link>
+    <hr>
+    <router-link to="/props/okok">路由组件传值1</router-link>
+    <router-link to="/props/nookok">路由组件传值2</router-link>
+    <hr>
+    <router-link to="/more/nookok">路由组件传对象</router-link>
+    <hr>
+    <router-link to="/func/ssss">props为函数</router-link>
+    <hr>
+    <!-- 
+      命名路由器
+      这里写的参数只能是定义在url上的
+      例如b，没有在url上定义，就接收不到。
+      可以在规则定义哪里使用param传对象
+     -->
+    <router-link :to="{ name:'named',params: { id: 22,b: 44} }">命名路由</router-link>
+    <hr>
+    <router-view></router-view>
+  </div>
+  <script src="lib/vue.js"></script>
+  <script src="lib/vue-router_3.0.2.js"></script>
+  <script>
+    // 演示基本的路由匹配和传值
+    const User = {
+      template: `<div><h1>这里是用户{{$route.params.id}}</h1></div>`
+    }
+
+    /* 使用props参数 */
+
+    // props为布尔
+    // 路由组件传递参数,使用$route.params.id的方式并不优美
+    // 之前组件那块，用props的方式这里可以用
+    // 1、路由规则中props: true,paht:'/xxx/:param'
+    // 2、组件中props['param']
+    // 3、直接在组件中使用{{param}}
+    const Props = {
+      template: `<div><h1>使用props来传值-->{{value}}</h1></div>`,
+      props: ['value']
+    }
+
+    // props为对象
+    // 路由组件传递对象
+    // 在定义规则的时候props:{xx:xx,xxx:xxx}
+    const MoreProp = {
+      template: `<div><h1>name:{{name}}------age:{{age}}</h1></div></div>`,
+      props: ['name', 'age']
+    }
+
+    // props为函数
+    const Func = {
+      template: `<div><h1>name:{{name}}------age:{{age}}</h1></div></div>`,
+      props: ['name', 'age', 'id']
+    }
+
+    // 命名路由
+    // 为了方便引用，给路由规则起个名字
+    const Named = {
+      template: `<div><h1>这里是命名路由----name:{{id}}------age:{{b}}</h1></div></div>`,
+      props: ['a', 'b', 'id']
+    }
+
+
+    const router = new VueRouter({
+      routes: [
+        { path: '/user/:id', component: User },
+        { path: '/props/:value', component: Props, props: true },
+        { path: '/more/:value', component: MoreProp, props: { name: 'zhangsan', age: 22 } },
+        { path: '/func/:id', component: Func, props: router => ({ name: '函数', age: 3434 }) },
+        { path: '/named/:id', component: Named, name: 'named',props:true },
+      ]
+    });
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      router
+    })
+  </script>
+</body>
+
+</html>

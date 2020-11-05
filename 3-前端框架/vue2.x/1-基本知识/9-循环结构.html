@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+        迭代数组，使用key提高更新虚拟DOM效率
+        1、最佳实践：
+            在我们变更数组中的对象(移除、添加)时，Vue并不是去改变Dom树的顺序来应对
+            变化，而是采用了“就地更新”策略，即更新Dom元素而不是移动它来应对数组的改变。为了能够使
+            Vue能够快速的定位变化的元素，我们需要使用 :key="item.id"来给每个数组元素
+            一个唯一标识。
+        2、数组更新检测：
+            Vue对数组中的会改变原数组的方法进行了包装，以变能够觉察到数组的变动，从而进行更新渲染。包括
+                push()
+                pop()
+                shift()
+                unshift()
+                splice()
+                sort()
+                reverse()
+         3、替换数组
+                对于不能改变原数组的哪些方法，如filter会返回一个新的数组，如果使用这个新数组替换原有数组的话
+                原有数组并不是重新渲染Dom树；
+         4、注意事项
+                由于Js的限制，如果使用 persons[1] = {xxx:xxx} 或者 persons.length = 1;
+                这种方式去改变数组，Vue是不会察觉到的。
+                对于前一种，使用 Vue.set(app.persons,0,{newObj})
+                对于后一种，使用 app.person.splice(0,1,{newObj})
+
+
+    -->
+
+    <ul>
+        <li v-for="(item,index) in persons" :key="item.id">
+            {{item.name}}----{{item.age}}----{{index}}
+            <button @click="persons.splice(index,1)">删我</button>
+        </li>
+    </ul>
+    <!--
+        v-for迭代数组
+    -->
+    <hr>
+    <ul>
+        <li v-for="name in names">
+            {{name}}
+        </li>
+    </ul>
+    <hr>
+    <!--
+        迭代时获得索引
+    -->
+    <ul>
+        <li v-for="(name,index) in names">
+            {{name}}------------{{index}}
+        </li>
+    </ul>
+    <!--
+        迭代数字
+    -->
+    <hr>
+    <ul>
+        <li v-for="i in 10">
+            {{i}}
+        </li>
+    </ul>
+    <!--
+        迭代对象
+    -->
+    <hr>
+    <ul>
+        <li v-for="(v,k,i) in obj">
+            {{v+'---'+k+'---'+i}}
+        </li>
+    </ul>
+
+
+
+</div>
+
+<script src="lib/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            names: ['张三','李四','王五'],
+            persons: [
+                {name:'张三',age:22,id:1},
+                {name:'李四',age:66,id:2},
+                {name:'王五',age:77,id:3},
+            ],
+            obj:{
+                name:'Michale',
+                age:22
+            }
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

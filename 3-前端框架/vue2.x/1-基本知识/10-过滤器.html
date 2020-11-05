@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--可以直接在插值表达式中使用管道符 | 来对原始数据进行下一步操作-->
+    <p>{{msg | format('666')}}</p>
+    <!--也可以用在v-bind上-->
+    <label>
+        过滤器+v-bind<input :value="msg | inputFormat('input')">
+    </label>
+</div>
+<script src="lib/vue.js"></script>
+<script>
+    /**
+     * Vue允许自定义过滤器，用在对指定文本进行格式化
+     * 可以用在插值表达式和v-bind上；
+     * 处理函数第一个参数指定为需要处理的数据，在调用的时候
+     * 不需要手动传入，第二个为参数，按情况传入
+     *
+     * 可以定义全局的过滤器
+     * */
+    Vue.filter('format',function (data,param='') {
+        return data+param;
+    });
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'test',
+        },
+        methods: {},
+        // 也可以定义局部的，同名的话会屏蔽全局的
+        filters:{
+            inputFormat(data,param='123'){
+                return data+param;
+            }
+        }
+    })
+</script>
+</body>
+</html>

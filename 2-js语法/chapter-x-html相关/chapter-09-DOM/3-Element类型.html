@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="myDiv" class="dd" title="this is div" lang="en" data-my-attr="my attr"></div>
+<ul id="ul">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+</body>
+<script>
+    /**
+     * Element类型是最常用的元素类型
+     * 每个HTML元素都是HTMLElementl类型表示，不是直接通过它也是通过它的子类(HTMLDivElement\HTMLFontElement...)
+     * 来表示。不管是哪一种，肯定会有下面这几个特性(attr)
+     * */
+    //
+    var myDiv = document.getElementById("myDiv");
+    // true
+    console.info(myDiv.tagName === myDiv.nodeName);
+    myDiv.className;
+    myDiv.title;
+    myDiv.lang;
+
+
+    /**
+     * 操作特性
+     * 1、自定义特性前缀data-
+     * 2、特性名称大小写不敏感
+     * 3、5中公认特性(title\className..)通过getAttribute访问和myDiv.title访问的结果是一样的
+     *    但是style和onclick则不同，myDiv.onclick返回一个函数，myDiv.style返回一个对象
+     *    myDiv.getAttribute('onclick')返回函数字符串
+     */
+    // this is div
+    let attribute = myDiv.getAttribute("title");
+    // 可以获取自定义特性，根据HTML5规范，自定义特性前缀应为data-
+    let myattr = myDiv.getAttribute("data-my-attr");
+    // 设置特性
+    myDiv.setAttribute("title","new title");
+    // 移除特性
+    myDiv.removeAttribute('title');
+
+
+    /**
+     * attributes属性
+     * 只有Element元素才有这个属性，包含这个元素中的所有属性，和NodeList类型，他是一个动他的集合。
+     * */
+    var id = myDiv.attributes['id'].nodeValue;
+    id = myDiv.attributes.getNamedItem('id');
+
+    myDiv.attributes['id'] = 'newID';
+
+    //效果相同
+    //myDiv.removeAttribute('id');
+    myDiv.attributes.removeNamedItem('id');
+
+
+    /**
+     * 创建元素
+     */
+    // 创建一个 div
+    var div = document.createElement('div');
+    div.title='created div';
+    div.id = 'createdId';
+    div.textContent = 'this is created div';
+    document.body.appendChild(div);
+
+    // 也可以传入一个完整的div标签字符串,not work
+    //let a = document.createElement("<a href=\"1-Node类型.html\" title=\"sss\">cr</a>");
+    //document.body.appendChild(a);
+
+    /**
+     * 元素的子节点
+     * */
+    var ul = document.getElementById('ul');
+    let lis = ul.getElementsByTagName('li');
+    for (let i = 0; i < lis.length; i++) {
+        console.info(lis[i].nodeType);
+    }
+
+
+
+</script>
+</html>

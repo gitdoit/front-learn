@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+          一个组件就像是各个页面都会包含的导航栏，把它单独抽取出来
+         使用下面这种全局的方式注册到Vue中，这样其他的Vue实例就可以；
+
+         如何使用？
+          1、全局注册，第一个是组件名称，第二个是选项，和定义普通vue实例一样
+             但需要注意的是因为每个组件实例都有自己的数据域，所以data不再是普通对象，而是函数，返回新的data实例
+          2、在html中像是使用普通标签一样使用组件
+          3、可以重复使用，由于data是独立的，所以相互之间并不影响
+
+    -->
+    <my-button></my-button>
+    <my-button></my-button>
+    <my-button></my-button>
+    <my-component></my-component>
+</div>
+<script src="lib/vue.js"></script>
+<script>
+   // 注册全局组件
+    Vue.component('my-button',{
+        data: function () {
+            return {
+                msg:1
+            }
+        },
+        template: '<button @click="msg=msg+1">组件的按钮点击了{{msg}}次</button>'
+    });
+    // 局部注册，只能在当前Vue实例下使用
+   let comp = {
+     template: `<div>nihao~~~</div>`
+   };
+    let app = new Vue({
+        el: '#app',
+        // 使用components注册
+        components:{
+            'my-component': comp
+        }
+    })
+</script>
+</body>
+</html>

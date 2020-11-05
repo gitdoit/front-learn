@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="http://www.baidu.com"
+      accept-charset="UTF-8" method="get" name="form1">
+    <label>
+        <!--焦点在表单的任何一个控件上，点击回车都能触发提交事件-->
+        <input type="text" name="text1" value="">
+    </label>
+    <input type="submit" value="点我">
+</form>
+<div style="background-color: red;" id="div">点我就提交</div>
+<div style="background-color: red;" id="div2">点我就重置</div>
+
+<script>
+    /**
+     * 在HTML中表单是<form>元素表示，在JavaScript中使用 HTMLFormElement extends HTMLElement来表示
+     * 除了基本的HTMLElement属性和方法之外
+     *
+     *  acceptCharset：服务器能够处理的字符集；等价于 HTML 中的 accept-charset 特性。
+     *  action：接受请求的 URL；等价于 HTML 中的 action 特性。
+     *  elements：表单中所有控件的集合（ HTMLCollection）。
+     *  enctype：请求的编码类型；等价于 HTML 中的 enctype 特性。
+     *  length：表单中控件的数量。
+     *  method：要发送的 HTTP 请求类型，通常是"get"或"post"；等价于 HTML 的 method 特性。
+     *  name：表单的名称；等价于 HTML 的 name 特性。
+     *  reset()：将所有表单域重置为默认值。
+     *  submit()：提交表单。
+     *  target：用于发送请求和接收响应的窗口名称；等价于 HTML 的 target 特性。
+     *
+     */
+
+    // 获取表单
+    var form = document.forms.namedItem('form1');
+
+    // 注册一个表单提交事件
+    form.addEventListener('submit',function () {
+        // 这里校验数据
+        alert(this.text1.value);
+        // 有毛病就阻止提交
+        event.preventDefault();
+    });
+    document.getElementById('div').addEventListener('click',function () {
+        form.submit();
+    });
+
+    document.getElementById('div2').addEventListener('click',function () {
+        form.reset();
+    });
+
+
+    // 获取表单元素,根据input的name决定
+    var text1 = form.elements['text1'];
+
+    /**
+     * Input元素的公共属性
+     *  disabled：布尔值，表示当前字段是否被禁用。
+     *  form：指向当前字段所属表单的指针；只读。
+     *  name：当前字段的名称。
+     *  readOnly：布尔值，表示当前字段是否只读。
+     *  tabIndex：表示当前字段的切换（ tab）序号。
+     *  type：当前字段的类型，如"checkbox"、 "radio"，等等。
+     *  value：当前字段将被提交给服务器的值。对文件字段来说，这个属性是只读的，包含着文件
+     * 在计算机中的路径。
+     */
+    text1.disabled = true;
+</script>
+</body>
+</html>

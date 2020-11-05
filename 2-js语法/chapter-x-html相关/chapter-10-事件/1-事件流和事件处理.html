@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function click(){
+        console.info(this.tagName);
+        console.info(this.id);
+        console.info(event.type);
+    }
+</script>
+<h1>DOM0级别</h1>
+<div id="out" style="background-color: aqua;width: 500px;height: 500px;" onclick="fuck()">
+    <div id="inner" style="background-color: red;width: 200px;height: 200px;" >
+    </div>
+</div>
+
+<h1>DOM2级别</h1>
+<div id="d2-o" style="background-color: aqua;width: 500px;height: 500px;">
+    <div id="d2-i" style="background-color: red;width: 200px;height: 200px;" >
+    </div>
+</div>
+<script>
+    /**
+     * 事件捕获和事件冒泡
+     * 两个圆，大圆套小圆，两个圆都有对应的点击事件处理器，那么我点击小圆先执行哪个圆的点击事件？
+     *  IE的做法是事件冒泡，先执行小圆中的事件，再冒泡到外边大圆去执行大圆的事件；
+     *  Netscape 的做法是事件捕获，即和IE的做法相反。【由于老版浏览器不支持事件捕获，所以可以放心的使用事件冒泡】
+     *
+     *  DOM2级事件流
+     *  事件的传播分为三个阶段
+     *  捕获阶段-->处于目标阶段-->冒泡阶段
+     *  实际点击的目标是不会接收到捕获阶段的事件，然后是处于目标阶段，再然后是冒泡阶段
+     *
+     *  event变量，事件处理程序中的作用域链中包含一个属性event
+     *  记录着当前事件的所有信息，不用使用参数列表接收。
+     *
+     * */
+
+
+
+    /**
+     * 事件处理程序
+     * 注意，事件处理函数的名字不能叫click，不然不生效。
+     * 方式1、<div onclick="alert(event.type)">
+     *      这种方法是动态生成的函数，而且作用域链比较有意思，相当于这个函数在这个元素实例上执行的
+     *      所以onclick="alert(this.tagName)" 也是没问题的。
+     *      同时，如果当前元素是一个表单元素，它还能访问同表单下其他表单元素的属性。
+     *
+     * 方式2、<div onclick="fuck()">
+     *      这种方式的就没有上面的那种的作用域链了。
+     * 通过HTML方式添加的事件函数在冒泡阶段被触发
+     * */
+    function fuck(){
+        // undefined
+        console.info(this.id);
+        console.info(event.eventPhase);
+    }
+
+
+
+    /**
+     * 方式3、
+     *  通过下面这种方式指定的事件处理函数被认为是元素的方法
+     *  所以它的作用域也是当前这个元素
+     *
+     */
+    document.getElementById('inner').onclick = function () {
+        console.info(this.id);
+        console.info(event.eventPhase)
+    };
+
+    /**
+     * 方式4
+     * DOM2级别
+     * addEventListener(#添加的事件名，#2处理函数，#3 true捕获处理，false冒泡处理)
+     * 这种方式添加的事件处理器，相当于在元素中执行的
+     * 【注意】 处理函数不能使用lambda表达式，不然作用域就变成全局的了
+     */
+    var dom2 = document.getElementById('d2-i');
+    dom2.addEventListener('click',function () {
+        // d2-i
+        console.info(this.id);
+    },false);
+    // 可以在一个元素上添加多个事件处理函数，按添加顺序执行
+    dom2.addEventListener('click',() => {
+        // 这里的作用域就变成window了
+        console.info(this.id);
+    },false);
+
+    // 移除,参数必须一样，但是由于事件处理函数跟注册时的不是一个，下面这个所以没法移除
+    // 如果要移除，那么必须保留注册时的函数的引用。
+    dom2.removeEventListener('click',function () {
+
+    },false)
+</script>
+</body>
+</html>

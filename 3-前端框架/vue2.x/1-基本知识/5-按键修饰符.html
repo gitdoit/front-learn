@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+        1、v-on:keyup.enter
+            的作用是，当焦点在当前元素上时，如果键盘上按下并弹起了回车键
+            那么会触发绑定事件
+        2、v-on:keyup.enter.tab
+            当然可以同时绑定多个
+        3、当然有对应的v-on:keydown.enter
+
+
+
+        常用的事件有
+            .enter =>    enter键
+            .tab => tab键,从其他元素上tab到当前元素上才会触发
+            .delete (捕获“删除”和“退格”按键) =>  删除键
+            .esc => 取消键
+            .space =>  空格键
+            .up =>  上
+            .down =>  下
+            .left =>  左
+            .right =>  右
+    -->
+    <label>
+        绑定回车按键:<input name="test" @keyup.enter="showMsg">
+    </label>
+    <br>
+    <label>
+        绑定回车+tab按键:<input name="enter_tab" @keyup.enter.tab="showMsg">
+    </label>
+    <br>
+    <label>
+        自定义按键触发F5:<input name="enter_tab" @keydown.f5="showMsg">
+    </label>
+</div>
+
+<script src="lib/vue.js"></script>
+<script>
+    Vue.config.keyCodes.f5 = 116;
+    let app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'test',
+        },
+        methods: {
+            showMsg(event){
+                alert(event.target.name+"触发了事件！")
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div id="app">
+    <button @click="init">打开链接</button>
+    <button @click="showImg">开启视频</button>
+    <button @click="getImg">sGetBase64</button>
+    <button @click="close">关闭</button>
+    <div class="container">
+      <img id="photo" :src="inTime" width=900 height=480>
+    </div>
+    <div class="img">
+      <img id="photo" :src="img" width=900 height=480>
+    </div>
+  </div>
+  <script src="lib/vue.js"></script>
+  <script src="https://cdn.bootcss.com/sockjs-client/1.3.0/sockjs.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        img:'',
+        inTime:'',
+        begin_data: 'data:image/jpeg;base64,',
+        webSocket:null
+      },
+      methods: {
+        close(){
+          this.webSocket.close()
+        },
+        getImg(){
+          this.webSocket.send('sGetBase64')
+        },
+        showImg(){
+          // 开启
+          this.webSocket.send('bStartPlay')
+        },
+        init(){
+          this.webSocket = new WebSocket('ws://localhost:1818')
+          this.webSocket.onmessage = this.wsOnMessage
+          this.webSocket.onopen = this.wsOnOpen
+          this.webSocket.onerror = this.wsOnError
+          this.webSocket.onclose = this.wsOnClose
+        },
+        wsOnMessage(msg){
+          if(msg.data.startsWith('BeginBase64')){
+            this.img = this.begin_data + msg.data.slice(11).slice(0,-9)
+          } else {
+            this.inTime = this.begin_data + msg.data
+          }
+        },
+        wsOnOpen(e){
+          console.info("打开了")
+          console.info(e)
+          console.info("===========")
+        },
+        wsOnError(e){
+          console.info("错误了")
+          console.info(e)
+          console.info("===========")
+        },
+        wsOnClose(e){
+          console.info("关闭了")
+          console.info(e)
+          console.info("===========")
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

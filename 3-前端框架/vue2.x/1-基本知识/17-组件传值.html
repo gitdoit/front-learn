@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+        普通绑定，在使用组件的时候，通过属性绑定的方式，将当前vue实例data中的值绑定到模板中props声明的属性上；
+        当数据很多的时候，显然可以使用对象包装，这里就不演示了。
+        【注意】：
+                1、模板中必须只能有一个根元素，意思是 '<h3>{{att1}}</h3><h3>{{att1}}</h3>' 是不行的。
+                   必须<div><h3>{{att1}}</h3><h3>{{att1}}</h3></div>
+                2、父组件向子组件中传的值不是拷贝，是关联
+    -->
+
+        <!--v-bind 属性绑定到data的某个值上-->
+        <my-title :att1="items[0].title"></my-title>
+        <!--不用v-bind，我们直接写死一个值也行-->
+        <hr>
+        <my-title att1="不使用data"></my-title>
+        <!--循环绑定-->
+        <hr>
+        <my-title v-for="item in items" :key="item.id" :att1="item.title"></my-title>
+        <hr>
+        <!-- 演示sync -->
+        <my-sync :title.sync="title"></my-sync>
+        <h1>{{title}}</h1>
+    </div>
+    <script src="lib/vue.js"></script>
+    <script>
+        Vue.component('my-title', {
+            data: function () {
+                return {
+
+                }
+            },
+            // 在props中设置当前组件需要的值的列表
+            props: ['att1'],
+            // 在模板中可以直接使用
+            template: `<div><h3>{{att1}}</h3></div>`
+        });
+
+        Vue.component('my-sync', {
+            props: ['title'],
+            data: function () {
+                return {
+
+                }
+            },
+            methods: {
+                changeMe() {
+                    this.$emit("update:title", new Date())
+                }
+            },
+            template: `<div><h3 @click="changeMe">{{title}}</h3></div>`
+        });
+
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                title: new Date(),
+                items: [
+                    { id: 1, title: 'qqqq' },
+                    { id: 2, title: 'fffff' },
+                    { id: 3, title: 'eeeee' },
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

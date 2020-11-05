@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<body>
+<div id="app">
+    <!--v-cloak 为了解决闪烁问题
+        原理就是为了在js文件没有加载之前不显示需要经过渲染的元素
+        在加载完成之后，移除这个元素的样式
+    -->
+    <p v-cloak>{{msg}}</p>
+
+    <!--这种方式没有闪烁问题-->
+    <p v-text="msg"></p>
+    <!--只能填充字符串，如果是HTML片段，则会被经过转义-->
+    <p v-text="html"></p>
+    <!--这种方式可以显示html片段-->
+    <p v-html="html"></p>
+    <p v-pre>{{这里的内容不会被编译，可以用于静态数据，加快渲染；但是有毛用？？}}</p>
+    <!--这种方式只会渲染一次，当数据再次变更时，此处不会更新-->
+    <p v-once>{{msg}}---不会改变</p>
+    <button  @click="msg=new Date()">点我改变值</button>
+</div>
+
+<script src="lib/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'test',
+            html: "<a href='1-基础语法.html'>click</a>"
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

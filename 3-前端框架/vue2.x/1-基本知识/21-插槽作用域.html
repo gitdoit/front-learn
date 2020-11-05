@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <!--
+        父组件引用子组件，还想用子组件里面的数据怎么办？
+        要知道，父组件在父组件的作用域去渲染，即使引用了子组件，那么也是
+        把子组件放到它自己的作用去渲染的。所以想直接引用是不可能的。
+
+        这时需要slot-scope这个属性
+        1、定义模板的时候需要在插槽标签上绑定一个属性 v-bind="user" v-bing="sucker"
+        2、在父组件引用的时候在指定插槽标签上 slot-scope="随便命名"
+        3、父组件就可以在这个插槽里引用子组件绑定的user了
+            {{随便命名.user.xxx}}
+            {{随便命名.sucker.xxx}}
+
+    -->
+    <slot-scope>
+        <template slot="header" slot-scope="s">
+            {{s.header}}
+        </template>
+        <a href="http://www.baidu.com" slot="footer" slot-scope="s">
+            {{s.footer}}
+        </a>
+        <h1 slot-scope="s">{{s.defaults}}</h1>
+    </slot-scope>
+</div>
+<script src="lib/vue.js"></script>
+<script>
+    Vue.component("slot-scope",{
+        data:function () {
+            return {
+                header:'子组件的头部data',
+                defaults: '子组件的默认',
+                footer:'子组件的脚~~~~~'
+            }
+        },
+        props:{
+
+        },
+        template:`
+            <div>
+                <header><slot name="header" :header="header"></slot></header>
+                <main><slot :defaults="defaults"></slot></main>
+                <footer><slot name="footer" :footer="footer"></slot></footer>
+            </div>
+            `
+    });
+
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            header:'头部~~~~~'
+        },
+        methods:{
+
+        }
+    })
+
+</script>
+
+</body>
+</html>

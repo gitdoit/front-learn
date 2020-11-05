@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="alert('这是alert')">alert</button>
+    <button onclick="showConfirm()">confirm</button>
+    <button onclick="showPrompt()">prompt</button>
+
+
+
+
+<script>
+    /**
+     * alert()
+     * confirm()
+     * prompt()
+     * 通过这几种方式打开的对话框都是同步和模态的，也就是说显示对话框的时候代码会停止执行。
+     * */
+    function showConfirm() {
+        if(confirm('Are you ok?')){
+            alert("fine!")
+        }else {
+            alert("fuck!")
+        }
+    }
+    function showPrompt() {
+        var result = prompt('你叫什么？','');
+        if(result){
+            alert(result);
+        }
+    }
+
+</script>
+</body>
+</html>

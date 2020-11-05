@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="div"></div>
+<img name="img1">
+<img name="img2">
+</body>
+<script>
+    /**
+     * JavaScript通过Document类型表示文档，在浏览器中document对象是HTMLDocument（继承自Document类型）的一个实例
+     * 表示整个HTML页面，同时document又是window对象的一个属性
+     *
+     * */
+    // 取得对<html>的引用  因为常用，所以把对html的引用放到document里的一个属性
+    var htmlElement = document.documentElement;
+    // true
+    console.info(htmlElement === document.childNodes[0]);
+    // true
+    console.info(htmlElement === document.firstChild);
+
+    // 因为常用所以把对<body>的引用放到document的一个属性里
+    var body =document.body;
+
+
+    /**
+    * 文档信息
+    * */
+    // 标题，可写
+    document.title;
+
+    // 取得完整的URL,只读
+    document.URL;
+    // 取得域名，可写，但只能设置同域名下例如原来的是 aaa.baidu.com 可以改为 baidu.com;反之不行
+    document.domain;
+    // 来源，只读
+    document.referrer;
+
+    /**
+     * 查找元素
+     */
+
+    // 根据id查找
+    let div = document.getElementById("div");
+
+    // 根据标签名查找,返回值是一个HTMLCollection对象，有一个namedItem方法
+    let imgHTMLCollection = document.getElementsByTagName("img");
+    // 获取那么为img1的标签
+    let img1 = imgHTMLCollection.namedItem("img1");
+    // 也可以这样
+    let img11 = imgHTMLCollection['img1'];
+    // true
+    //console.info(img1 === img11)
+</script>
+</html>

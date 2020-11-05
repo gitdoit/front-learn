@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /**
+     * 元素的特性在 DOM 中以 Attr 类型来表示。在所有浏览器中（包括 IE8），都可以访问 Attr 类型
+     * 的构造函数和原型。从技术角度讲，特性就是存在于元素的 attributes 属性中的节点。特性节点具有
+     * 下列特征：
+     *  nodeType 的值为 2；
+     *  nodeName 的值是特性的名称；
+     *  nodeValue 的值是特性的值；
+     *  parentNode 的值为 null；
+     *  在 HTML 中不支持（没有）子节点；
+     *  在 XML 中子节点可以是 Text 或 EntityReference。 尽管它们也是节点，但特性却不被认为是 DOM 文档树的一部分
+     *
+     * 只是介绍一下有这个东西，一般都是setAttribute\getAttribute\removeAttribute来操作特性
+     *
+     * */
+
+    var div = document.createElement('div');
+    var attr = document.createAttribute('title');
+    attr.value='created attr value';
+    div.setAttributeNode(attr);
+    div.textContent = 'created div!';
+    document.body.appendChild(div);
+
+</script>
+</body>
+</html>

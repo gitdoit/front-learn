@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>多级表头导出</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+  <div id="app">
+    <div >
+      <el-table :data="list" style="width: 100%" size="mini">
+        <my-col v-for="(item, index) in revealList" :col="item" :key="index" :prop="item.prop" :label="item.name"></my-col>
+      </el-table>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+
+    Vue.component('my-col', {
+      render(h) {
+        return this.render(h, this.col)
+      },
+      props: {
+        col: {}
+      },
+      data: function () {
+        return {}
+      },
+      methods: {
+        render(h, header) {
+          let column = [];
+          // 如果表头还有子表头
+          if (header.child) {
+            let child = [];
+            for (let i = 0; i < header.child.length; i++) {
+              child.push(this.render(h, header.child[i]))
+            }
+            column.push(h('el-table-column', {
+              props: {
+                label: header.name,
+                align: 'center',
+              }
+            }, child))
+          } else {
+            column.push(h('el-table-column', {
+              props: {
+                label: header.name,
+                prop: header.prop,
+                width: header.width,
+                align: 'center',
+              },
+              scopedSlots: {
+                default: scope => {
+                  let value;
+                  if (header.exeFun) {
+                    value = header.exeFun(scope.row)
+                  } else {
+                    value = scope.row[header.prop]
+                  }
+                  return h('span', value)
+                }
+              }
+            }))
+          }
+          return column
+        },
+      }
+    });
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          enums: {
+            gender: [
+              { label: '男', value: '1' },
+              { label: '女', value: '2' },
+            ]
+          },
+          list: [
+            { gender: '1', name: '张三', age: 11, js: '熟练', nio: '了解', basic: '精通', springboot: '熟练' },
+            { gender: '1', name: '张三', age: 11, js: '熟练', nio: '了解', basic: '精通', springboot: '熟练' },
+            { gender: '1', name: '张三', age: 11, js: '熟练', nio: '了解', basic: '精通', springboot: '熟练' },
+            { gender: '1', name: '张三', age: 11, js: '熟练', nio: '了解', basic: '精通', springboot: '熟练' },
+          ],
+          revealList: [
+            {
+              name: '性别',
+              prop: 'gender',
+              width: 100,
+              exeFun: row => this.enums.gender.filter(e => e.value === row.gender).map(e => e.label)[0]
+            },
+            {
+              name: '专业技能',
+              child: [
+                {
+                  name: '前端',
+                  child: [
+                    {
+                      name: 'JavaScript',
+                      prop: 'js'
+                    }
+                  ]
+                },
+                {
+                  name: '后端',
+                  child: [
+                    {
+                      name: 'java',
+                      child: [
+                        {
+                          name: 'nio',
+                          prop: 'nio'
+                        },
+                        {
+                          name: '基础',
+                          prop: 'basic'
+                        }
+                      ]
+                    },
+                    {
+                      name: '框架',
+                      child: [
+                        {
+                          name: 'SpringBoot',
+                          prop: 'springboot'
+                        }
+                      ]
+                    }
+                  ]
+                },
+              ]
+            },
+          ],
+        }
+      },
+      methods: {}
+    })
+  </script>
+</body>
+
+</html>

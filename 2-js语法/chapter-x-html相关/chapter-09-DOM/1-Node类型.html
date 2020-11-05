@@ -1,0 +1,61 @@
+<!--
+    这个页面中文档节点只有一个子节点，也就是 <html>元素，即文档元素
+    每个文档只能有一个文档元素，并且文档中所有的其他元素都包含在文档元素中。
+   https://www.cnblogs.com/venoral/p/5293575.html
+1、节点类型
+    网页加载后会将结构化文档转换成一个DOM树，树中的每个节点都一个Node对象
+    而Node类型会有12中子类，分别代表不同含义，通常有
+        Document：整个文档树的顶层节点
+        DocumentType：doctype标签（比如<!DOCTYPE html>）
+        Element：网页的各种HTML标签（比如<body>、<a>等）
+        Attribute：网页元素的属性（比如class="right"）
+        Text：标签之间或标签包含的文本
+        Comment：HTML或XML的注释
+        DocumentFragment：文档的片段
+        Document和Element是两个重要的DOM类。
+2、节点关系
+    节点之间存在着像是族谱一样的关系，如父子关系，兄弟关系等。如<body>元素是<html>元素的子元素
+    每个节点实例都有一个childNodes属性表示它的子节点们。这个childNodes不是一个列表，它是根据
+    实际情况实时映射更新的。这些同级节点组成了一个像是双向不循环列表，但每个节点又持有一个对父节点的引用的关系。
+    所以每个节点都有
+        nextSibling指向下一个节点
+        previousSibling指向前一个节点
+        parentNode指向父节点
+        firstChild指向它自己的第一个子节点
+        lastChild指向它自己的最后一个子节点
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="body">
+    <div id="div">
+        <p> this this ok</p>
+        <p id="p1">Hello World!</p>
+    </div>
+    <p id="p2">Hello </p>
+</body>
+<script>
+    // 3、操作节点，由于关系指针都是只读的，所以DOM提供了操作节点的方法
+
+    let div = document.getElementById('div');
+    let childNode = div.appendChild(div.firstChild);
+
+    // true
+    //body.lastChild === childNode
+
+    // cloneNode方法所有节点都有，参数表示是否深度复制，false只复制本身，不复制它的子节点
+    let nowNode = div.firstChild.cloneNode(true);
+    // 插入后成为之后一个
+    div.insertBefore(nowNode, null);
+
+    // 插入后成为第一个
+    div.insertBefore(nowNode, div.firstChild);
+
+    // 替换第一个
+    div.replaceChild(nowNode, div.firstChild);
+
+</script>
+</html>
