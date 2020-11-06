@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  /* 1.并且 直接接在一起 */
+  p.p1{
+    color: red;
+  }
+  /* 2.后代 空格链接 */
+  div p{
+    font-size: 33px;
+  }
+
+  /* 3.子元素 > 链接 */
+  #f>div{
+    width: 30px;
+    height: 30px;
+    background-color: aqua;
+  }
+  /* 4.相邻兄弟选择器 */
+  #f+span{
+    color: yellow;
+  }
+  /* 5.弟弟选择器：后面的元素 */
+  .div~span{
+    font-size: 55px;
+  }
+  /* 6.并列选择器,用 , 分割表示或的关系 */
+  .div,#f{
+    background-color: blue;
+  }
+</style>
+<body>
+   <div class="div">
+      <p class="p1">lor</p>
+      <p class="p2">lor</p>
+   </div>
+
+   <div id="f">
+     <div></div>
+   </div>
+   <span>
+     兄弟你变了
+   </span>
+   <span>我没变</span>
+</body>
+</html>

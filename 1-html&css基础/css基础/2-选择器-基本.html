@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 选中所有元素 */
+    *{
+      color: red;
+    }
+    /* id选择器 */
+    #idSelect{
+      width: 100px;
+      height: 100px;
+      background-color: black;
+    }
+    /* 类选择器 */
+    .classSelect{
+      width: 100px;
+      height: 100px;
+      background-color:saddlebrown;
+      margin-top:10px;
+    }
+
+    /* 属性选择器，选中所有具有 href属性的元素 */
+    [href]{
+      color: chartreuse;
+    }
+
+    [href="http://www.taobao.com"]{
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>选中所有元素</p>
+  </div>
+
+  <div id="idSelect">
+    #idSelect id选择器
+  </div>
+
+  <div class="classSelect">
+    .classSelect 类选择器
+  </div>
+
+  <div>
+    <a href="http://www.baidu.com">
+      <p>
+        [href] 属性选择器，选中所有具有 href属性的元素
+      </p>
+    </a>
+  </div>
+
+  <div>
+    <a href="http://www.taobao.com">
+      <p>
+        [href="http://www.taobao.com"] 属性值选择器，元素具有href属性，且值等于 http://www.taobao.com
+      </p>
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #hover:hover {
+    color: red;
+  }
+  #active:active{
+    color: yellow;
+  }
+
+  #link:link{
+    font-style: italic
+  }
+
+  #visited:visited{
+    color: chartreuse;
+  }
+
+  #div:hover{
+    color: white;
+    background-color: black;
+  }
+</style>
+
+<body>
+  <h1>
+    <p> 伪类选择器，当元素处于某种状态下的时候选中；</p>
+    <p> 如果四个状态都要写，要按这个顺序 link -> visited -> hover -> active;</p>
+  </h1>
+
+  <div>
+    <a href="#" id="hover">
+      <p> a:hover 当光标悬浮在a元素上的时候被选中;悬浮时字体变红</p>
+    </a>
+  </div>
+
+  <div>
+    <a href="#" id="active">
+      <p> a:active 当鼠标点下去的时候被选中，松开就没了</p>
+    </a>
+  </div>
+
+  <div>
+    <a href="#" id="link">
+      <p> a:link 未被访问的时候被选中</p>
+    </a>
+  </div>
+
+  <div>
+    <a href="#" id="visited">
+      <p> a:visited 访问过后激活，字体变青色；需要清空浏览器历史才能重置属性</p>
+    </a>
+  </div>
+
+  <div id="div">
+    <p>:hover 伪类选择器也能用在div以及其他元素上</p>
+  </div>
+
+</body>
+
+</html>
