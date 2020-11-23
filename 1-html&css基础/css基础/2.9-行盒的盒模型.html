@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  /* 演示行盒不能设置宽高 */
+  #noWH {
+    color: red;
+    text-decoration: none;
+    border: 1px solid;
+    /* 无效 */
+    width: 100px;
+    /* 无效 */
+    height: 100px;
+    /* 不会实际占据空间 */
+    padding: 30px;
+  }
+
+  /* 百度分页条 */
+  .pagger {
+    margin: 20px;
+    background-color: #F5F5F6;
+  }
+
+  .pagger-inline{
+    margin-left: 20px;
+  }
+  
+  .pagger .pagger-inline a {
+    text-decoration: none;
+    border-radius: 6px;
+    border: 0;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    line-height: 36px;
+    color: #3951B3;
+    background-color: #ffffff;
+    margin-right: 12px;
+    text-align: center;
+  }
+  .pagger .pagger-inline a:hover{
+    background-color: #3951B3;
+    color: #ffffff;
+  }
+  
+  .pagger .pagger-inline a.selected{
+    background-color: #3951B3;
+    color: #ffffff;
+  }
+
+</style>
+
+<body>
+  <!-- 
+    常见的行盒：包含具体内容的元素，包括不限于span\strong\em\i\img\video\audio
+   -->
+  <h1>行盒的显著特点</h1>
+  <ul>
+    <li>
+      盒子沿着内容延申
+    </li>
+    <li>
+      盒子不能设置宽高:如果要调整行盒的宽高，应该使用字体大小、行高、字体类型间接调整
+    </li>
+    <li>内边距：水平方向有效、垂直方向不会实际占据空间</li>
+    <li>边框：水平方向有效、垂直方向不会实际占据空间</li>
+    <li>外边距：水平方向有效、垂直方向不会实际占据空间</li>
+  </ul>
+  <div>
+    <h1>1、演示行盒不能设置宽高</h1>
+    <a href="" id="noWH">不能设置宽高</a>
+  </div>
+
+  <div>
+    <h1>2、行块盒 display:inline-block;</h1>
+    <p>行块盒,不独占一行，且块盒中的所有尺寸属性都有效</p>
+    <div class="pagger">
+      <div class="pagger-inline">
+        <a href="">1</a>
+        <a href="" class="selected">2</a>
+        <a href="">3</a>
+        <a href="">4</a>
+        <a href="">5</a>
+        <a href="">6</a>
+        <a href="">7</a>
+        <a href="">8</a>
+        <a href="">9</a>
+        <a href="">10</a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h1>3、可替换元素</h1>
+    <ul>
+      <li>大部分元素，页面上显示的结果取决于元素的内容，成为非可替换元素</li>
+      <li>少部分元素，页面上显示的结果取决于元素的属性，成为可替换元素</li>
+    </ul>
+    <p>可替换元素有：img、video、audio等，和行块元素类似，盒模型中的所有尺寸都有效</p>
+  </div>
+</body>
+
+</html>

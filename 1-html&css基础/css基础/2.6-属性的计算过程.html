@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div{
+    color: red;
+  }
+  a{
+    /* 不要下划线 */
+    text-decoration: none;
+    /* 指定继承父元素字体颜色 */
+    color: inherit;
+    /* 字体大小使用默认值 */
+    size: initial;
+  }
+</style>
+<body>
+  
+  <!-- 
+    属性值的计算过程
+    1、确定声明值
+      参考样式表(作者样式表、浏览器默认样式表)中没有冲突的声明，作为css属性
+    2、层叠冲突
+      对样式表中有冲突的使用层叠规则(比较重要性、特殊性、比较源次序)
+    3、使用继承
+      仍然没有值的属性，若可以继承(一般是文字类型的属性)，则继承父元素的值
+    4、使用默认值
+      对于仍然没有值的属性，使用默认值(默认值和浏览器默认样式不一样)
+   -->
+
+   <div>
+     <!-- 
+       a元素的字体颜色不会继承父元素，因为浏览器默认给他了一个颜色；
+       我们使用color: inherit;让他强制继承父元素的颜色
+    -->
+     <a href="">举个例子</a>
+     <!-- p元素的字体颜色浏览器没有给默认值，所以按照第3步，使用了父元素的字体颜色 -->
+     <p>p元素</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .border{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    /* 边框宽度和padding一样，有四个方向 */
+    border-width: 15px;
+    border-style: dashed;
+    border-color: black;
+  }
+</style>
+<body>
+  <!-- 
+    box：每个元素都会在页面中生成一个矩形区域
+    盒子类型：
+      1、行盒，display等于inline的元素，在页面中不换行
+        常见的有：容器元素、h1~h6,p
+      2、块盒，display等于block的元素，在页面中独占一行
+        常见的有：span、a、img、video、audio等内容元素
+      
+      盒子的组成部分
+      1、centent 内容
+        width\height设置的是盒子的内容宽高
+        内容部分通常叫做整个盒子的 内容盒(content-box)
+      2、padding 内边距/填充
+        盒子边框到内容的距离
+        属性：padding-left/right/top/bottom
+        简写：padding: 1px 2px 3px 4px（顺时针内边距）
+              padding： 1px 2px（上下  左右）
+              padding：1px （四个方向都是1px）
+        填充区+内容区=填充盒(padding-box)
+      3、border 边框
+          边框=边框样式+边框宽度+边框颜色
+          border-style:
+          border-width:
+          border-color:
+          边框+填充区+内容区=边框盒(border-box)
+      4、margin 外边距
+          边框到其他元素的距离
+          margin-left/right/top/bottom
+   -->
+
+   <div class="border">
+
+   </div>
+</body>
+</html>

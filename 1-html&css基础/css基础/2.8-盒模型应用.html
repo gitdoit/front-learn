@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 改变宽高范围 */
+    #size {
+      width: 236px;
+      height: 56px;
+      color: #a7a7a7;
+      background-color: #2d2e36;
+      line-height: 51px;
+      border: 3px solid red;
+      padding-left: 66px;
+      /* css3属性，将盒子设置为边框盒；
+        即height\width指定的是边框盒的宽高；
+        设置padding-left会把内容往右挤，而整个元素宽度不变
+       */
+      box-sizing: border-box;
+    }
+
+    /* 改变背景颜色覆盖范围 */
+    #bg {
+      width: 100px;
+      height: 100px;
+      background-color: #008c8c;
+      border: 20px dashed red;
+      padding: 10px;
+    }
+
+    /* 内容溢出处理 */
+    #over{
+      height: 200px;
+      width: 200px;
+      border: 1px solid red;
+      overflow: scroll;
+    }
+
+    /* 文字截断 */
+    #cat{
+      width: 200px;
+      height: 150px;
+      border: 2px solid black;
+      margin-bottom: 100px;
+      /* 不按照单词进行截断，这样就把一个单词切成两部分显示在两行 */
+      word-break: break-all;
+
+    }
+    /* 文字溢出处理 */
+    .nowarp li {
+      border-bottom: 2px dashed #008c8c;
+      border-left: 5px solid #008c8c;
+      line-height: 2;
+      padding-left: 10px;
+      margin: 1em 0;
+      /* 宽度200px */
+      width: 200px;
+      /* 【对于单行文本】，设置这个属性不换行，这样就溢出了 */
+      white-space: nowrap;
+      /* 对于溢出的部分，隐藏 */
+      overflow: hidden;
+      /* 同时，文字移除的部分，显示三个原点 */
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>一、改变宽高范围</h1>
+  <p>根据设计图量元素宽高的时候，量的是整个元素的宽高，但是设置height\width的时候是
+    内容宽高，这样再加上内边距和边框宽高之后就和设计图对不上了；</p>
+  <h2>
+    解决办法1：为宽高手动加减边框和内边距占据的大小占
+  </h2>
+  <h2>
+    解决办法2：CSS3的box-sizing:boeder-box;
+  </h2>
+  <div id="size">
+    英雄联盟
+  </div>
+
+  <h1>二、改变背景颜色覆盖范围</h1>
+  <div id="bg">
+    content
+  </div>
+  <p>
+  <ul>
+    <li>background-clip: padding-border;(默认)背景只覆盖边框盒</li>
+    <li>background-clip: content-box;背景只覆盖内容盒</li>
+    <li>background-clip: padding-box;背景只覆盖填充盒</li>
+  </ul>
+  </p>
+
+  <h1>三、溢出处理</h1>
+  <p>宽高限定死，内容又超长，溢出后默认会显示出来；可以通过overflow:xxx;来规定溢出后的处理方式</p>
+  <ul>
+    <li>hidding：溢出隐藏</li>
+    <li>scroll:使用滚动条（有没有溢出都有滚动条）</li>
+    <li>auto:自动，没溢出的时候不出现滚动条，溢出后才出现</li>
+  </ul>
+  <div id="over">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit hic mollitia, doloribus quibusdam repudiandae repellat
+    velit est soluta cupiditate optio esse beatae ea, modi doloremque cumque numquam, excepturi aperiam explicabo.
+  </div>
+
+  <h1>四、文字截断</h1>
+  <p>文字换行时按照那种方式截断，默认英文按照单词截断，中文按照字截断</p>
+  <div id="cat">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia nesciunt eveniet ratione in iure eum optio laboriosam, soluta totam veritatis vel sed. Fugit doloremque aperiam fugiat voluptas totam praesentium voluptatem?
+  </div>
+
+  <h1>五、单行文本不换行</h1>
+  <ul class="nowarp">
+    <li> sit amet.</li>
+    <li>Facilis vero beatae provident. Corporis!</li>
+    <li>Culpa exercitationem.</li>
+    <li>Magnam necessitatibus doloribus unde minus.</li>
+    <li>Quisquam, impedit! Distinctio, consectetur aspernatur.</li>
+    <li>Deleniti, beatae corporis. Quaerat, sint?</li>
+    <li>Aliquid blanditiis placeat nostrum quas.</li>
+    <li>Laborum aut obcaecati veniam fugit!</li>
+    <li>Deleniti nisi autem veritatis. Impedit!</li>
+    <li>Qui natus distinctio velit libero!</li>
+  </ul>
+</body>
+
+</html>
