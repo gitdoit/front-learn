@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body{
+    margin: 0;
+  }
+  .parent{
+    background-color: lightblue;
+    border: 3px solid;
+    padding: 30px;
+    width: 500px;
+  }
+
+  .child{
+    background-color: red;
+    border: 2px solid;
+    height: 100px;
+    margin-top: 50%;
+  }
+</style>
+<body>
+  <!-- 
+    常规流又叫做文档流、普通文档流、常规文档流
+    所有元素，默认情况下都属于馋常规流布局
+    总体规则：块盒独占一行，行盒水平依次排列
+   -->
+   <h1>
+     包含块
+   </h1>
+   <p>
+     每个元素都有它的包含块，包含块决定了盒子的排列区域，绝大部分情况下盒子的包含块为其 <strong>父元素的内容盒</strong> 
+   </p>
+   <h2>
+     规则一、每个块盒的总宽度，必须等于包含块的宽度
+   </h2>
+   <p>
+     1、如果没指定块盒的宽度，那么默认值是auto，意味着如果外边距、边框、内边距没有用光包含块的宽度，那么剩下的就分给width
+   </p>
+   <p>
+     2、如果块盒指定了宽度，并且如果再加上外边距、边框、内边距都没分完包含块的宽度，那么剩余的将分配给 <strong>margin-right</strong>
+   </p>
+   <p>
+     3、如果指定了块盒宽度，并设置 <code>margin-right:auto;margin-left:auto;</code> 那么剩余的宽度平均分给左右外边距
+   </p>
+   <h2>
+     规则二、块盒垂直方向上的<code>auto</code>值
+   </h2>
+   <p>
+     1、对于height来说，时应内容高度
+   </p>
+   <p>
+     2、对于margin来说，就等于0
+   </p>
+
+   <h2>
+     规则三、百分比取值
+   </h2>
+   <p>
+     对于padding\margin\width的取值都可以取百分比；意味着按照 <strong>包含块的宽度</strong> 计算;
+     即使是<code>margin-top/padding-top也是一样</code>
+   </p>
+
+   <h2>
+     规则四、上下外边距合并
+   </h2>
+   <p>
+     两个常规流块盒，上下外边距，会进行合并，合并的的值取最大值。
+   </p>
+   <div class="parent">
+     <div class="child">
+     </div>
+   </div>
+</body>
+</html>
