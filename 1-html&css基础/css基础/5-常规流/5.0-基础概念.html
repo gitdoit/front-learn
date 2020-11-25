@@ -9,19 +9,41 @@
   body{
     margin: 0;
   }
-  .parent{
+
+  .percent{
+    width: 200px;
+    height: 600px;
+    border: 1px solid;
     background-color: lightblue;
-    border: 3px solid;
-    padding: 30px;
-    width: 500px;
+  }
+  .percent .left{
+    width: 50%;
+    height: 50%;
+    margin-top: 50%;
+    margin-left: 50%;
+    background-color: red;
   }
 
-  .child{
-    background-color: red;
-    border: 2px solid;
-    height: 100px;
-    margin-top: 50%;
+  .parent{
+    background-color: lightblue;
+    width: 200px;
+    height: 600px;
   }
+
+ .parent .child{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+    margin-top: 100px;
+  }
+  .parent .child-right{
+    background-color: black;
+    height: 100px;
+    width: 100px;
+    margin-top: 100px;
+    color: white;
+  }
+  
 </style>
 <body>
   <!-- 
@@ -61,18 +83,33 @@
      规则三、百分比取值
    </h2>
    <p>
-     对于padding\margin\width的取值都可以取百分比；意味着按照 <strong>包含块的宽度</strong> 计算;
-     即使是<code>margin-top/padding-top也是一样</code>
+     1、对于padding\margin\的四个方向及width的百分比；
+     意味着按照 <strong>包含块的<span style="color: red;">宽度</span></strong> 计算(和高度无关);<br>
    </p>
-
+   <p>
+     2、对于高度height的百分比<br>
+     1)、如果包含块高度自适应，那么子元素高度百分比无效<br>
+     2)、如果包含块高度指定了，此时子元素高度百分比按照包含块的高度计算
+   </p>
+   <div class="percent">
+     <div class="left">
+      <span><code>margin-top:50%</code></span>
+      <span><code>margin-left:50%</code></span>
+     </div>
+   </div>
    <h2>
      规则四、上下外边距合并
    </h2>
    <p>
-     两个常规流块盒，上下外边距，会进行合并，合并的的值取最大值。
+     两个常规流块盒，如果是挨在一起中间没有任何东西隔开的话(包括Border)，那么他们的外边距
+     会进行合并，即使一个在另一个内部。
    </p>
    <div class="parent">
-     <div class="child">
+     <div class="child"> 
+       <span>margin-top:100px 没有效果，因为和父元素的margin-top合并了。</span>
+     </div>
+     <div class="child-right"> 
+       <span >margin-top:100px 有效果，因为碰到了红块的content</span>
      </div>
    </div>
 </body>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .container{
+    background-color: lightblue;
+    width: 600px;
+    height: 600px;
+  }
+
+  .container div{
+    width: 25%;
+    height: 50%;
+    background-color: rebeccapurple;
+  }
+  .container .left{
+    
+    float: left;
+  }
+  .container .right{
+    float: right;
+  }
+
+  .float-container{
+    width: 300px;
+    height: 150px;
+    background-color: lightblue;
+  }
+  .left-item{
+    float: left;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    margin: 10px;
+    text-align: center;
+    line-height: 50px;
+  }
+
+   .right-item{
+    float: right;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    margin: 10px;
+    text-align: center;
+    line-height: 50px;
+  }
+
+  .clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+</style>
+<body>
+  <div>
+    <h1>浮动的应用场景</h1>
+    <h2>1、文字环绕</h2>
+    <h2>2、横向排列</h2>
+  </div>
+  <div>
+    <h1>浮动的基本特点</h1>
+    <h3>1、float:left  左浮动，元素靠上靠左</h3>
+    <div class="float-container">
+      <div class="left-item">1</div>
+      <div class="left-item">2</div>
+      <div class="left-item">3</div>
+      <div class="left-item">4</div>
+      <div class="left-item">5</div>
+    </div>
+    <h3>2、float:right  右浮动，元素靠上靠右</h3>
+    <div class="float-container">
+      <div class="right-item">1</div>
+      <div class="right-item">2</div>
+      <div class="right-item">3</div>
+      <div class="right-item">4</div>
+      <div class="right-item">5</div>
+    </div>
+    <h3>3、默认值为none，即为常规流不浮动。</h3>
+    <h3>4、元素浮动后，它必定是块盒</h3>
+    <div style="height: 100px;width: 100px;background-color: lightblue;">
+      <span style="width: 30px;background-color: rebeccapurple;float: right;text-align: center;">1</span>
+      <span style="width: 30px;background-color: red;float: right;text-align: center;">1</span>
+    </div>
+    <h3>5、浮动元素的包含块和常规流一样，都是父元素的内容盒</h3>
+    <h1>浮动盒子的尺寸</h1>
+    <h3>1、宽度为auto时，适应内容宽度(和常规流不一样)</h3>
+    <div style="width: 100px;height: 100px;background-color: lightblue;font-size: 12px;">
+      <div style="float: left;height:30px;width: auto;background-color: red;"></div>
+      <span>这里有个看不见的盒子，有背景色，但是宽度自动，没内容就不显示</span>
+    </div>
+    <h3>2、高度为auto时，和常规流一样，适应内容高度</h3>
+    <h3>3、margin为auto,为0</h3>
+    <h3>4、边框、内边距设置百分比和常规流一样</h3>
+    <h3>5、浮动盒子在包含块中排列时，会避开常规流盒子</h3>
+    <div style="width: 300px; height: 300px; background-color: lightblue;">
+      <div style="height: 100px;background-color: yellow;">
+        常规流盒子
+      </div>
+      <div class="right-item">1</div>
+      <div class="right-item">2</div>
+      <div class="right-item">3</div>
+      <div class="right-item">4</div>
+      <div class="right-item">5</div>
+    </div>
+  </div>
+
+  <h3>6、常规流盒子在排列时无视浮动盒子</h3>
+  <div style="width: 300px; height: 300px; background-color: lightblue;">
+    <div class="right-item">浮动</div>
+      <div class="right-item">浮动</div>
+      <div class="right-item">浮动</div>
+    <div style="height: 100px;background-color: yellow;">
+      常规流盒子
+    </div>
+  </div>
+  <h3>7、行盒在排列时会避开浮动元素</h3>
+  <div style="width: 300px; height: 300px; background-color: lightblue;">
+    <div style="float: left;height: 100px;background-color: yellow;">
+      左浮动盒子
+    </div>
+    <p>行盒内容：p元素不是行盒，里面直接写文字，里面的文字会被包装成行盒.这样就会避开左边的这个浮动盒子了，形成了文字环绕的效果；Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, repellendus? Perferendis consequatur debitis molestias e</p>
+  </div>
+  <h3>8、高度坍塌</h3>
+  <p>高度坍塌的根源，常规流盒子计算高度的时候不会考虑浮动盒子。就造成了下面这种现象</p>
+  <div style="width: 300px; background-color: lightblue;padding: 30px;">
+    <div class="left-item">浮动</div>
+    <div class="left-item">浮动</div>
+    <div class="left-item">浮动</div>
+  </div>
+  <p style="clear: both;">解决高度坍塌的方法就是使用clear属性，清除浮动</p>
+  <div class="clearfix" style="width: 300px; background-color: lightblue;padding: 30px;">
+    <div class="left-item">浮动</div>
+    <div class="left-item">浮动</div>
+    <div class="left-item">浮动</div>
+  </div>
+</body>
+</html>
