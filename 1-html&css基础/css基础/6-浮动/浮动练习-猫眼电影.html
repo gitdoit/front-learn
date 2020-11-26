@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正在热映--猫眼电影</title>
+  <link rel="stylesheet" href="../source/reset.css">
+</head>
+<style>
+  body{
+    color: #333;
+  }
+  .clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .main{
+    line-height: 1.5em;
+  }
+  .main .nav{
+    height: 60px;
+    background-color: #47464a;
+    color: #999;
+    text-align: center;
+    line-height: 60px;
+  }
+  .main .nav a{
+    margin: 0 38px;
+  }
+  .main .nav a:hover{
+    color: #fff;
+  }
+  .main .nav a.select{
+    color: #ef4238;
+  }
+  .main .container{
+    width: 1120px;
+    height: 300px;
+    margin: 0 auto;
+  }
+  .main .container .choose-area{
+    border: 1px solid #e5e5e5;
+    margin: 40px 0;
+    font-size: 14px;
+    line-height: 30px;
+    padding: 0 30px;
+  }
+  .main .container .choose-area .choose-item{
+    margin: 1em 0;
+    border-bottom: 1px dotted #e5e5e5;
+  }
+  .main .container .choose-area .choose-item .left{
+    float: left;
+    color: #999;
+  }
+  .main .container .choose-area .choose-item .right{
+    float: left;
+    width: 1010px;
+  }
+
+  .main .container .choose-area .choose-item .right li{
+    float: left;
+    margin: 0 9px;
+    padding: 0 6px;
+  }
+  .main .container .choose-area .choose-item .right li:hover{
+    color: #ef4238;
+  }
+  .main .container .choose-area .choose-item .right li.select{
+    background-color:  #ef4238;
+    color: #fff;
+    border-radius: 15px;
+  }
+
+  .main .container .movies .movie-item{
+    float: left;
+    width: 160px;
+    margin: 10px 32px 10px 0;
+  }
+  /* 元素选择器，选择符合要求的第6 12 18 ...等个元素 */
+  .main .container .movies .movie-item:nth-child(6n){
+    margin-right: 0;
+  }
+  .main .container .movies .movie-item .poster a img{
+    object-fit: cover;
+    width: 160px;
+    height: 220px;
+  }
+
+  .main .container .movies .movie-item .name{
+    /* 不换行 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+
+  .main .container .movies .movie-item .score{
+    color: #ffb400;
+    text-align: center;
+    line-height: 2.5;
+    font-style: italic;
+  }
+  .main .container .movies .movie-item .score::first-letter{
+    font-size: 1.5em;
+  }
+  
+  .main .container .pager{
+    text-align: center;
+  }
+  .main .container .pager a{
+    padding: 5px 10px;
+    border: 1px solid rgb(119, 140, 161);
+  }
+  .main .container .pager a:hover{
+    border: 1px solid  #ef4238;
+  }
+  .main .container .pager a.select{
+    background-color: #ef4238;
+    color: #fff;
+  }
+
+  
+</style>
+<body>
+  <div class="main">
+    <!-- 菜单 -->
+    <nav class="nav">
+      <a href="" class="select">正在热映</a>
+      <a href="">即将上映</a>
+      <a href="">经典影片</a>
+    </nav>
+    <div class="container">
+      <!-- 分类 -->
+      <div class="choose-area">
+        <div class="choose-item clearfix">
+          <div class="left">类型：</div>
+          <div class="right">
+            <ul>
+              <li class="select"><a href="">Lorem.</a></li>
+              <li><a href="">Iure?</a></li>
+              <li><a href="">Accusantium!</a></li>
+              <li><a href="">Consequatur!</a></li>
+              <li><a href="">Vitae!</a></li>
+              <li><a href="">Neque!</a></li>
+              <li><a href="">Adipisci.</a></li>
+              <li><a href="">Dicta.</a></li>
+              <li><a href="">Voluptatem.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="choose-item clearfix">
+          <div class="left">类型：</div>
+          <div class="right">
+            <ul>
+              <li><a href="">Lorem.</a></li>
+              <li><a href="">Iure?</a></li>
+              <li><a href="">Accusantium!</a></li>
+              <li><a href="">Consequatur!</a></li>
+              <li><a href="">Vitae!</a></li>
+              <li><a href="">Neque!</a></li>
+              <li><a href="">Adipisci.</a></li>
+              <li><a href="">Dicta.</a></li>
+              <li><a href="">Voluptatem.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="choose-item clearfix">
+          <div class="left">类型：</div>
+          <div class="right">
+            <ul>
+              <li><a href="">Lorem.</a></li>
+              <li><a href="">Iure?</a></li>
+              <li><a href="">Accusantium!</a></li>
+              <li><a href="">Consequatur!</a></li>
+              <li><a href="">Vitae!</a></li>
+              <li><a href="">Neque!</a></li>
+              <li><a href="">Adipisci.</a></li>
+              <li><a href="">Dicta.</a></li>
+              <li><a href="">Voluptatem.</a></li>
+              <li><a href="">Laboriosam.</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 电影 -->
+      <div class="movies clearfix">
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+        <div class="movie-item">
+          <div class="poster">
+            <a href="">
+              <img src="../source/img.webp" alt="">
+            </a>
+          </div>
+          <div class="name">
+            <a href="">
+              杀生
+            </a>
+          </div>
+          <div class="score">
+            8.3
+          </div>
+        </div>
+      </div>
+      <!-- 分页 -->
+      <div class="pager">
+        <a href="" class="select">1</a>
+        <a href="">2</a>
+        <a href="">3</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
