@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .container{
+    width: 300px;
+    height: 300px;
+    background-color: lightblue;
+  }
+  .container .rel{
+    height: 100px;
+    background-color: rebeccapurple;
+    position: relative;
+    left: 100px;
+    top:50px;
+
+  }
+  .container .ml{
+    height: 100px;
+    background-color: red;
+    margin-left: 100px;
+    padding-top: 50px;
+  }
+  
+</style>
+<body>
+  <h1>
+    定位：手动控制元素再包含块中的精准位置
+  </h1>
+  <h2>
+    position属性
+  </h2>
+  <h3>
+    一、static:默认值，静态定位即不定位（不会脱离文档流）
+  </h3>
+  <h3>
+    二、relative:相对定位（不会脱离文档流）
+  </h3>
+  <p>
+    相对定位只是对应自己的位置进行偏移;<br>
+    即相对于自己原来的位置向上下左右四个方向进行偏移；<br>
+    偏移只是视觉上的效果，并不会把其他元素挤开；
+    如果偏移冲突了，那么以上、左为准<br>
+    <strong>通常用来为绝对定位做嫁衣</strong>
+  </p>
+  <div class="container">
+    <div class="rel">
+      相对定位左偏移100px、上偏移50px<br>
+      
+    </div>
+    <div class="ml"> 无定位，margin-left : 100 px</div>
+  </div>
+  <h3>
+    三、absolut:绝对定位(脱离文档流)
+  </h3>
+  <p>
+    1、宽高为auto时，适应内容；<br>
+  </p>
+  <p>
+    2、绝对定位的元素的包含块是它从它爹开始往上找，第一个碰到的定位元素(postition不是static的);<br>
+    如果找不到，那么整个网页就是他的初始包含块。
+  </p>
+  <div class="container" style="border: 1px solid;position: relative;">
+    <div style="border: 1px solid; width: 100px; height: 100px; margin: 20px;">
+      <div style="border: 1px solid; width: 30px; height: 30px; background-color: red;position: absolute; top: 10px;left: 0;"></div>
+    </div>
+  </div>
+  <h3>
+    四、fixed:固定定位
+  </h3>
+  <p>
+    固定定位和绝对定位除了包含块不同其他完全相同；<br>
+    固定定位的包含块是浏览器的可视窗口，就是你眼睛能够看得见的那部分网页，例如<br>
+    你按下f12，可视窗口就被控制台挤小了。但是网页大小没变
+  </p>
+  <div style="width: 100px; height: 100px; background-color: lightblue;position: fixed;top: 300px;right: 100px;">
+    固定定位元素
+  </div>
+  <h3>
+    五、固定、绝对定位下的居中
+  </h3>
+  <p>
+    总结：绝对定位和固定定位中，当上下或左右为0时，margin为auto时会自动吸收掉剩余的空间。<br>
+    和常规流的width对于margin的关系类似。
+  </p>
+  <p>
+    1、定宽高<br>
+    2、水平居中-将左右距离设置为0，margin为auto <br>
+  </p>
+  <div class="container" style="position: relative;">
+    <div style="width: 50px; height: 50px;background-color: rebeccapurple;position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+    "></div>
+  </div>
+  <p>
+    3、垂直居中-将上下距离设置为0，margin为auto <br>
+  </p>
+  <div class="container" style="position: relative;">
+    <div style="width: 50px; height: 50px;background-color: rebeccapurple;position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    "></div>
+  </div>
+  <p>
+    4、水平+垂直居中-上下左右距离设置为0，margin为auto
+  </p>
+  <div class="container" style="position: relative;">
+    <div style="width: 50px; height: 50px;background-color: rebeccapurple;position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    "></div>
+  </div>
+  <h2>
+    一个脱离了文档流的元素具有如下特性：
+  </h2>
+  <h3>
+    1、文档流中的元素摆放时，会自动忽略脱离的文档流的元素。
+  </h3>
+  <h3>
+    2、文档流中的元素计算自动高度时，会忽略脱离了文档流的元素。
+    这两点和浮动元素一样，浮动元素也是脱离了文档流的元素
+  </h3>
+</body>
+</html>
