@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../source/reset.css">
+</head>
+<style>
+  .claerfix::after{
+    content: "";
+    clear: both;
+    display: block;
+  }
+  .header{
+    color: #999;
+    background: #e3e4e5;
+    height: 40px;
+    line-height: 40px;
+  }
+  .header .topnav>li{
+    float: left;
+    margin: 0 20px;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .header .topnav>li:hover{
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-bottom: none;
+    line-height: 36px;
+  }
+  .header .topnav>li .submenu{
+    text-align: left;
+    line-height: 1.5;
+    width: 300px;
+    display: none;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    position: absolute;
+    right: -2px;
+    background-color: #fff;
+  }
+
+  .header .topnav>li:hover .submenu{
+    display: block;
+  }
+  .header .topnav>li:hover::after{
+    content: "";
+    position:absolute;
+    
+    width: 100%;
+    height: 5px;
+    bottom: -2px;
+    left: 0;
+    background-color: #fff;
+  }
+</style>
+<body>
+  <header class="header">
+    <ul class="topnav claerfix">
+      <li><a href="">Ratione?</a></li>
+      <li>
+        <a href="">客户服务</a>
+        <div class="submenu">
+          <ul>
+            <li>Lorem.</li>
+            <li>Odit.</li>
+            <li>Similique!</li>
+            <li>Provident?</li>
+            <li>Accusantium.</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </header>
+</body>
+</html>

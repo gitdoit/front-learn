@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../source/reset.css">
+</head>
+<style>
+  .banner{
+    width: 200px;
+    height: 120px;
+    border: 1px solid;
+    margin: 1em auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .banner .imgs{
+    width: 600px;
+    height: 120px;
+  }
+  .banner .imgs a{
+    float: left;
+  }
+  .banner .imgs a img{
+    width: 200px;
+    height: 120px;
+    object-fit: cover;
+  }
+  .banner .left,.banner .right{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    
+  }
+  .banner .right{
+    right: 0;
+  }
+  .banner .left{
+    left: 0;
+  }
+  .banner .left:hover,.banner .right:hover{
+    background-color: #fff;
+    color: red;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+</style>
+<body>
+  <div class="banner">
+    <div class="imgs">
+      <a href=""><img src="../source/img.webp" alt=""></a>
+      <a href=""><img src="../source/img.webp" alt=""></a>
+      <a href=""><img src="../source/img.webp" alt=""></a>
+    </div>
+    <div class="left">&lt;</div>
+    <div class="right">&gt;</div>
+  </div>
+  <script>
+    let right = document.querySelector(".banner .right")
+    right.addEventListener("click",()=>{
+      document.querySelector(".banner .imgs").style.marginLeft = "-190px"
+    }, false);
+  </script> 
+</body>
+</html>
