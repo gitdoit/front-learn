@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+ .container{
+   width: 600px;
+   height: 600px;
+   border: 2px solid;
+   /* *
+    * 块盒元素必将用尽包含块的宽度，宽限定死但是没有用尽包含块的宽度，那么默认分给margin-right
+    * 那么左右外边距auto的话，剩下的宽度就会平分给左右，导致块元素居中。
+    */
+   margin: 0 auto;
+ }
+ .item{
+   width: 100px;
+   height: 100px;
+   border: 2px solid;
+   margin-top: 50%;
+ }
+</style>
+<body>
+  <div class="container">
+    <div class="item">
+    </div>
+  </div>
+</body>
+</html>

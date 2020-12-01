@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>行盒的盒模型</title>
 </head>
 <style>
   /* 演示行盒不能设置宽高 */
@@ -31,12 +31,13 @@
   }
   
   .pagger .pagger-inline a {
+    /* 行块盒：不换行，所有尺寸都和块盒一样有效 */
+    display: inline-block;
     text-decoration: none;
     border-radius: 6px;
     border: 0;
     width: 36px;
     height: 36px;
-    display: inline-block;
     line-height: 36px;
     color: #3951B3;
     background-color: #ffffff;
