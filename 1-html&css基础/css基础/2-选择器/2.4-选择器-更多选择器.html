@@ -3,29 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>更多选择器</title>
 </head>
 <style>
+  a{
+    font-size: 15px;
+    color: black;
+    border: 1px solid lightblue;
+    padding: 0 10px;
+  }
+  span{
+    border: 1px solid lightblue;
+  }
  .container{
    width: 600px;
-   height: 600px;
    border: 2px solid;
-   /* *
-    * 块盒元素必将用尽包含块的宽度，宽限定死但是没有用尽包含块的宽度，那么默认分给margin-right
-    * 那么左右外边距auto的话，剩下的宽度就会平分给左右，导致块元素居中。
-    */
-   margin: 0 auto;
+   margin: 20px auto;
  }
- .item{
-   width: 100px;
-   height: 100px;
-   border: 2px solid;
-   margin-top: 50%;
+ h3{
+   border-top: 1px solid;
+ }
+ /* 是第一个子元素
+    如html下的第一个子元素header，body下的第一个子元素等等...
+  */
+ /* :first-child{
+   border: 3px dotted yellow;
+ } */
+
+ 
+ /* 是a元素 && 是第一个子元素
+    <div><p></p><a></a><a></a></div> ,这个a元素不能被选中
+  */
+ .first-chile a:first-child{
+   background-color: red;
+ }
+ /* 
+   子元素中的第一个a元素
+    <div><p></p><a></a><a></a></div> p元素后面的第一个a元素被选中了
+ */
+ .first-chile a:first-of-type{
+   background-color: red;
+ }
+
+ /* 是a元素 && 是最后一个元素 */
+ .last-chile a:last-child{
+   background-color: red;
+ }
+ 
+ /* 子元素中的最后一个a元素 
+ */
+ .last-chile span:last-of-type{
+   background-color: red;
+ }
+
+.nth-child a:nth-child(2){
+  background-color: red;
+ }
+ .nth-child2n a:nth-child(even){
+  background-color: red;
+ }
+ .nth-of-type a:nth-of-type(2){
+  background-color: red;
+ }
+ 
+ .container .first-letter p::first-letter{
+   font-size: 40px;
+   color: red;
+ }
+
+ .container .first-line p::first-line{
+   background-color: red;
+ }
+
+ .container .selection p::selection{
+   background-color: aquamarine;
+   font-size: 30px;
  }
 </style>
 <body>
   <div class="container">
-    <div class="item">
+    <h3>a:first-child :是a元素 && 是第一个子元素  </h3>
+    <div class="first-chile">
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+    </div>
+    <h3>a:last-child:子元素中的第一个a元素</h3>
+    <div class="first-chile">
+      <span>我是span</span>
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+    </div>
+
+    <h3>a:last-child : 是a元素 && 是最后一个元素</h3>
+    <div class="last-chile">
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+    </div>
+
+    <h3>span:last-of-type : 子元素中的最后一个span元素 </h3>
+    <div class="last-chile">
+      <a href="">1</a>
+      <a href="">2</a>
+      <span>我是span</span>
+      <i>我是i元素</i>
+    </div>
+  </div>
+  <div class="container">
+    <h3>a:nth-child(2) : 是a元素 && 是第2个子元素</h3>
+    <div class="nth-child">
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+      <a href="">4</a>
+    </div>
+
+    <h3>a:nth-child(2n) : 是a元素 && 是第2n个子元素;2n=even,2n+1=odd</h3>
+    <div class="nth-child2n">
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+      <a href="">4</a>
+    </div>
+
+    <h3>a:nth-of-type(2) : 子元素中的第二个a元素</h3>
+    <p>同时还有a:nth-last-child() a:nth-last-of-type()</p>
+    <div class="nth-of-type">
+      <span>我是span</span>
+      <span>我是span</span>
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+      <a href="">4</a>
+    </div>
+
+
+
+  </div>
+
+  <div class="container">
+    <h3>p::first-letter ： 选中p元素中的第一个字</h3>
+    <div class="first-letter">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt numquam officia, corporis consequatur molestiae aspernatur, exercitationem sunt nostrum voluptate ea ex maxime ducimus sed. At quo voluptatem accusamus laudantium vel.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3>p::first-line ： 选中p元素中文字的第一行</h3>
+    <div class="first-line">
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis dignissimos eveniet esse vitae quibusdam repudiandae ut officia. Perspiciatis nisi illum dicta non deleniti assumenda? Ut ipsam ullam voluptate tenetur esse?</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3>p::selection ： 选中p元素被用户选中的文字</h3>
+    <div class="selection">
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis dignissimos eveniet esse vitae quibusdam repudiandae ut officia. Perspiciatis nisi illum dicta non deleniti assumenda? Ut ipsam ullam voluptate tenetur esse?</p>
     </div>
   </div>
 </body>
