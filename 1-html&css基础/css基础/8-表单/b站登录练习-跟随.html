@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../source/reset.css">
+</head>
+<style>
+  .clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .form {
+    width: 990px;
+    margin: 1em auto;
+  }
+  /* 注册 */
+  .form h2 {
+    text-align: center;
+    font-size: 38px;
+    border-bottom: 1px solid #ddd;
+    height: 19px;
+    margin-bottom: 19px;
+  }
+  .form h2 span {
+    background-color: #fff;
+    padding: 0 15px;
+  }
+  /* 表单区域 */
+  .form .form-area{
+    width: 423px;
+    margin: 0 auto;
+  }
+  /* 输入框上下边距 */
+  .form-area .form-item{
+    margin: 50px 0;
+    position: relative;
+  }
+  /* 输入框默认样式，宽高边框圆角内容边距字体 */
+  .form-area input[type='text'],.form-area input[type='password']{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-indent: 1em;
+    font-size: 14px;
+    color: #606266;
+    font-family: "PingFangSC-Medium"; 
+  }
+  /* 鼠标悬浮在输入框时，边框颜色加深 */
+  .form-area input[type='text']:hover,.form-area input[type='password']:hover{
+    border-color: #c0c4cc;
+  }
+  /* placeholder样式 */
+  .form-area input[type='text']::placeholder,.form-area input[type='password']::placeholder{
+    color: #ccc;
+  }
+  /* 聚焦样式 */
+  .form-area input[type='text']:focus,.form-area input[type='password']:focus{
+    border-color: #00a1d6;
+    outline: 0;
+  }
+  /* 手机号码输入框样式，国家选择和输入浮动起来 */
+  .form-item .select .select-item, .form-item .select .input{
+    float: left;
+    height: 40px;
+  }
+  /* 边框圆角 */
+  .form-item .select .select-item{
+    width: 140px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .form-item .select .input{
+    width: 283px;
+  }
+  .form-item .select .input input{
+    border-radius: 0 4px 4px 0;
+  }
+  .form-item .select .select-item .title{
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    color: #909399;
+    cursor: pointer;
+  }
+  .form-item .select .select-item .title:hover+.choose-items ul{
+    display: block;
+  }
+
+  .form-item .select .select-item .choose-items ul{
+    display: none;
+    max-height: 256px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+    top: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    color: #606266;
+    padding: 10px 0;
+    overflow-y: scroll;
+  }
+  .form-item .select .select-item .choose-items ul li{
+    font-size: 14px;
+    height: 34px;
+    padding: 0 20px;
+    cursor: pointer;
+    line-height: 34px;
+  }
+  .form-item .select .select-item .choose-items ul .active{
+    font-weight: bold;
+    color: #00a1d6;
+  }
+  .form-item .select .select-item .choose-items ul li:hover{
+    background-color: #f5f7fa;
+  }
+  /* 统一设置按钮样式 */
+  button{
+    height: 40px;
+    background: #00a1d6;
+    color: #fff;
+    cursor: pointer;
+    border-radius:4px;
+    border: none;
+    font-size: 14px;
+  }
+  button:hover{
+    background: #33b4de;
+  }
+  .form-area .form-item .btn-sncode{
+    width: 130px;
+    height: 36px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+  .form-area .readme{
+    margin: -40px 0;
+    font-size: 12px;
+  }
+  a{
+    color: #00a1d6;
+  }
+  .form-area .readme .checkbox{
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    border: 1px solid #dcdfe6;
+    border-radius: 3px;
+  }
+  .form-area .readme input:checked+.checkbox::after{
+    display: block;
+    content: "";
+    width: 7px;
+    height: 7px;
+    background: #00a1d6;
+    border-radius: 2px;
+    margin: 3px 0  0 3px;
+  }
+  .form-area .readme input{
+    display: none;
+  }
+
+  /* 注册按钮 */
+  .form-area .form-item .fill{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0;
+  }
+  .text-right{
+    text-align: right;
+  }
+  .form-item .msg{
+    display: none;
+    position: absolute;
+    width: 240px;
+    right: -251px;
+    top: 0;
+    line-height: 36px;
+    font-size: 12px;
+    color: #f45d90;
+  }
+  .form-area .form-item.has-msg .msg{
+    display: block;
+  }
+  .form-area .form-item.has-msg input{
+    border: 1px solid #f45d90;
+  }
+  button:disabled{
+    background: #f5f5f5;
+    color: rgba(0, 0, 0, 0.25);
+    border: 1px solid;
+    box-sizing: border-box;
+    cursor: not-allowed;
+  }
+</style>
+
+<body>
+  <div class="form">
+    <h2>
+      <span>注册</span>
+    </h2>
+    <div class="form-area">
+      <div class="form-item ">
+        <input type="text" placeholder="账号">
+        <div class="msg">
+          该昵称不合法
+        </div>
+      </div>
+      <div class="form-item has-msg" >
+        <input type="password" placeholder="密码（6-16个字母组成，区分大小写）">
+        <div class="msg">
+          密码不合法
+        </div>
+      </div>
+      <div class="form-item ">
+        <div class="select clearfix">
+          <div class="select-item">
+            <div class="title">
+              中国大陆
+            </div>
+            <div class="choose-items">
+              <ul>
+                <li class="active">中国大陆</li>
+                <li>Aut?</li>
+                <li>Quaerat.</li>
+                <li>Sed!</li>
+                <li>Quae.</li>
+                <li>Asperiores.</li>
+                <li>Recusandae!</li>
+                <li>Molestias.</li>
+                <li>Dolorum.</li>
+                <li>Enim.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="input">
+            <input type="text" placeholder="填写常用的手机号">
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <input type="text" placeholder="请输入短信验证码">
+        <button class="btn-sncode" type="button">点击获取</button>
+      </div>
+      <div class="readme">
+        <label>
+          <input type="checkbox">
+          <span class="checkbox"></span>
+          <span>
+            我已同意
+            <a href="#">《哔哩哔哩弹幕网用户使用协议》</a>和
+            <a href="#">《哔哩哔哩弹幕网账号中心规范》</a>
+          </span>
+        </label>
+      </div>
+      <div class="form-item">
+        <button class="fill" disabled>注册</button>
+      </div>
+      <div class="readme text-right">
+        <a href="">已有账号，直接登录</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
