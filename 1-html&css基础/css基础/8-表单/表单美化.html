@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单美化</title>
+</head>
+<style>
+  input:focus{
+    /* 在边框外围的样式，不占空间 */
+    outline: 1px solid #008c8c;
+    outline-offset: 0;
+    color: black;
+  }
+  input{
+    color: aquamarine;
+  }
+  /* input选中状态下的下一个label元素设置红色 */
+  input:checked+label{
+    color: red;
+  }
+
+/* 为了网站统一格式，对表单元素进行样式默认值设置 */
+  .reset{
+    border: 1px solid;
+    text-align: center;
+  }
+  .reset input[type='text']:focus,textarea:focus,select:focus{
+    border: 2px solid #008c8c;
+  }
+  /* 设置多行文本框是否允许调整尺寸 */
+  .reset textarea{
+    resize: none;
+  }
+  .reset input[type='text']{
+    text-indent: 1em;
+  }
+  .my-radio{
+    position: relative;
+    border: 1px solid seagreen;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin: 0 auto;
+  }
+  .my-radio.checked::after{
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    content: "";
+    display: block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: blueviolet;
+  }
+  
+  .radio-item .radio{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #999;
+  }
+  .radio-item input:checked+.radio::after{
+    display: block;
+    content: "";
+    width: 5px;
+    height: 5px;
+    background-color: #008c8c;
+    margin-top: 3.5px;
+    margin-left: 3.5px;
+    border-radius: 50%;
+  }
+  .radio-item input:checked~span{
+    color: #008c8c;
+  }
+  input[type='radio']{
+    display: none;
+  }
+</style>
+<body>
+  <div>
+    <h2>一、伪类</h2>
+    <h3>1、:focus，表示聚焦到当前元素上</h3>
+    <h4></h4>
+    <p>
+      <!-- tabindex属性是按tab键的时候切换元素聚焦的顺序 -->
+      <a href="" tabindex="3">lorem</a>
+    </p>
+    <p>
+      <input type="text" tabindex="2">
+    </p>
+    <p>
+      <button tabindex="1">按钮</button>
+    </p>
+    <h3>2、:checked 选中时的样式</h3>
+    <p>
+      <input id="nan" type="radio" name="gender" value="2">
+      <label for="nan"> 男 </label>
+      <input id="mmm" type="radio" name="gender" value="1">
+      <label for="mmm"> 女 </label>
+    </p>
+    <h2>二、重置表单样式</h2>
+    <div class="reset">
+      <p>
+        调整文本在输入框中边缘到内容的距离: <br>
+        1、设置padding <br>
+        2、设置 text-indent <br>
+        <input type="text">
+      </p>
+      <p>
+        <select name="" id="">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+        </select>
+      </p>
+      <p>
+        resize:是否允许调整尺寸[both,none,horizontal,vartical]
+        <br>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </p>
+      <p>
+        <button>提交</button>
+      </p>
+    </div>
+    <h2>三、自己做一个单选框</h2>
+    <p>我的也一样丑，反正意思就是好看的单选框，多选框都不是用的默认的input元素做的</p>
+      <div class="my-radio checked">
+      </div>
+    <h2>四、自己做一个单选框</h2>
+    <p>
+      思路：
+      1、使用单选框和label的显示关联，在lable里放input和span <br>
+      2、给第一个span设置你想要的单选框样式 <br>
+      3、隐藏默认单选框input[text='radio'] <br>
+      4、使用伪类选择器checked和伪类选择器after，选中在checked状态下的单选框，在after上做样式 <br>
+    </p>
+    <p>
+      请选择性别：
+      <label class="radio-item">
+        <input  type="radio" name="gender1">
+        <span class="radio"></span>
+        <span>男</span>
+      </label>
+      <label class="radio-item">
+        <input  type="radio" name="gender1">
+        <span class="radio"></span>
+        <span>女</span>
+      </label>
+    </p>
+  </div>
+  
+</body>
+</html>
