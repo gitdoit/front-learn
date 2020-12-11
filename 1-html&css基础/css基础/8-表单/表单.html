@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单</title>
+</head>
+<body>
+  <div class="form-container">
+    <form action="">
+      <p>
+        <span>text</span><input type="text" placeholder="placeholder">
+      </p>
+      <p>
+        <span>textarea</span> 
+        <!-- 行盒，可替换元素，可以控制宽高 -->
+        <!-- 并且元素体内可以写内容，原样显示 -->
+        <textarea style="height: 100px; width: 100px;" name="textarea" placeholder="textarea" cols="30" rows="10">
+        </textarea>
+      </p>
+      <p>
+        <span>password</span><input type="password" placeholder="placeholder">
+      </p>
+      <p>
+        <!-- 兼容性问题 -->
+        <span>data</span><input type="date" placeholder="placeholder">
+      </p>
+      <p>
+        <!-- 兼容性问题 -->
+        <span>search</span><input type="search" placeholder="placeholder">
+      </p>
+      <p>
+        <!-- 兼容性问题 -->
+        <span>range</span><input type="range" min="0" max="5">
+      </p>
+      <p>
+        <span>color</span><input type="color">
+      </p>
+      <p>
+        <span>number</span><input type="number" min="0" max="10" step="2">
+      </p>
+      <p>
+        <span>checkbox1</span><input type="checkbox" name="box" checked>
+        <span>checkbox2</span><input type="checkbox" name="box">
+        <span>checkbox3</span><input type="checkbox" name="box">
+      </p>
+      <p>
+        <span>radio:男</span><input type="radio" name="sex" value="1" checked>
+        <span>radio:女</span><input type="radio" name="sex" value="2">
+      </p>
+      <p>
+        <span>file</span><input type="file" name="fileName">
+      </p>
+      <p>
+        <span>button</span>
+        <input type="button" value="botton">
+        <input type="reset" value="reset">
+        <input type="submit" value="submit">
+      </p>
+      <p>
+        <span>select</span>
+        <select>
+          <option value="value1" selected>北京</option>
+          <option value="value1">上海</option>
+          <option value="value1">广州</option>
+        </select>
+      </p>
+      <p>
+        <span>opt-group</span>
+        <select name="select" >
+          <optgroup label="游戏主播">
+            <option value="3">PDD</option>
+            <option value="2">LBW</option>
+          </optgroup>
+          <optgroup label="才艺主表">
+            <option value="1">冯提莫</option>
+          </optgroup>
+        </select>
+      </p>
+      <p>
+        <span>button</span>
+        <!-- 始于html 4.0 
+          type取值，默认button，建议用button后面用css控制
+            submit
+            reset
+            button
+          元素体内可以放文字、img、视频等内容元素
+        -->
+        <button type="button">按钮</button>
+        <button >
+          <img style="width: 100px; height: 100px;" src="../source/imgs/图片1.jpg" >
+          <span>这是个按钮</span>
+        </button>
+      </p>
+    </form>
+
+    <br>
+    <h2>配合表单元素使用的其他普通元素</h2>
+    <h3>1、使用label元素关联单选框</h3>
+    <p>
+      <span>显示关联</span>
+      <label for="m">男</label><input type="radio" name="sex" id="m">
+      <label for="f">女</label><input type="radio" name="sex" id="f">
+    </p>
+    <p>
+      <span>隐式关联</span>
+      <label >
+        男<input type="radio" name="sex" value="2">
+      </label>
+      <label>
+        女<input type="radio" name="sex" value="3">
+      </label>
+    </p>
+    <h3>2、使用datalist提示输入</h3>
+    <p>
+      <input type="text" list="fav">
+    </p>
+    <datalist id="fav">
+      <option value="apple">苹果</option>
+      <option value="banana">香蕉</option>
+    </datalist>
+    <h3>3、分组</h3>
+    <form action="">
+      <fieldset>
+        <legend>账号信息</legend>
+        <p>账号：<input type="text"></p>
+        <p>密码：<input type="password"></p>
+      </fieldset>
+      <p>
+        多选框
+        <select name="" id="">
+          <option value="1">北极光</option>
+          <option value="1">撒打发</option>
+          <option value="1">23</option>
+        </select>
+      </p>
+    </form>
+  </div>
+</body>
+</html>
