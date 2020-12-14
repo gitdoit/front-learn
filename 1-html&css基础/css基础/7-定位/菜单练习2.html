@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../source/reset.css">
+</head>
+<style>
+  .clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  * {
+    font-size: 16px;
+  }
+
+  .header {
+    height: 60px;
+    width: 100%;
+    background-color: rgb(84, 92, 100);
+  }
+
+  .header>ul>li {
+    padding: 0 20px;
+    position: relative;
+    box-sizing: border-box;
+    float: left;
+    width: 100px;
+    color: #ffffff;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 20px;
+  }
+
+  .header>ul>li:hover{
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    border-bottom: none;
+    color: #000;
+  }
+  .header>ul>li:hover::after{
+    content: "";
+    position:absolute;
+    width: 100%;
+    height: 5px;
+    bottom: -2px;
+    left: 0;
+    background-color: #fff;
+  }
+  
+  .header .sub{
+    position: absolute;
+    right: -2px;
+    border: 2px solid #ccc;
+    display: none;
+    top: 58px;
+  }
+  .header>ul>li:hover .sub{
+    display: block;
+  }
+  .header .sub ul>li {
+    width: 130px;
+    height: 100px;
+    color: #000;
+    
+  }
+
+
+  
+</style>
+
+<body>
+  <header class="header">
+    <ul class="clearfix">
+      <li>
+        <span>电影</span>
+        <div class="sub">
+          <ul class="clearfix">
+            <li>喜剧片</li>
+            <li>恐怖片</li>
+            <li>战争片</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <span>小说</span>
+        <div class="sub">
+          <ul class="clearfix">
+            <li>修仙</li>
+            <li>都市</li>
+            <li>言情</li>
+          </ul>
+        </div>
+
+      </li>
+      <li>
+        <span>歌曲</span>
+        <div class="sub">
+          <ul class="clearfix">
+            <li>流行</li>
+            <li>经典</li>
+            <li>摇滚</li>
+            <li>DJ</li>
+          </ul>
+        </div>
+
+      </li>
+      <li class="clearfix">
+        <span>美食</span>
+        <div class="sub">
+          <ul class="clearfix">
+            <li>川菜</li>
+            <li>粤菜</li>
+            <li>港式</li>
+            <li>法式</li>
+          </ul>
+        </div>
+
+      </li>
+    </ul>
+  </header>
+</body>
+
+</html>
