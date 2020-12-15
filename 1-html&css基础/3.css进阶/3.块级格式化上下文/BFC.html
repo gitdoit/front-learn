@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .flow-contianer{
+    width: 300px;
+    background-color: lightblue;
+    overflow: auto;
+  }
+  .flow-contianer .item{
+    float: left;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: rebeccapurple;
+  }
+  .float{
+    height: 300px;
+    width: 300px;
+    background-color: aqua;
+    float: left;
+    margin: 0 30px;
+  }
+  .bfc{
+    height: 350px;
+    color: #fff;
+    background-color: blue;
+    overflow: hidden;
+  }
+</style>
+<body>
+  <h2>块级格式化上下文</h2>
+  <p>
+    全称 Block Formatting Context,简称 <abbr title="Block Formatting Context">BFC</abbr> <br>
+    他是一块独立的渲染区域，它规定了在该区域中，常规流块盒的布局。
+    <ul>
+      <li>常规流块盒在水平方向上，必须撑满包含块</li>
+      <li>常规流块盒在包含块的垂直方向上依次摆放</li>
+      <li>常规流块盒若外边距无缝相邻，则进行外边距合并</li>
+      <li>常规流块盒的自动高度和摆放位置，无视浮动元素</li>
+    </ul>
+    <h3>下面几种元素会创建BFC区域</h3>
+    <ul>
+      <li>根元素，意味着html元素创建BFC区域，覆盖了网页的所有元素</li>
+      <li>浮动元素、绝对和固定定位元素</li>
+      <li>overflow不等于visible的块盒</li>
+    </ul>
+    <h3>BFC规则</h3>
+    <p>
+      <b>总结：</b> 不同的BFC区域，他们在进行渲染时互不干扰 <br>
+      创建BFC的元素，隔绝了它内部和外部的联系，内部渲染不会影响到外部
+    </p>
+    <ul>
+      <li>
+        <h4>1.创建了BFC的元素，他的自动高度需要计算浮动元素;</h4>
+        <p>
+          下面的几个元素浮动了，之前用清除浮动的方式解决高度坍塌，现在可以用这个规则解决 <br>
+          可以给包含块元素设置浮动、绝对或相对定位解决，这种副作用比较大 <br>
+          还可以用 overflow:aotu,但是最好的办法还是用clearfix
+        </p>
+        <div class="flow-contianer">
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+        </div>
+      </li>
+      <li>
+        <h4>创建BFC的元素，它的边框盒不会和其他元素重叠</h4>
+        <div>
+          <div class="float">
+            这是个浮动元素，蓝色是块级元素。原来的情况是蓝色块盒元素无视这个浮动元素；
+            但是如果把蓝山块盒弄成BFC就要考虑这个浮动元素了
+          </div>
+          <div class="bfc">
+            我是有高度没宽度的块盒，因为overflow:hidden 变成了BFC <br>
+            不能再无视浮动元素了;而且很有趣的是 <br>
+            1.我和浮动元素在一行了，而且宽度会随着浮动元素的宽度增加而变小 <br>
+            2.我的margin-left 没用了
+          </div>
+        </div>
+      </li>
+      <li>
+        <h4>创建BFC的元素，不会和他的子元素进行外边距合并</h4>
+        <div style="border-bottom: 1px solid #000;"></div>
+        <div style="height: 100px; background-color: antiquewhite; margin-top: 10px;">
+          <div style="height: 50px; background-color: yellow; margin: 30px;">
+            父子元素都没边框，很明显合并了
+          </div>
+        </div>
+        <div style="border-bottom: 1px solid #000;margin-top: 30px;"></div>
+        <div style="height: 100px; background-color: antiquewhite; margin-top: 10px;overflow: hidden;">
+          <div style="height: 50px; background-color: yellow; margin: 30px;">
+            现在父元素是个BFC，和上面的对比一下，它们没有合并；<br>
+            因为父元素所处的BFC是根HTML，而子元素所处的BFC是父元素，由于不同的BFC之间的渲染互不干扰，所以不会合并
+          </div>
+        </div>
+      </li>
+    </ul>
+  </p>
+  
+</body>
+</html>
