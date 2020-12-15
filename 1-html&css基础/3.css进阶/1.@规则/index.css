@@ -1,0 +1,5 @@
+@charset "UTF-8";
+@import "../../2.css基础/source/reset.css";
+*{
+  background-color: aqua;
+}
