@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>两栏布局</title>
+</head>
+<style>
+  .clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .container {
+    background-color: antiquewhite;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .container .aside{
+    background-color: aqua;
+    float: left;
+    width: 300px;
+    margin-right: 30px;
+  }
+  .container .main{
+    /* 变成BFC */
+    overflow: hidden;
+    background-color: blueviolet;
+  }
+</style>
+<body>
+  <div class="container clearfix">
+    <aside class="aside">
+      <p>我是左浮动的侧边栏，宽度300px</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus repellat eveniet animi quam omnis neque doloremque aliquid ipsam molestias. Deleniti, tempora obcaecati nesciunt fugit fugiat recusandae. Vel deleniti architecto, in dolorem repellendus omnis commodi sunt voluptate iure? Voluptas, fuga. Eos hic possimus dolore tempore dignissimos, itaque tenetur impedit eveniet nam!</p>
+    </aside>
+    <div class="main">
+      <h3>开发常用布局方式</h3>
+      <p>我是主区域的BFC块盒，利用了BFC特性“BFC元素的边框盒不会和其他元素合并”，所以我不能再无视浮动元素了 <br>
+        同时他还会把我的宽度挤开
+      </p>
+    </div>
+  </div>
+</body>
+</html>
