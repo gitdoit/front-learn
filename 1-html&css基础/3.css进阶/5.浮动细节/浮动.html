@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浮动</title>
+</head>
+<style>
+  .container{
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid;
+  }
+  .item{
+    text-align: center;
+    background-color: orange;
+    border: 1px solid;
+  }
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
+  .a{
+    width: 180px;
+    height: 100px;
+  }
+  .b{
+    width: 180px;
+    height: 120px;
+  }
+  .c{
+    width: 250px;
+    height: 230px;
+  }
+  .d{
+    height: 260px;
+    width: 100px;
+    background-color: aqua;
+  }
+  .e{
+    height: 80px;
+    width: 200px;
+  }
+  .f{
+    height: 150px;
+    width: 80px;
+  }
+  .g{
+    height: 100px;
+    width: 100px;
+    background-color: aqua;
+  }
+</style>
+<body>
+  <ul>
+    <li>左浮动的盒子向上向左排列</li>
+    <li>有浮动的盒子向上向右排列</li>
+    <li><strong>浮动盒子的顶部不得高于上一个盒子的顶边</strong></li>
+    <li>若剩余的空间无法放下浮动的盒子，则该盒子向下移动，知道具备足够的空间能容纳盒子，然后再向左或向右移动</li>
+  </ul>
+  <div class="container">
+    <div class="left item a">a</div>
+    <div class="left item b">b</div>
+    <div class="left item c">c</div>
+    <div class="right item d">d</div>
+    <div class="left item e">e</div>
+    <div class="left item f">f</div>
+    <div class="right item g">g</div>
+  </div>
+</body>
+</html>

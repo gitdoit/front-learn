@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行高</title>
+</head>
+<style>
+  .fix{
+    line-height: 2em;
+  }
+  .p1{
+    font-size: 40px;
+  }
+  .p2{
+    font-size: 12px;
+  }
+  .b1{
+    font-size: 40px;
+  }
+  .b2{
+    font-size: 12px;
+  }
+</style>
+<body>
+  <div class="fix">
+    <p class="p1">父元素固定行高为2em，子元素会继承。如果子元素自己改变了font-size那么行高可能会不够，因为父元素的行高是根据自己的字体大小设置的。pisicing elit. Beatae id soluta non molestias. Similique, recusandae eum? Nesciunt amet eligendi nemo iusto enim laborum exercitationem dolor pariatur mollitia, consectetur tempora repudiandae.</p>
+    <p class="p2">行高太高了. Quod neque similique, dignissimos exercitationem voluptatum assumenda labore quia, qui aliquid enim minus distinctio. Quisquam animi, debitis ex laudantium inventore ea obcaecati.</p>
+  </div>
+  <div class="bei">
+    <p class="b1">父元素的行高设置为2，那么子元素会继承2，而不是继承计算过后的行高。所以这时候子元素就不会出现上面这种情况了</p>
+    <p class="b2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aspernatur nobis earum reiciendis dignissimos? Tenetur ab deserunt ad voluptatem atque incidunt quos inventore, repudiandae deleniti nulla ipsa iusto rerum eius!</p>
+  </div>
+</body>
+</html>

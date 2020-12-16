@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+.container{
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+.line{
+  border-bottom: 1px solid;
+  margin-top: 10px;
+  width: 400px;
+  text-align: right;
+}
+.line:nth-child(3){
+  margin-top: 30px;
+}
+.line:first-child{
+  border-bottom: 1px solid red;
+}
+.line:nth-child(7){
+  border-bottom: 1px solid red;
+}
+.demo{
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  left: 0;
+  top: -27px;
+  bottom: 0;
+  margin: auto;
+  height: 150px;
+  width: 150px;
+}
+.m{
+  font-family: "consolas";
+  font-size: 200px;
+  background-color: lightblue;
+}
+.lh{
+  background-color: red;
+}
+.lhA{
+  background-color: lightblue;
+  font-size: 200px;
+  font-family: "Arial";
+}
+.lhC{
+  background-color: lightblue;
+  font-size: 200px;
+  line-height: 100px;
+  font-family: "consolas";
+}
+</style>
+
+
+<body>
+  
+  <div class="container">
+    <div class="line">top:行高</div>
+    <div class="line">上line gap---------text top,ascent 顶线</div>
+    <div class="line">super 上基线</div>
+    <div class="line">baseline 基线</div>
+    <div class="line">sub 下基线</div>
+    <div class="line">text bottom,descent 底线</div>
+    <div class="line">下line gap---------bottom：行高</div>
+    <span class="demo">M</span>
+  </div>
+  <h3>1、字体大小</h3>
+  <ul>
+    <li>设置文字大小，其实是设置文字的相对大小</li>
+    <li>文字的相对大小: 1000\2048\1024</li>
+    <li>文字顶线到底线的距离，是文字的实际大小(content-area，内容区)</li>
+    <li>行盒的背景覆盖content-area</li>
+  </ul>
+  <p>
+    使用 <strong>font-size</strong>设置的是文字的相对大小，并不意味着 <code>font-size:200px</code> <br>
+    它的高度就是200像素了。而是根据使用的字体的文字相对大小来的。<br>
+    例如consolas字体，文字相对大小为2048时，顶线到底线为2398。<br>
+    则比例为 2398/2048 = 1.17089... ,那么如果设置font-size:200px的话，那么此时 <br>
+    字体在页面上的实际高度为 200 * 1.7089 = 234 <br>
+    像是下面的这个M 就是这样
+  </p>
+  <div >
+    <span class="m">M</span>
+  </div>
+  
+  <h3>2、行高</h3>
+  <ul>
+    <li>顶线向上延申的空间和底线向下延申的空间，两个空间相等，该空间叫做gap</li>
+    <li>gap默认情况下是由字体设计者决定的</li>
+    <li>top到bottom之间的区域叫做 virtual-area，也就是行高</li>
+    <li>line-height:normal 默认值就是文字默认的gap</li>
+  </ul>
+  <p class="lh">
+    <span class="lhA">M</span>
+    <span>像是这个Arial字体就有gap，所以上下会有间隙</span>
+  </p>
+  <p>
+    这个line-height=1=200px <br>
+    font-size:200px则实际的文字大小是234px，而背景颜色覆盖content-area<br>
+    就会出现span元素的背景色，超出了父元素的背景色
+  </p>
+  <p class="lh">
+    <span class="lhC">M</span>
+  </p>
+</body>
+</html>

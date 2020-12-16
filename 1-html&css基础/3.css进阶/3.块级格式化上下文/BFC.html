@@ -30,6 +30,7 @@
     color: #fff;
     background-color: blue;
     overflow: hidden;
+    outline:#00ff00 dotted thick;
   }
 </style>
 <body>
@@ -89,8 +90,8 @@
           <div class="bfc">
             我是有高度没宽度的块盒，因为overflow:hidden 变成了BFC <br>
             不能再无视浮动元素了;而且很有趣的是 <br>
-            1.我和浮动元素在一行了，而且宽度会随着浮动元素的宽度增加而变小 <br>
-            2.我的margin-left 没用了
+            1.我的宽度会随着浮动元素的宽度增加而变小 <br>
+            2.我的margin-left，必须要大于左边浮动元素的宽才能看到效果
           </div>
         </div>
       </li>

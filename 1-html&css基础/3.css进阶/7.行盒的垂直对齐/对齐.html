@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对齐</title>
+</head>
+<style>
+  input[type="checkbox"]{
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+  }
+  .youdao{
+    width: 30px;
+    height: 30px;
+    vertical-align: -10px;
+  }
+</style>
+<body>
+  <h3>1、行盒垂直方向上的对齐：vertical-align</h3>
+  <div>
+    <input type="checkbox">
+    <span>使用预设值:middle\top...等</span>
+  </div>
+  <div>
+    <p>
+      <img class="youdao" src="../../2.css基础/source/imgs/youdao.ico" alt="">
+      <span>使用像素值，还可以是负数。并且两个行盒设置任意一个都行;</span>
+    </p>
+  </div>
+  <h3>2、图片的白边</h3>
+  <p>
+    看看下面这个图片和父元素边框之间有空白，并且font-size越大，空白越大 <br>
+    1、可以将font-size设置为0解决，这样有副作用 <br>
+    2、将图片元素设置为块盒 <br>
+  </p>
+  <div style=" border: 1px solid;font-size: 3em;">
+    <img style="object-fit: fill;" src="../../2.css基础/source/imgs/图片2.jpg" alt="">
+  </div>
+</body>
+</html>
