@@ -50,11 +50,26 @@
   font-size: 200px;
   font-family: "Arial";
 }
+.lh-C{
+  background-color: lightblue;
+  font-size: 200px;
+  font-family: "consolas";
+}
 .lhC{
   background-color: lightblue;
   font-size: 200px;
   line-height: 100px;
   font-family: "consolas";
+}
+.va{
+  background-color: red;
+}
+.bl{
+  position: absolute;
+  top: 152px;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid #fff;
 }
 </style>
 
@@ -99,15 +114,68 @@
   </ul>
   <p class="lh">
     <span class="lhA">M</span>
-    <span>像是这个Arial字体就有gap，所以上下会有间隙</span>
+    <span>Arial字体就有gap，所以上下会有间隙</span>
+    <span class="lh-C">M</span>
+    <span>Consolas没有gap，没有间隙</span>
   </p>
   <p>
     这个line-height=1=200px <br>
     font-size:200px则实际的文字大小是234px，而背景颜色覆盖content-area<br>
     就会出现span元素的背景色，超出了父元素的背景色
   </p>
-  <p class="lh">
+  <p class="lh" style="margin-top: 80px;">
     <span class="lhC">M</span>
   </p>
+  <h3 style="margin-top: 80px;">3、vertical-align</h3>
+  <p>
+    一个元素如果子元素出现行盒，该元素内部也会产生参考线 <br>
+  </p>
+  <div style="position:relative;">
+    <span style="font-size: 20px; font-weight: 700;">vertical-align的取值</span>
+    <p class="va">
+      <span style="font-size: 32px;">M</span>
+      <span style="font-size: 64px;vertical-align: baseline;">M</span>
+      <span style="font-size: 64px;vertical-align: super;">M</span>
+      <span style="font-size: 64px;vertical-align: text-top;">M</span>
+      <span style="font-size: 64px;vertical-align: text-bottom;">M</span>
+      <span style="font-size: 64px;vertical-align: top;">M</span>
+      <span style="font-size: 64px;vertical-align: bottom;">M</span>
+      <span style="font-size: 64px;vertical-align: 10px;">M</span>
+      <span style="font-size: 64px;vertical-align: -10px;">M</span>
+      <span style="font-size: 64px;vertical-align: 50%;">M</span>
+    </p>
+    <div class="bl"></div>
+    <p>行盒组合起来可以形成多行，每行的区域叫做line-box，它的顶边是该行内所有行盒最高的顶边 <br>
+       底边是该行行盒的最低底边。
+    </p>
+    <h4 style="color: red;">父元素的基线根据父元素的font-size\font-family\line-height来确定，想看到的话写个x字母就行了</h4>
+    <ul>
+      <li>baseline:该元素的基线与父元素的基线对齐</li>
+      <li>super:该元素的基线与父元素的上基线对齐</li>
+      <li>sub:该元素的基线与父元素的下基线对齐</li>
+      <li>text-top:该元素的virtual-area的定边，对齐父元素的text-top</li>
+      <li>text-bottom:该元素的virtual-area的底边，对齐父元素的text-bottom</li>
+      <li>top:该元素的virtual-area的顶边，对齐line-box的顶边</li>
+      <li>bottom:该元素的virtual-area的底边，对齐line-box的底边</li>
+      <li>数值：相对于基线的偏移量，向上为整数、向下为负数</li>
+      <li>百分比：相对于基线的偏移量，乘数是自身virual-area的高度</li>
+    </ul>
+  </div>
+  <h3>4、图片的白边</h3>
+  <p>图片的基线就是它的下外边距，这个基线和父元素基线对齐，所以就会造成下边有白边了</p>
+  <div style=" border: 1px solid;font-size: 3em;font-family: 'consolas';">
+    <span>X</span>
+    <img style="object-fit: fill;" src="../../2.css基础/source/imgs/图片2.jpg" alt="">
+  </div>
+  <h3>5、表单元素的基线</h3>
+  <p>表单元素基线位于内容底边</p>
+  <div style="font-size: 3em;">
+    <input type="checkbox">X请选择
+  </div>
+  <h3>5、行块盒</h3>
+  <div>
+    <span style="display:inline-block;width: 100px;border: 1px solid;">X行块盒的最后一行有line-box,用最后一行的基线作为整个行块盒的基线X.</span>
+    <span style="display:inline-block;width: 100px;border: 1px solid;">M</span>
+  </div>
 </body>
 </html>
