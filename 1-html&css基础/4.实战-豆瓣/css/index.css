@@ -1,0 +1,394 @@
+@import './reset.css';
+@import './common.css';
+@import url("//at.alicdn.com/t/font_2278540_g5c4fqy4ktw.css");
+body {
+  font: normal 13px/1.618 Helvetica,Arial,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 13px;
+  line-height: 1.618;
+  font-family: Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  min-height: 100%;
+  color: #333;
+}
+.nav-wapper{
+  background-color: #fff;
+  width: 100%;
+}
+.nav input:focus{
+  outline: 0;
+}
+.nav{
+  width: 1080px;
+  height: 89px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding-top: 30px;
+  box-sizing: border-box;
+}
+.nav-left{
+  float: left;
+}
+.nav-right{
+  float: right;
+}
+.nav .nav-logo{
+  float: left;
+  margin-right: 25px;
+}
+.nav .nav-search{
+  float: left;
+  position: relative;
+}
+.nav .nav-search .iconfont{
+  position:absolute;
+  right: 6px;
+  top: 6px;
+  bottom: 0;
+  margin: auto 0;
+  font-weight: 700;
+  color: #c3c3c3;
+  cursor: pointer;
+}
+.nav input{
+  box-sizing: border-box;
+  width: 270px;
+  height: 30px;
+  border: 1px solid #c3c3c3;
+}
+.nav input::placeholder{
+  color: #c3c3c3;
+}
+.nav .nav-right li{
+  float: left;
+  height: 20px;
+}
+.nav .nav-right li a{
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-right: 14px;
+  line-height: 20em;
+  overflow: hidden;
+}
+.nav .nav-right .book{
+  background-image: url(../imgs/anony_nav_logo.png);
+  background-position: 0 0;
+}
+.nav .nav-right .movie{
+  background-image: url(../imgs/anony_nav_logo.png);
+  background-position: -60px 0;
+}
+.nav .nav-right .music{
+  background-image: url(../imgs/anony_nav_logo.png);
+  background-position: -120px 0;
+}
+.nav .nav-right .city{
+  background-image: url(../imgs/anony_nav_logo.png);
+  background-position: -300px 0;
+}
+.nav .nav-right .team{
+  background-image: url(../imgs/anony_nav_logo.png);
+  background-position: -180px 0;
+}
+.nav .nav-right .read{
+  background-image: url(../imgs/ic_read_home_nav.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.nav .nav-right .fm{
+  background-image: url(../imgs/anony_nav_logo.png);
+  background-position: -240px 0;
+}
+.nav .nav-right .time{
+  background-image: url(../imgs/ic_shijian_home_nav.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+.nav .nav-right .dou-pin{
+  width: 43px;
+  background-image: url(../imgs/anony_nav_logo.png);
+  background-position: -420px 0;
+  line-height: 20em;
+}
+
+/* 登录区域 */
+.login-wapper{
+  background-color: #EDF4ED;
+  height: 304px;
+  background-image: url(../imgs/login_bg.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: calc(50% - 305px) top;
+}
+.login-wapper .login-container{
+  width: 950px;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.login-container .login-form{
+  float: right;
+}
+.login-container .download{
+  height: 120px;
+  width: 200px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  margin: auto 0 auto 475px;
+}
+.login-container .download h1{
+  font-size: 25px;
+  line-height: 25px;
+  margin: 7px 0;
+  text-rendering: optimizelegibility;
+}
+.login-container .download .download-btn{
+  margin-top: 20px;
+}
+.login-container .download .download-btn a{
+  float: left;
+  font-size: 12px;
+  line-height: 30px;
+  color: #fff;
+  text-align: center;
+  width: 115px;
+  height: 30px;
+  background-color: #00B51D;
+  border-radius: 2px;
+}
+.login-container .download .download-btn .qrcode{
+  float: left;
+  position: relative;
+}
+.login-container .download .download-btn .qrcode .little{
+  height: 30px;
+  width: 30px;
+  border: 1px solid #00B51D;
+  margin-left: 5px;
+  box-sizing: border-box;
+}
+.login-container .download .download-btn .qrcode .little:hover+.big{
+  display: block;
+}
+.login-container .download .download-btn .qrcode .big{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 5px;
+  padding: 20px 20px 5px;
+  background-color: #fff;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  white-space: nowrap;
+}
+/* 登录区域 */
+.login-container .login-form{
+  width: 300px;
+  height: 300px;
+  padding: 30px 10px 10px;
+}
+.login-container .login-form .tabs{
+  border-bottom: 1px solid #ececec;
+  font-size: 0;
+  color: #9b9b9b;
+  margin-bottom: 10px;
+}
+/* tab激活 */
+.login-container .login-form .tabs div.active{
+  border-bottom: 1px solid #000;
+  font-weight: 600;
+  color: #333;
+}
+.login-container .login-form .phone-login{
+  display: none;
+}
+.login-container .login-form .password-login{
+  display: none;
+}
+.login-container .login-form .phone-login.active{
+  display: block;
+}
+.login-container .login-form .password-login.active{
+  display: block;
+}
+
+/* 短信登录 */
+.login-container .login-form .tabs .tab-phone{
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+/* 密码登录 */
+.login-container .login-form .tabs .tab-pws{
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  height: 28px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+/* 提示 */
+.login-container .form-item-tips{
+  font-size: 12px;
+  color: #9b9b9b;
+  margin-bottom: 10px;
+}
+.login-container .form-item-tips a{
+  color: #41ac52;
+}
+.login-container input{
+  outline: 0;
+}
+.login-container .form-item{
+  height: 33px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.login-container .form-item input{
+  padding: 8px 10px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  border: 1px solid #e4e6e5;
+  width: 100%;
+}
+/* 手机号 */
+.login-container .form-item .phone-code{
+  position: absolute;
+  z-index: 1;
+  left: 8px;
+  top: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  padding-right: 7px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+.login-container .form-item input[placeholder="手机号"]{
+  padding: 8px 50px;
+}
+.login-container .form-item .phone-code span{
+  cursor: pointer;
+}
+.login-container .form-item .phone-code .choose-code{
+  display: none;
+  position: absolute;
+  width: 300px;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid red;
+  top: -81px;
+  left: -10px;
+  box-sizing: border-box;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 4px;
+}
+.login-container .form-item .phone-code .choose-code h1{
+  font-size: 16px;
+  font-weight: 700;
+  height: 42px;
+  line-height: 42px;
+  background: #ebf5eb;
+  color: #060;
+  padding-left: 10px;
+}
+.login-container .form-item .phone-code .choose-code .icon-chahao{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #9c9898;
+}
+.login-container .form-item .phone-code .choose-code ul{
+  padding: 0 15px;
+  overflow-y: auto;
+  height: 225px;
+}
+.login-container .form-item .phone-code .choose-code ul li{
+  height: 42px;
+  line-height: 42px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+.login-container .form-item .phone-code .choose-code ul li.selected{
+  color: #42bd56;
+}
+.login-container .form-item .phone-code .choose-code ul li.selected .left::after{
+  content: "√";
+  margin-left: 6px;
+}
+.login-container .form-item .phone-code .choose-code ul li .left{
+  float: left;
+}
+.login-container .form-item .phone-code .choose-code ul li .right{
+  float: right;
+}
+.login-container .form-item .msg-code{
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  color: #00B51D;
+}
+.login-container .form-item.login-btn a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 33px;
+  background-color: #00B51D;
+  color: #fff;
+  font-size: 16px;
+}
+.login-container .form-item.msg-tip a{
+  float: right;
+  color: #00B51D;
+}
+.login-container .form-item.msg-tip{
+  border-bottom: 1px solid #ccc;
+}
+.login-container .form-item.thrid-login{
+  margin-top: -5px;
+}
+.login-container .form-item.thrid-login span{
+  color: rgb(139, 133, 133);
+}
+.login-container .form-item.thrid-login i{
+  padding: 0 6px;
+  font-size: 20px;
+}
+.login-container .form-item.thrid-login .icon-weixin{
+ color: #64c574; 
+}
+.login-container .form-item.thrid-login .icon-weibo1{
+  color:#f27272; 
+ }
+ /* 密码登录 */
+ .login-container .login-form .password-login .form-item-tips a{
+   float: right;
+ }
+ .login-container .login-form .password-login .china{
+   display: none;
+ }
+ .login-container .login-form .password-login .outer{
+  display: none;
+}
+.login-container .login-form .password-login .input-show{
+  display: block;
+}

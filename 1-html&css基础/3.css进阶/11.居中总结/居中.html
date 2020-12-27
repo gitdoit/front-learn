@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>居中总结</title>
+  <style>
+    .intro {
+      margin-left: 30px;
+      width: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>一、水平居中</h3>
+  <h4>1.行盒、行块盒的水平居中：text-align:center</h4>
+  <div style="text-align: center;background-color: lightblue;">
+    <span>span文字</span>
+    <a href="#">a元素</a>
+    <img src="../../2.css基础/source/imgs/youdao.ico" alt="">
+  </div>
+  <h4>2、常规流块盒的水平居中：定宽然后左右margin设置auto</h4>
+  <div style="background-color: lightblue;">
+    <div style="height: 100px; width: 100px; margin: 0 auto;background-color: red;"></div>
+  </div>
+  <h4>3、绝对定位元素的水平居中：定宽然后left=right=0,margin:auto</h4>
+  <div style="position: relative; height: 100px;background-color: lightblue;">
+    <div style="position: absolute;height: 50px; width: 50px;left: 0;right: 0;margin: auto;background-color: rebeccapurple;"></div>
+  </div>
+  <h4>4、浮动元素，只能调整左右外边距;不好</h4>
+  <div style=" height: 100px;background-color: lightblue;">
+    <div style="float: left;height: 50px; width: 50px;margin-left: 729px;background-color: rebeccapurple;"></div>
+  </div>
+  <h3>二、垂直居中</h3>
+  <h4>1.单行文本垂直居中:设置行高等于所在区域的高度</h4>
+  <div style=" height: 100px;background-color: lightblue;">
+    <span style="line-height: 100px;">单行文本垂直居中</span>
+  </div>
+  <h4>2、行盒内多行文本垂直居中：<strong>做不到</strong></h4>
+  <h4>3、块盒、行块盒多行文本垂直居中：设置上下padding相同</h4>
+  <div style=" padding: 30px 0;width: 800px;background-color: lightblue;">
+    块盒或者行块盒内的多行文本垂直居中，只能设置上下padding来做；
+    但是这样做的缺点是，没法知道这和盒子的具体高度。
+  </div>
+  <h4>4、绝对定位的垂直居中:top=bottom=0,定高</h4>
+  <div style="position: relative; height: 100px;background-color: lightblue;">
+    <div style="position: absolute;width: 100%;;height: 50px;top: 0;bottom: 0;margin: auto 0;background-color: rebeccapurple;"></div>
+  </div>
+</body>
+
+</html>

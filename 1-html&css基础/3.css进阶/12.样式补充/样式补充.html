@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>样式补充</title>
+</head>
+<style>
+  .intro {
+    width: 300px;
+    margin-left: 30px;
+  }
+  strong{
+    color: red;
+  }
+</style>
+
+<body>
+  <h3>一、display:list-item</h3>
+  <div style="display: list-item;margin: 30px;">
+    我的display=list-item
+  </div>
+  <p class="intro">
+      设置为该属性的盒子，本质上仍然 <strong>是个块盒</strong>,但同时该盒子会附带另一个盒子 <br>
+      元素本身生成的盒子叫做主盒子，附带的盒子叫做次盒子，它们水平排列。
+  </p>
+  <h4>1.1 list-style-type</h4>
+  <div style="display: list-item;list-style-type:circle;;margin: 30px;">
+    circle
+  </div>
+  <h4>1.2 list-style-position</h4>
+  <div style="list-style-position: outside;display: list-item;list-style-type:circle;;margin: 30px;">
+    outside
+  </div>
+  <h4>1.3 清空次盒子:list-style:none</h4>
+
+  <h3>二、图片失效时的宽高问题：设置为块盒或行块盒</h3>
+  <p class="intro">
+    如果img元素的图片连接失效，那么img和普通行盒一样无法设置宽高
+  </p>
+  <img src="nono" alt="图片失效" style="display: inline-block;width: 100px;height: 100px;border: 1px solid;">
+  <h3>三、行盒的高度和子行块盒或子可替换元素无关</h3>
+  <p class="intro">
+    行盒的高度和font-size和font-family相关。
+    可以将行盒设置为块盒或者行块盒
+  </p>
+  <a style="border: 1px solid;" href="">
+    <img src="../../2.css基础/source/imgs/youdao.ico" alt="" style="width: 50px;height: 50px;">
+  </a>
+  <a style="border: 1px solid;display: inline-block;" href="">
+    <img src="../../2.css基础/source/imgs/youdao.ico" alt="" style="width: 50px;height: 50px;">
+  </a>
+  <h3>四、分散对齐</h3>
+  <p style="text-align: justify;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus asperiores consectetur possimus culpa molestiae praesentium?</p>
+  <h3>五、制作一个三角形</h3>
+  <div style="width: 0;border-width: 100px;border-style: solid;border-color: red blue green chocolate;">
+  </div>
+  <div style="width: 0;border-width: 100px;border-style: solid;border-color: transparent transparent transparent chocolate;">
+  </div>
+</body>
+
+</html>
