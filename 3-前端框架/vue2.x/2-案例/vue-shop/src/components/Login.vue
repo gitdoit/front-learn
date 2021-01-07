@@ -1,17 +1,40 @@
 <template>
   <div class="login_container">
-    <div class="login_box">
+    <div class="plaer">
+      <video
+        controls
+        autoplay
+        muted
+        loop
+        src="../assets/阳光电影www.ygdy8.com.隐形人.BD.1080p.中英双字幕.mkv"
+        style="width: 500px"
+      ></video>
+    </div>
+    <div class="login_box" style="display:none;">
       <!-- 头像区域 -->
       <div class="avatar_box">
         <img src="../assets/logo.png" />
       </div>
       <!-- 登录表单 -->
-      <el-form ref="loginFormRef" label-width="0px" class="login_form" :model="loginForm" :rules="loginFormRules">
-        <el-form-item  prop="username">
-          <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
+      <el-form
+        ref="loginFormRef"
+        label-width="0px"
+        class="login_form"
+        :model="loginForm"
+        :rules="loginFormRules"
+      >
+        <el-form-item prop="username">
+          <el-input
+            v-model="loginForm.username"
+            prefix-icon="iconfont icon-user"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input  type="password" v-model="loginForm.password" prefix-icon="iconfont icon-3702mima"></el-input>
+          <el-input
+            type="password"
+            v-model="loginForm.password"
+            prefix-icon="iconfont icon-3702mima"
+          ></el-input>
         </el-form-item>
         <el-form-item class="btns">
           <el-button type="primary" @click="login">登录</el-button>
@@ -23,31 +46,31 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       loginForm: {
         username: '',
-        password: ''
+        password: '',
       },
       loginFormRules: {
         username: [
           { required: true, message: '用户名不能为空！', trigger: 'blur' },
-          { min: 3, max: 10, message: '用户名在3到10位之间', trigger: 'blur' }
+          { min: 3, max: 10, message: '用户名在3到10位之间', trigger: 'blur' },
         ],
         password: [
           { required: true, message: '密码不能为空', trigger: 'blur' },
-          { min: 3, max: 10, message: '用户名在3到10位之间', trigger: 'blur' }
-        ]
-      }
+          { min: 3, max: 10, message: '用户名在3到10位之间', trigger: 'blur' },
+        ],
+      },
     }
   },
   methods: {
-    resetForm () {
+    resetForm() {
       this.$refs.loginFormRef.resetFields()
     },
-    login () {
+    login() {
       // 登录验证
-      this.$refs.loginFormRef.validate(async valid => {
+      this.$refs.loginFormRef.validate(async (valid) => {
         if (valid) {
           // eslint-disable-next-line no-unused-vars
           const { data: res } = await this.$http.post('login', this.loginForm)
@@ -60,8 +83,8 @@ export default {
           this.$router.push('/home')
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -71,6 +94,7 @@ export default {
   height: 100%;
 }
 .login_box {
+  display: none;
   width: 450px;
   height: 300px;
   background-color: #fff;
