@@ -1,0 +1,12 @@
+https://juejin.cn/post/6844903877418942478
+
+过时了不要装：npm install babel-preset-es2015 --save-dev  
+装这个：npm install @babel/preset-env --save-dev，然后在.babelrc的插件里配置 "presets": [ "@babel/preset-env" ]
+
+
+安装可选链支持：npm install --save-dev @babel/plugin-proposal-optional-chaining
+然后在.babelrc的插件里配置 "@babel/plugin-proposal-optional-chaining"
+
+
+执行命令：babel src -d lib 就可以将src里面的文件转换es5语法到lib文件夹下
+但是默认的babel只支持语法转化，新的API还需要用babel-polyfill来转，但是这个东西也过期了，明天看看怎么换

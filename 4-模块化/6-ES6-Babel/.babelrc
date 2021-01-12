@@ -1,0 +1,41 @@
+// 参考：https://www.babeljs.cn/docs/usage
+{
+  "presets": [
+    [
+      // 网上的旧教程用的是es-2015已经过时了，真乱
+      // 这里面包含了一堆预设的插件例如转换箭头函数、常量等语法的插件，不用一个个的设置了
+      // @babel/env 和 @babel/preset-env是一个意思，真乱
+      "@babel/env",
+      {
+        // 编译后的代码需要能够在下列浏览器版本中运行
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
+        },
+        // 按需编译和按需打补丁
+        // 没有使用到的高级API不会导入，同时目标浏览器版本中包含的API也不会导入
+        "useBuiltIns": "usage"
+      }
+      
+    ]
+  ],
+  "plugins": [
+    [
+      // 实现按需导入新API的插件，上面的预设是处理语法，这个处理API
+      // 这样我们可以直接使用箭头函数，可选链等新的API而不用
+      // 一个一个的在这里设置对应的插件来处理了
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false,
+        "corejs": 3,// 标准库3，需要安装好
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false,
+        "version": "7.0.0-beta.0"
+      }
+    ]
+    
+  ]
+}
