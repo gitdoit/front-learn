@@ -1,5 +1,7 @@
 import $ from 'jquery'
-import './css/my.css'
+import './css/css-test.css'
+import './css/less-test.less'
+// 测试引入的第三方依赖
 $(function(){
     $('li:odd').css('backgroundColor','white')
     $('li:even').css('backgroundColor','black')

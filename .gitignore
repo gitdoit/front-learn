@@ -22,7 +22,6 @@ target/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/
 build/
@@ -33,5 +32,5 @@ build/
 .vscode/
 .settings/
 
-/logs/*
 **/node_modules/**
+**/dist/**
