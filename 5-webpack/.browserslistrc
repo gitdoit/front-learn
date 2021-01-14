@@ -1,8 +1,10 @@
+# 教程： https://juejin.cn/post/6844903669524086797
+# 生产环境
 [production staging]
 > 1%
 last 2 versions
 not dead
-
+# 开发环境
 [development]
 last 1 chrome version
 last 1 firefox version
