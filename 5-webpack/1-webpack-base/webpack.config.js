@@ -136,6 +136,7 @@ module.exports = {
         // 排除模块目录
         exclude: /node_modules/,
       },
+      // 语法校验
       {
         loader: 'eslint-loader',
         test: /\.js$/,

@@ -9,7 +9,7 @@ import './css/less-test.less';
 
 // babel处理 高级语法
 class People {
-    static info = 'nihao~~'
+    static info = 'nihao~~ '
 }
 console.log(People.info);
 // polifill处理高级API
