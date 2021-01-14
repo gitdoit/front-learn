@@ -35,7 +35,9 @@
         "useESModules": false,
         "version": "7.0.0-beta.0"
       }
-    ]
+    ],
+    // 上面的预设不包含静态属性，要用必须加这个
+    ["@babel/plugin-proposal-class-properties"]
     
   ]
 }
