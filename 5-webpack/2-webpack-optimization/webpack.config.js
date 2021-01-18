@@ -2,10 +2,21 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: ['./src/index.js', './src/index.html'],
+  optimization: {
+    usedExports: true,
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+  entry: './src/index.js',
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'js/[name].[contenthash:10].js',
+  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
@@ -13,12 +24,11 @@ module.exports = {
     open: true,
     hot: true,
   },
+  // 生成sourceMap,快速定位报错地点
   devtool: 'eval-source-map',
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'js/bundle.[contenthash:10].js',
-  },
   plugins: [
+    // 每次打包，清空dist
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(
       {
         template: './src/index.html',
@@ -105,11 +115,15 @@ module.exports = {
                         safari: '11.1',
                       },
                       useBuiltIns: 'usage',
-                      corejs: '3.6.4',
                     },
                   ],
                 ],
-                plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-class-properties'],
+                plugins: [[
+                  '@babel/plugin-transform-runtime',
+                  {
+                    corejs: '3',
+                  },
+                ], '@babel/plugin-proposal-class-properties'],
                 // 开启构建缓存，性能提升
                 cacheDirectory: true,
               },

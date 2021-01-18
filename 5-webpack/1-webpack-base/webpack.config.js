@@ -11,6 +11,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // css压缩插件
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+// eslint-loader已经过时，推荐使用插件
+const ESLintPlugin = require('eslint-webpack-plugin');
+
 const prdEnvFlag = process.env.NODE_ENV === 'production';
 module.exports = {
   // 开发模式，代码不压缩
@@ -61,6 +64,11 @@ module.exports = {
       cssProcessorPluginOptions: {
         preset: ['default', { discardComments: { removeAll: true } }],
       },
+    }),
+    // 语法检查
+    new ESLintPlugin({
+      fix: true,
+      extensions: 'js',
     }),
   ],
   // weboack默认只能处理js文件
@@ -136,16 +144,16 @@ module.exports = {
         // 排除模块目录
         exclude: /node_modules/,
       },
-      // 语法校验
-      {
-        loader: 'eslint-loader',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        options: {
-          // 自动修复
-          fix: true,
-        },
-      },
+      // 语法校验，Loader已过时，使用插件
+      // {
+      //   loader: 'eslint-loader',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   options: {
+      //     // 自动修复
+      //     fix: true,
+      //   },
+      // },
     ],
   },
 };

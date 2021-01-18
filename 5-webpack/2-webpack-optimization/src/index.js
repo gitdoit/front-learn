@@ -1,7 +1,16 @@
+import $ from 'jquery';
 import fun from './js/module';
 import './css/style.css';
 
 console.log('加载了index.js!!');
+
+console.log($);
+
+import(/* webpackChunkName: "print" */'./js/treeshaking').then((mul) => {
+  console.log(mul(2, 3));
+}).catch(() => {
+  console.log('fail import!');
+});
 
 if (module.hot) {
   // 一旦 module.hot 为true，说明开启了HMR功能。 --> 让HMR功能代码生效
@@ -12,4 +21,5 @@ if (module.hot) {
   });
 }
 fun();
+// 演示sourceMap
 console.log()();

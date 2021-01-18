@@ -9,7 +9,6 @@ const presets = [
         safari: '11.1',
       },
       useBuiltIns: 'usage',
-      corejs: '3.6.4',
     },
   ],
 ];
@@ -23,7 +22,8 @@ const plugins = [
       helpers: true,
       regenerator: true,
       useESModules: false,
-      version: '7.0.0-beta.0',
+      // 默认不支持编译提案的api，可以配置true开启
+      proposals: false,
     },
   ],
   ['@babel/plugin-proposal-class-properties'],
