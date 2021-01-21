@@ -426,17 +426,18 @@ module.exports = {
 >
 > [解决Js高级语法检查的问题](https://stackoverflow.com/questions/36001552/eslint-parsing-error-unexpected-token)
 >
-> 
+> [airbnb规则](https://github.com/lin-123/javascript)
 
 1. 安装依赖
 
    ```shell
-   # 已过期
-   # npm i eslint  -D
-   # npm i eslint-loader -D
+   # 已过期，但是那个插件不好用，不生效。翻遍全网都没资料，还是继续用这个吧
+   npm i eslint-loader -D
+   npm i eslint  -D
    
-   # 使用这个
-   npm i eslint-webpack-plugin -D
+   # 上面的loader标记过期了，但是这个插件不生效，不好用，不要用
+   # npm i eslint-webpack-plugin -D
+   
    # 语法风格规则集合
    npm i eslint-config-airbnb-base -D
    npm i eslint-plugin-import -D
@@ -448,31 +449,56 @@ module.exports = {
 
    ```javascript
    // webpack.config.js
-   const ESLintPlugin = require('eslint-webpack-plugin');
+   // const ESLintPlugin = require('eslint-webpack-plugin');
    module.exports = {
    	plugins: [
-       new ESLintPlugin({
+       //new ESLintPlugin({
          // 自动修复
-         fix: true,
+         //fix: true,
          // 检查.js文件语法
-         extensions: 'js',
-       }),
+         //extensions: 'js',
+       //}),
      ]
+     module:{
+     	rules:[
+     		{
+           test: /\.js$/,
+           exclude: /node_modules/,
+           loader: 'eslint-loader',
+     			enforce: 'pre',
+           options: {
+             // 自动修复eslint的错误
+             fix: true,
+           },
+         },
+     	]
+   	}
    }
    
    // 配置方法一、根目录新建 .eslintrc.js
    module.exports = {
      env: {
        browser: true,
+       node: true,
+       es6: true,
      },
      extends: [
+       // 使用airbnb-base
+       // 规则详见 https://github.com/lin-123/javascript
        'airbnb-base',
      ],
-     // 配合babel处理高级语法
      parser: 'babel-eslint',
      rules: {
+       // 如果觉得某个规则有毛病，这样给他关掉
+       'no-new-object': 'off',
+     },
+     // 全局变量，这样可以在js中不声明直接用而不被eslint提示
+     // 前提是这个全局变量必须要有
+     globals: {
+       $he: true,
      },
    };
+   
    
    // 配置方法二 在package.json中新增配置项
    "eslintConfig": {
