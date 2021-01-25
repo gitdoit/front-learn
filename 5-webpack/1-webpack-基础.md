@@ -2,6 +2,8 @@
 
 ## 一、核心概念
 
+> [阅读](https://juejin.cn/post/6844904007362674701)
+
 ### 1、Entry
 
 > 入口，指示`webpack`应该从哪个文件开始进行打包，分析内部依赖。将相关的资源进行处理。
@@ -66,8 +68,6 @@ module.exports = {
 }
 ```
 
-
-
 ### 3、添加各种功能
 
 #### 1). 处理html资源
@@ -104,8 +104,6 @@ module.exports = {
      ]
    }
    ```
-
-   
 
 #### 2). 使用css-loader处理样式
 
@@ -148,7 +146,7 @@ module.exports = {
    const MiniCssExtractPlugin =  require('mini-css-extract-plugin');
    module.exports = {
      
-     		// ...省略其他
+       // ...省略其他
      
          plugins:[
            // 处理CSS
@@ -184,21 +182,19 @@ module.exports = {
        }
    ```
 
-
-
 #### 3). 使用file-loader处理资源引入
 
->  [url-loader Vs file-loader](https://stackoverflow.com/questions/49080007/url-loader-vs-file-loader-webpack) 
+> [url-loader Vs file-loader](https://stackoverflow.com/questions/49080007/url-loader-vs-file-loader-webpack)
 >
 > [教程](https://www.jiangruitao.com/webpack/url-loader/)
 >
-> * `file-loader` 
+> * `file-loader`
 >
-> ​	它本质功能是复制资源文件并替换访问地址，例如我们在`css`里使用`background-img:url(../xx.jpg)`语法的时候，它会将这个资源输出到打包后的文件夹下，并替换使用的url。不仅能够解析这种语法，还能解析js文件中`import`的图片；但是不能处理在html中`<img src='xxx.jpg'>`的需求，这需要另一个`loader`；除了处理图片，还能处理其他的资源引入需求。
+> ​ 它本质功能是复制资源文件并替换访问地址，例如我们在`css`里使用`background-img:url(../xx.jpg)`语法的时候，它会将这个资源输出到打包后的文件夹下，并替换使用的url。不仅能够解析这种语法，还能解析js文件中`import`的图片；但是不能处理在html中`<img src='xxx.jpg'>`的需求，这需要另一个`loader`；除了处理图片，还能处理其他的资源引入需求。
 >
-> * `url-loader ` 
+> * `url-loader`
 >
-> ​	内部包含并基于`file-loader`，如果引入的图片很小，单独发一个请求网络开销有点大，所以这个`loader`就用来处理小图片，将它加工成`base64`。
+> ​ 内部包含并基于`file-loader`，如果引入的图片很小，单独发一个请求网络开销有点大，所以这个`loader`就用来处理小图片，将它加工成`base64`。
 >
 > - `html-loader`
 >
@@ -254,8 +250,6 @@ module.exports = {
    }
    ```
 
-
-
 #### 4)、使用babel处理Js语法兼容性
 
 > 详细笔记看之前的模块化里面的`babel`章节，以及博客[babel教程](https://www.jiangruitao.com/babel/babel-preset-env/)
@@ -309,8 +303,6 @@ module.exports = {
    // 根目录新建babel.config.js，内容参考 模块化-babel
    ```
 
-
-
 #### 5)、使用`postcss`处理`css`语法兼容性
 
 > - `postcss-loader`
@@ -342,8 +334,8 @@ module.exports = {
    ```javascript
    // webpack.config.js
    module.exports = {
-   	rules: [
-   		{
+    rules: [
+     {
          test: /\.css$/,
          use: [
            // 这个可以提取成一个单独的css文件并引入
@@ -355,7 +347,7 @@ module.exports = {
            'postcss-loader',
          ]
        },
-   	]
+    ]
    }
    
    
@@ -377,8 +369,6 @@ module.exports = {
    last 1 chrome version
    last 1 firefox version
    ```
-
-
 
 #### 6)、压缩css资源
 
@@ -416,8 +406,6 @@ module.exports = {
    }
    ```
 
-
-
 #### 7)、使用Eslint检查语法
 
 > 多人开发一个项目，为了统一编码风格，用`Eslint`来做检查。
@@ -451,7 +439,7 @@ module.exports = {
    // webpack.config.js
    // const ESLintPlugin = require('eslint-webpack-plugin');
    module.exports = {
-   	plugins: [
+    plugins: [
        //new ESLintPlugin({
          // 自动修复
          //fix: true,
@@ -460,19 +448,19 @@ module.exports = {
        //}),
      ]
      module:{
-     	rules:[
-     		{
+      rules:[
+       {
            test: /\.js$/,
            exclude: /node_modules/,
            loader: 'eslint-loader',
-     			enforce: 'pre',
+        enforce: 'pre',
            options: {
              // 自动修复eslint的错误
              fix: true,
            },
          },
-     	]
-   	}
+      ]
+    }
    }
    
    // 配置方法一、根目录新建 .eslintrc.js
@@ -506,7 +494,7 @@ module.exports = {
        "env": {
          "browser": true
        }
-     	"parser": "babel-eslint"
+      "parser": "babel-eslint"
      }
    ```
 
@@ -548,8 +536,6 @@ module.exports = {
    }
    ```
 
-   
-
 ### 4、配置开发服务器
 
 > 就是实时预览
@@ -565,7 +551,7 @@ module.exports = {
    ```javascript
    // webpack.config.js
    module.export = {
-   	 // 省略其他
+     // 省略其他
      devServer:{
        // 基础路径，就是打包后的路径
        contentBase: path.join(__dirname,'dist'),
