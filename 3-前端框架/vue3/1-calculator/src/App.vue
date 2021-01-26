@@ -1,7 +1,8 @@
 <template>
   <div id="nav">
-    <router-link to="/">计算器</router-link> |
-    <router-link to="/about">父子传值</router-link>
+    <router-link to="/">首页</router-link>|
+    <router-link to="/calcu">计算器</router-link>|
+    <router-link to="/father-son">父子传值</router-link> |
     <router-view/>
   </div>
 </template>

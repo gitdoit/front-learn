@@ -20,6 +20,7 @@ export default {
     const state = reactive({
       num1: 0,
       num2: 0,
+      // 黑魔法？num1/num2变了，这个函数会自己执行一遍，什么道理？
       result: computed(() => parseInt(state.num1, 10) + parseInt(state.num2, 10)),
     });
     return { state };
