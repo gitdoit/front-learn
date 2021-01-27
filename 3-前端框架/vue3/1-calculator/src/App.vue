@@ -3,11 +3,13 @@
     <router-link to="/">首页</router-link>|
     <router-link to="/calcu">计算器</router-link>|
     <router-link to="/father-son">父子传值</router-link> |
+    <router-link to="/todo">TodoList</router-link> |
+    <router-link to="/todo-with-child">TodoList子组件</router-link> |
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
