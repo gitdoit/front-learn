@@ -14,6 +14,7 @@ module.exports = {
     // 如果觉得某个规则有毛病，这样给他关掉
     'no-new-object': 'off',
     'no-console': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
   parser: 'babel-eslint',
   globals: {
