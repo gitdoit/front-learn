@@ -15,6 +15,8 @@ module.exports = {
     'no-new-object': 'off',
     'no-console': 'off',
     'import/no-extraneous-dependencies': 'off',
+    // 这是什么傻逼规则？
+    'class-methods-use-this': 'off',
   },
   parser: 'babel-eslint',
   globals: {
