@@ -8,6 +8,18 @@
 <div id="div"></div>
 <img name="img1">
 <img name="img2">
+<div class="container">
+    <button onclick='doTransfor(this)'>transfor</button>
+    <h1>from</h1>
+    <ul id="from">
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+    </ul>
+    <h1>to</h1>
+    <ul id="to"></ul>
+</div>
 </body>
 <script>
     /**
@@ -54,5 +66,16 @@
     let img11 = imgHTMLCollection['img1'];
     // true
     //console.info(img1 === img11)
+
+    function doTransfor(el){
+        let fra = document.createDocumentFragment();
+        let ul = document.getElementById('from');
+        let child = null;
+        while(child=ul.firstChild){
+            fra.appendChild(child);
+        }
+        let toUl = document.getElementById('to');
+        toUl.appendChild(fra);
+    }
 </script>
 </html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>
+      <span>插值表达式:</span>
+      <span>{{msg}}</span>
+    </p>
+    <p>
+      <span>v-model:</span>
+      <input type="text" v-model="msg">
+      <input type="text" v-model="name">
+    </p>
+    <p>
+      计算属性：<span>{{newMsg}}</span>
+    </p>
+    <p>
+      <span>事件绑定：</span>
+      <button v-on:click="update">点我随机model值</button>
+    </p>
+    <p>
+      <span>属性监听：</span>
+      <button v-on:click="triggerWatch">点我测试watch</button>
+    </p>
+    
+    
+  </div>
+  <script type="module">
+    import {Mvvm} from './src/Mvvm.js';
+    var vm = new Mvvm({
+      el:'#app',
+      data: {
+        msg: 'hello mvvm!',
+        name: 'vue!',
+        beWatched:'look at me!'
+      },
+      computed: {
+        newMsg(){
+          return this.msg + '------' + this.name;
+        }
+      },
+      watch: {
+        beWatched(newValue,oldValue){
+          console.log('监听到了变化：',oldValue,'----->',newValue);
+        }
+      },
+      methods: {
+        triggerWatch() {
+          this.beWatched = Math.random();
+        },
+        update(){
+          this.msg = Math.random();
+        }
+      }
+    });
+    
+  </script>
+</body>
+
+</html>
