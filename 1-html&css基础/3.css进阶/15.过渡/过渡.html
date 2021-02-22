@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .trans{
+      /* 多个属性分别应用不同的过渡时间，可以用逗号分开 */
+      transition: width 2s ease-in .2s,height 1s,transform 1s;
+      width: 100px;
+      height: 200px;
+      background-color: aqua;
+    }
+    .trans:hover{
+      width: 300px;
+      background-color: beige;
+      transform: rotate(45deg) translateX(200px) translateY(-60px);
+    }
+    .percent{
+      height: 30px;
+      width: 200px;
+      border: 1px solid;
+      border-radius: 15px;
+      box-sizing: border-box;
+      border-color: red;
+    }
+    .percent .cup{
+      transition: all 2s ease-in-out;
+      position: relative;
+      top: -1px;
+      border-radius: 15px;
+      background-color: red;
+      width: 50%;
+      height: 30px;
+    }
+    .percent .cup:hover{
+      width: 100%;
+    }
+
+    .mi{
+      position: relative;
+      margin:  0 auto;
+      width: 75px;
+      height: 75px;
+      background-color: #ff6700;
+    }
+    .mi::before{
+      transition: all .5s ease-in-out;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-image: url(./img/mi-logo.png);
+      content: '';
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    .mi::after{
+      transition: all .2s ease-in-out;
+      position: absolute;
+      left: 75px;
+      top: 0;
+      background-image: url(./img/mi-home.png);
+      content: '';
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    .mi:hover::before{
+      transform: translateX(-75px);
+    }
+    .mi:hover::after{
+     /*  transform: translateX(-75px) */
+     left: 0;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>CSS过渡属性：transition</h1>
+  <h2>谁做过渡给谁加这个属性，并且是在一开始的时候就加而不是像是在:hover里面加</h2>
+  <ul style="list-style:decimal;">
+    <li>
+      属性：想要变化的css属性，如宽度、高度、背景颜色、内外边距等。all代表所有属性都过渡变化。
+    </li>
+    <li>
+      过渡时间：意思是耗费多长时间完成这个过渡，如 .5s 1s等
+    </li>
+    <li>
+      运动曲线：过渡过程是平滑过渡，还是先快后慢(ease)、还是先慢后快等
+    </li>
+    <li>
+      延时：就是延迟触发过渡，默认是0s
+    </li>
+  </ul>
+  <div class="trans">
+    过渡测试
+  </div>
+
+  <div class="percent">
+    <div class="cup"></div>
+  </div>
+
+  <div class="mi">
+
+  </div>
+</body>
+</html>

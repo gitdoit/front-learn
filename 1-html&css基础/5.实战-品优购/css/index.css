@@ -1,0 +1,84 @@
+.main{
+
+}
+.main .top {
+  height: 470px;
+  margin-left: 200px;
+}
+/* 轮播图 */
+.main .top .focus{
+  width: 790px;
+  height: 100%;
+  float: left;
+}
+/* 轮播图-按钮 */
+.slider-btn{
+  position: absolute;
+  top: calc(50% - 15px);
+  height: 35px;
+  width: 25px;
+  background-color: rgb(0,0,0,.15);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+.slider-btn:focus{
+  outline: none;
+}
+.slider-btn:hover{
+  background-color: rgb(0,0,0,.35);
+}
+.btn-l{
+  left: 0;
+  top: 50%;
+  border-radius: 0 15px 15px 0;
+}
+.btn-r {
+  right: 0;
+  border-radius: 15px 0 0 15px;
+}
+/* 轮播图-主要 */
+/* 可视窗口-超出部分隐藏 */
+.main .top .focus .main-focus{
+  float: left;
+  position: relative;
+  overflow: hidden;
+  height: 470px;
+  width: 590px;
+  margin-right: 10px;
+}
+/* 窗口固定，滑动这个轮播条 */
+.main .top .focus .main-focus .slider-list{
+  position: absolute;
+  transition: all 1s ease-in-out;
+  left: 0;
+  width: 4200px;
+  height: 100%;
+}
+/* 图片左浮动，组成一行 */
+.main .top .focus .main-focus .slider-list ul li{
+  float: left;
+  height: 470px;
+  width: 590px;
+}
+.main .top .focus .main-focus .slider-list ul li a img{
+  height: 470px;
+  width: 590px;
+}
+
+
+/* 轮播图-侧边 */
+.main .top .focus .sider-focus{
+  float: left;
+  height: 470px;
+  width: 190px;
+  background-color: yellow;
+}
+/* 服务 */
+.main .top .service{
+  float: right;
+  width: 190px;
+  height: 470px;
+  background-color: blue;
+}

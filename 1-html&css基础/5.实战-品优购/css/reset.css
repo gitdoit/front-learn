@@ -90,7 +90,6 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  box-sizing: border-box;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -110,6 +109,7 @@ section {
 
 body {
   line-height: 1;
+  font: 12px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,"\5B8B\4F53",sans-serif
 }
 
 ol,

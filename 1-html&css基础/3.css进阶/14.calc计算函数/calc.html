@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .father{
+    width: 200px;
+    height: 100px;
+    background-color: antiquewhite;
+  }
+  .father .son{
+    width: calc(100% - 30px);
+    height: calc(30% + 15px);
+    background-color: red;
+  }
+</style>
+<body>
+  
+  <div class="father" id="f">
+    <div class="son"></div>
+  </div>
+  <script>
+    const el = document.getElementById('f');
+    let width = 200;
+    setInterval(() => {
+      el.style.width = width + 'px';
+      width += 50;
+    }, 700);
+  </script>
+</body>
+</html>
