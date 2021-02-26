@@ -168,7 +168,6 @@ a:hover{
   background-color: #fff;
 }
 .nav .dropdown{
-  overflow: hidden;
   width: 190px;
   height: 45px;
   float: left;

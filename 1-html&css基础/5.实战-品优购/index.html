@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- SEO -->
-  <title>品优购商城-综合网购首选-正品低价、品质保障、配送及时、轻松购物！</title>
+  <title>京东商城-综合网购首选-正品低价、品质保障、配送及时、轻松购物！</title>
   <meta name="description" content="品优购" />
   <meta name="keywords" content="网上购物,手机、电脑" />
 </head>
@@ -262,39 +262,118 @@
         <div class="main-focus">
           <div id="slider" class="slider-list">
             <ul>
-              <li class="show">
-                <a href="#">
-                  <img src="./img/slider-main1.webp" alt="">
-                </a>
-              </li>
               <li>
-                <a href="#">
-                  <img src="./img/slider-main2.webp" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="#">
+                <a href="#3">
                   <img src="./img/slider-main3.webp" alt="">
                 </a>
               </li>
               <li class="show">
-                <a href="#">
+                <a href="#1">
+                  <img src="./img/slider-main1.webp" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#2">
+                  <img src="./img/slider-main2.webp" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#3">
+                  <img src="./img/slider-main3.webp" alt="">
+                </a>
+              </li>
+              <li >
+                <a href="#1">
                   <img src="./img/slider-main1.webp" alt="">
                 </a>
               </li>
             </ul>
           </div>
-          <button class="slider-btn btn-l">
+          <button class="slider-btn btn-l" id="perBtn">
             <i class="iconfont icon-tubiaozhizuo-"></i>
           </button>
-          <button class="slider-btn btn-r">
+          <button class="slider-btn btn-r" id="nextBtn">
             <i class="iconfont icon-you"></i>
           </button>
+          <div class="slider-radius" id="slider-radius">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
         </div>
-        <div class="sider-focus"> </div>
+        <div class="sider-focus">
+          <ul>
+            <li>
+              <a href="#">
+                <img src="./img/small-1.jpg.webp" alt="">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="./img/small-2.jpg.webp" alt="">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="./img/small-3.jpg.webp" alt="">
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="service">
-
+      <div class="services">
+        <div class="service-user">
+          <div class="user-login">
+            <div class="user-avatar">
+              <img src="./img/avatar.png" alt="">
+            </div>
+            <div class="user-info">
+              <p>
+                <a href="#">Hi~欢迎逛京东！</a>
+              </p>
+              <a href="#">登录</a>|
+              <a href="#">注册</a>
+            </div>
+          </div>
+          <div class="user-btns">
+            <button class="new">新人福利</button>
+            <button class="vip">PLUS会员</button>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="service-news">
+          <div class="title">
+            <h1>京东快报</h1>
+            <a href="#">更多></a>
+          </div>
+          <ul>
+            <li>
+              <a href="#">
+                <span>热评</span>
+                超高贴合放肆运动放马过来吧s士大夫首发式地方s
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span>热评</span>
+                超高贴合放肆运动放马过来吧s士大夫首发式地方s
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span>热评</span>
+                超高贴合放肆运动放马过来吧s士大夫首发式地方s
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span>热评</span>
+                超高贴合放肆运动放马过来吧s士大夫首发式地方s
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="service-item"></div>
       </div>
     </div>
   </div>
@@ -492,6 +571,7 @@
   </footer>
   <script>
     function Slider(id,imgSize,prevBtnId,nextBtnId,width){
+      this.transforming = 1;
       this.imgSize = imgSize;
       this.width =width;
       this.slider = document.getElementById(id);
@@ -499,33 +579,104 @@
 
       this.init = function init(){
         // 初始化滚动
-        setInterval(() => {
+        this.intervalId =  setInterval(() => {
           this.nextSlider();
         }, 2500);
       }
+      this.init();
+      // 给下一张按钮绑定事件
+      if(nextBtnId){
+        let nextBtnDom = document.getElementById(nextBtnId);
+        nextBtnDom.addEventListener('click',event => {
+          clearInterval(this.intervalId);
+          this.nextSlider();
+          this.init();
+        })
+      }
+      // 给上一张绑定按钮事件
+      if(prevBtnId){
+        let prevBtnDom = document.getElementById(prevBtnId);
+        prevBtnDom.addEventListener('click',event => {
+          clearInterval(this.intervalId);
+          this.prevSlider();
+          this.init();
+        })
+      }
+      // 给小圆点绑定事件
+      let radius = document.getElementById('slider-radius');
+      if(radius.hasChildNodes){
+        let array = Array.from(radius.childNodes).filter(e => e.nodeType === 1);
+        for (let index = 0; index < array.length; index++) {
+          const element = array[index];
+          element.addEventListener('click',event => {
+            this.go(index);
+          })
+        }
+      }
+
+      this.go = function(index) {
+        if(!this.limit(this.transforming)){
+          return;
+        }
+        this.currentIndex = index;
+        this.slider.style.transition = `all ${this.transforming}s ease-in-out`;
+        this.slider.style.left = (-this.currentIndex * this.width) + 'px';
+      }
+
       /*
-       * 下一个 
+      *  3 1 2 3 1
+       * 下一张
+       * 动画进行中，点击无效
        */
       this.nextSlider = function nextSlider(){
+        if(!this.limit(this.transforming)){
+          return;
+        }
         this.currentIndex++;
-        this.slider.style.transition = 'all 1s ease-in-out';
+        this.slider.style.transition = `all ${this.transforming}s ease-in-out`;
         this.slider.style.left = (-this.currentIndex * this.width) + 'px';
-        
-        if(this.currentIndex === this.imgSize){
-          setTimeout(() => {
-            this.currentIndex = 0;
-          this.slider.style.transition = 'none';
-          this.slider.style.left = '0';
-          }, 1000);
+        // 如果是最后一张，动画完成后删除动画效果，位置重置到第一张
+        if(this.currentIndex === this.imgSize + 1){
+          this.timeoutId = setTimeout(() => {
+            this.currentIndex = 1;
+            this.slider.style.transition = 'none';
+            this.slider.style.left = -this.width + 'px';
+          }, this.transforming * 1000);
         }
         
       }
+      /**
+       * 上一张
+       * */
       this.prevSlider = function prevSlider(){
-
+        if(!this.limit(this.transforming)){
+          return;
+        }
+        this.currentIndex--;
+        this.slider.style.transition = `all ${this.transforming}s ease-in-out`;
+        this.slider.style.left = (-this.currentIndex * this.width) + 'px';
+        if(this.currentIndex === 0){
+          this.timeoutId = setTimeout(() => {
+            this.currentIndex = this.imgSize;
+            this.slider.style.transition = 'none';
+            this.slider.style.left = -this.imgSize*this.width + 'px';
+          }, this.transforming * 1000);
+        }
+      }
+      
+      this.limitTimer = null;
+      this.limit = function(duartion) {
+        if(this.limitTimer){
+          return false;
+        }else {
+          this.limitTimer = setTimeout(() => {
+            this.limitTimer = null;
+          },duartion*1000);
+          return true;
+        }
       }
     }
-    let slider = new Slider('slider',3,'','',590);
-    slider.init();
+    let slider = new Slider('slider',3,'perBtn','nextBtn',590);
   </script>
 </body>
 

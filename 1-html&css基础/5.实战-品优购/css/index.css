@@ -38,6 +38,32 @@
   right: 0;
   border-radius: 15px 0 0 15px;
 }
+.slider-radius{
+  position: absolute;
+  bottom: 0;
+  line-height: 15px;
+  font-size: 0;
+  right: 30px;
+}
+.slider-radius i{
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: 50%;
+  background: rgba(255,255,255,.4);
+}
+.slider-radius i:hover{
+  position: relative;
+  top: 2px;
+  left: 0px;
+  width: 9px;
+  height: 9px;
+  background-color: #fff;
+  border: 3px solid rgba(0, 0, 0, .1);
+}
 /* 轮播图-主要 */
 /* 可视窗口-超出部分隐藏 */
 .main .top .focus .main-focus{
@@ -73,12 +99,118 @@
   float: left;
   height: 470px;
   width: 190px;
-  background-color: yellow;
+  font-size: 0;
+}
+.main .top .focus .sider-focus ul li {
+  margin-bottom: 10px;
+}
+.main .top .focus .sider-focus ul li a img{
+  width: 190px;
+  height: 150px;
 }
 /* 服务 */
-.main .top .service{
+.main .top .services{
+  position: relative;
   float: right;
+  box-sizing: border-box;
   width: 190px;
   height: 470px;
-  background-color: blue;
+  padding: 13px;
+  background-clip: content-box;
+  border: 1px solid;
+}
+.main .top .services .service-user{
+  margin-left: 10px;
+}
+.main .top .services .service-user .user-login{
+  height: 50px;
+}
+.main .top .services .service-user .user-login .user-avatar{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.main .top .services .service-user .user-login .user-avatar img{
+  height: 100%;
+  width: 100%;
+}
+.main .top .services .service-user .user-login>div{
+  display: inline-block;
+}
+.main .top .services .service-user .user-login .user-info{
+  position: relative;
+  top: -8px;
+  left: 6px;
+}
+.main .top .services .service-user .user-login .user-info p{
+  color: #666;
+}
+.main .top .services .service-user .user-login .user-info>a{
+  color: #333;
+}
+.main .top .services .service-user .user-btns{
+  height: 32px;
+}
+.main .top .services .service-user .user-btns button{
+  transition: all .2s ease-in-out;
+  border-radius: 15px;
+  height: 25px;
+  width: 70px;
+  font-size: 12px;
+  border: none;
+}
+.main .top .services .service-user .user-btns .new{
+  color: #fff;
+  background-color: #e1251b;
+  line-height: 25px;
+}
+.main .top .services .service-user .user-btns .vip{
+  background: #363634;
+  color: #e5d790;
+}
+.main .top .services .service-user .user-btns .vip:hover{
+  color: #fff;
+  background-color: #e1251b;
+}
+.main .top .services .line{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 70%;
+  height: 1px;
+  background-color: rgb(0,0,0,.15);
+}
+.main .top .services .service-news .title{
+  height: 25px;
+}
+.main .top .services .service-news .title h1{
+  float: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+}
+.main .top .services .service-news .title a{
+  float: right;
+  color: #666;
+}
+.main .top .services .service-news ul li {
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
+}
+.main .top .services .service-news ul li a span{
+  background-color: rgba(225,37,27,.08);
+  color: #e1251b;
+  padding: 0 8px;
+}
+.main .top .services .service-news ul li a{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
