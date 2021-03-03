@@ -14,7 +14,7 @@
 /* 轮播图-按钮 */
 .slider-btn{
   position: absolute;
-  top: calc(50% - 15px);
+  
   height: 35px;
   width: 25px;
   background-color: rgb(0,0,0,.15);
@@ -31,11 +31,12 @@
 }
 .btn-l{
   left: 0;
-  top: 50%;
+  top: calc(50% - 15px);
   border-radius: 0 15px 15px 0;
 }
 .btn-r {
   right: 0;
+  top: calc(50% - 15px);
   border-radius: 15px 0 0 15px;
 }
 .slider-radius{
@@ -44,6 +45,15 @@
   line-height: 15px;
   font-size: 0;
   right: 30px;
+}
+.slider-radius i.current-radius{
+  position: relative;
+  top: 2px;
+  left: 0px;
+  width: 9px;
+  height: 9px;
+  background-color: #fff;
+  border: 3px solid rgba(0, 0, 0, .1);
 }
 .slider-radius i{
   position: relative;
@@ -55,7 +65,7 @@
   border-radius: 50%;
   background: rgba(255,255,255,.4);
 }
-.slider-radius i:hover{
+/* .slider-radius i:hover{
   position: relative;
   top: 2px;
   left: 0px;
@@ -63,7 +73,7 @@
   height: 9px;
   background-color: #fff;
   border: 3px solid rgba(0, 0, 0, .1);
-}
+} */
 /* 轮播图-主要 */
 /* 可视窗口-超出部分隐藏 */
 .main .top .focus .main-focus{
@@ -110,17 +120,19 @@
 }
 /* 服务 */
 .main .top .services{
+  background-color: #fff;
   position: relative;
   float: right;
   box-sizing: border-box;
   width: 190px;
   height: 470px;
   padding: 13px;
-  background-clip: content-box;
-  border: 1px solid;
 }
+/* 服务-用户 */
 .main .top .services .service-user{
   margin-left: 10px;
+  position: relative;
+  margin-bottom: 10px;
 }
 .main .top .services .service-user .user-login{
   height: 50px;
@@ -153,6 +165,7 @@
 }
 .main .top .services .service-user .user-btns{
   height: 32px;
+  padding-bottom: 6px;
 }
 .main .top .services .service-user .user-btns button{
   transition: all .2s ease-in-out;
@@ -175,14 +188,22 @@
   color: #fff;
   background-color: #e1251b;
 }
-.main .top .services .line{
+.main .top .services .service-user .user-btns::after{
+  content: " ";
   position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 70%;
+  left: 15px;
+  right: 15px;
   height: 1px;
-  background-color: rgb(0,0,0,.15);
+  background: linear-gradient(270deg,white,#eeeeee,#eeeeee,white);
+  bottom: 0;
+}
+/* 服务-新闻 */
+.main .top .services .service-news{
+  margin-top: 6px;
+  height: 130px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 10px;
 }
 .main .top .services .service-news .title{
   height: 25px;
@@ -202,7 +223,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .main .top .services .service-news ul li a span{
   background-color: rgba(225,37,27,.08);
@@ -213,4 +234,482 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.main .top .services .service-news ul::after{
+  content: " ";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  height: 1px;
+  background: linear-gradient(270deg,white,#eeeeee,#eeeeee,white);
+  bottom: 0;
+}
+
+/* 服务-充话费啥的 */
+.main .top .services .service-item ul li {
+  width: 53px;
+  height: 55px;
+  text-align: center;
+  float: left;
+}
+.main .top .services .service-item ul li a img{
+  width: 28px;
+  height: 28px;
+}
+/* ===============秒杀专区-开始======================= */
+.main .seckill{
+  height: 260px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+/* ----秒杀-计时器---- */
+.main .seckill .timmer{
+  float: left;
+  width: 190px;
+  height: 100%;
+  background-color: #666;
+  background-image: url(../img/seckill-timmer.png);
+  background-size: contain;
+}
+.main .seckill .timmer h1{
+  text-align: center;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+.main .seckill .timmer .counter{
+  margin-top: 100px;
+  text-align: center;
+  color: #fff;
+}
+.main .seckill .timmer .counter>p{
+  font-size: 14px;
+}
+.main .seckill .timmer .counter>p strong{
+  font-size: 18px;
+  font-weight: 700;
+}
+.main .seckill .timmer .clock{
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.main .seckill .timmer .clock p span{
+  position: relative;
+  background-color: #333;
+  padding: 4px;
+  
+}
+.main .seckill .timmer .clock p .hour,.main .seckill .timmer .clock p .minute{
+  margin-right: 15px;
+}
+.main .seckill .timmer .clock p .hour::after,.main .seckill .timmer .clock p .minute::after{
+  content: ":";
+  position: absolute;
+  display: block;
+  top: 0;
+  right: -20px;
+  width: 20px;
+  text-align: center;
+}
+/* -----秒杀专区-秒杀列表-------- */
+/* 窗口 */
+.main .seckill .seckill-list{
+  position: relative;
+  float: left;
+  width: 800px;
+  height: 100%;
+  overflow: hidden;
+}
+/* 滑动条 */
+.main .seckill .seckill-list .slider-list{
+  position: absolute;
+  width: 4200px;
+  height: 100%;
+}
+.main .seckill .seckill-list .slider-list .slider-item{
+  height: 100%;
+  width: 800px;
+  float: left;
+}
+.main .seckill .seckill-list .slider-list .slider-item .goods-item{
+  float: left;
+  width: 200px;
+  height: 260px;
+  text-align: center;
+}
+.main .seckill .seckill-list .slider-list .slider-item .goods-item img{
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.main .seckill .seckill-list .slider-list .slider-item .goods-item .desc{
+  width: 140px;
+  margin: 0 auto;
+  margin-top: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.main .seckill .seckill-list .slider-list .slider-item .goods-item .price{
+  width: 158px;
+  height: 22px;
+  line-height: 22px;
+  margin: 0 auto;
+  margin-top: 5px;
+  border: 1px solid #e1251b;
+}
+.price .miaosha_price{
+  position: relative;
+  left: -1px;
+  float: left;
+  width: 92px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #e1251b;
+  color: #fff;
+}
+.price .miaosha_price::before{
+    content: " ";
+    width: 0;
+    height: 0;
+    border-color: transparent white transparent transparent;
+    border-style: solid;
+    border-width: 22px 8px 0 0;
+    position: absolute;
+    top: 0;
+    left: 84px;
+}
+.price .miaosha_price::first-letter{
+  font-size: 12px;
+}
+.price .origin_price{
+  width: 66px;
+  float: left;
+  font-size: 8px;
+  text-decoration: line-through;
+  color: #999;
+}
+/* 小秒杀 */
+.main .seckill  .seckill-brand{
+  float: left;
+  position:relative;
+  width: 200px;
+  height: 100%;
+  overflow: hidden;
+  
+}
+.main .seckill  .seckill-brand .slider-list{
+  position: absolute;
+  width: 1000px;
+  height: 100%;
+  left: 0;
+}
+.main .seckill  .seckill-brand .slider-list .slider-item{
+  float: left;
+  width: 200px;
+  height: 100%;
+}
+.main .seckill  .seckill-brand .slider-list .slider-item img{
+  width: 140px;
+  height: 140px;
+  display: block;
+  font-size: 0;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.main .seckill  .seckill-brand .slider-list .slider-item .info{
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg,rgba(255,255,255,.5),rgba(220,224,236,.5));
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+.main .seckill  .seckill-brand .slider-list .slider-item .info .pay-way{
+  font-weight: bold;
+  color: #333;
+  font-size: 15px;
+}
+.main .seckill  .seckill-brand .slider-list .slider-item .info button{
+  background-color: transparent;
+  border: 1px solid #e1251b;
+  color: #e1251b;
+  border-radius: 15px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+.main .seckill  .seckill-brand .slider-list .slider-item .info button:hover{
+  background-color: #e1251b;
+  color: #fff;
+}
+/* ===============秒杀专区-结束======================= */
+
+/* ===============特选专区-开始======================= */
+.main .special{
+  height: 980px;
+}
+.tab{
+  float: left;
+  position: relative;
+  height: 340px;
+  width: 590px;
+  box-sizing: border-box;
+}
+.tab-tit{
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.tab-tit::after{
+  content: ">";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #e1251b;
+  color: #e1251b;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 12px;
+  text-indent: 3px;
+  margin-left: 7px;
+}
+.tab-tit:hover::after{
+  background-color: #e1251b;
+  color: #fff;
+}
+/****** 特选专区-每日特价 ***********/
+.core1 {
+  margin-bottom: 20px;
+}
+.daily{
+  margin-right: 10px;
+  background-color: #fff;
+}
+
+.daily .daily-items{
+  height: 50px;
+  padding-top: 20px;
+  
+}
+
+.daily .daily-item {
+  float: right;
+  text-align: center;
+  font-size: 15px;
+  margin: 0 15px;
+}
+.daily .daily-item h1{
+  color: #999;
+}
+.daily .daily-item:hover>h1{
+  color: #e1251b;
+  border-bottom: 2px solid;
+}
+.daily .daily-items .daily-goods{
+  display: none;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 560px;
+  height: 270px;
+  box-sizing: border-box;
+}
+/* 鼠标悬浮显示 */
+.daily .daily-items .daily-item:first-of-type .daily-goods{
+  display: block;
+}
+/* 特价最好 */
+.daily .daily-item .daily-goods .goods-best{
+  float: left;
+  height: 100%;
+  width: 170px;
+  margin-right: 5px;
+  font-size: 14px;
+  color: #000;
+  background: rgba(109,126,146,.05);
+}
+.daily .daily-item .daily-goods .goods-best .goods-pic{
+  display: block;
+  height: 120px;
+  width: 120px;
+  margin: 30px auto;
+  margin-bottom: 10px;
+}
+.daily .daily-item .daily-goods .goods-best .why-best{
+  display: block;
+  width: 90px;
+  height: 24px;
+  background-image: url(../img/goods-why-best.png);
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+.daily .daily-item .daily-goods .price{
+  text-align: center;
+}
+.daily .daily-item .daily-goods .price .miaosha_price{
+  background-color: transparent;
+  color: #e1251b;
+  width: initial;
+  top: -3px;
+  float: none;
+}
+.daily .daily-item .daily-goods .price .miaosha_price::before{
+  display: none;
+}
+.daily .daily-item .daily-goods .price .origin_price{
+  width: initial;
+  float: none;
+  vertical-align: top;
+}
+/* 特价-项目 */
+.daily .daily-item .daily-goods .goods-list{
+  overflow: hidden;
+  margin-left: 5px;
+  height: 100%;
+}
+.daily .daily-item .daily-goods .goods-list .goods-item{
+  float: left;
+  width: 170px;
+  height: 89px;
+  margin: 24px 0 35px 12px;
+}
+.daily .daily-item .daily-goods .goods-list .goods-item  .img{
+  float: left;
+  position:relative;
+  height: 84px;
+  width: 84px;
+  margin-right: 5px;
+}
+.daily .daily-item .daily-goods .goods-list .goods-item  .img img{
+  height: 84px;
+  width: 84px;
+}
+.daily .daily-item .daily-goods .goods-list .goods-item .img span{
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(20, 20, 20, 0.5);
+}
+.daily .daily-item .daily-goods .goods-list .goods-item .info{
+  width: 75px;
+  overflow: hidden;
+  font-size: 12px;
+}
+.daily .daily-item .daily-goods .goods-list .goods-item .info .desc{
+  display: inline-block;
+    width: 100%;
+    height: 32px;
+    font-size: 12px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    font-family: Microsoft Yahei,PingFangSC-Medium,sans-serif,serif;
+}
+.daily .daily-item .daily-goods .goods-list .goods-item .info .price .miaosha_price, .daily .daily-item .daily-goods .goods-list .goods-item .info .price .origin_price{
+  display: block;
+  text-align: left;
+  top: 5px;
+}
+
+/****** 特选专区-品牌闪购 ***********/
+.flash-buy {
+  text-align: center;
+  background-color: #fff;
+}
+.flash-buy .tab-body{
+  width: 560px;
+  height: 270px;
+  margin: auto;
+  margin-top: 55px;
+}
+.flash-buy .flash-big{
+  float: left;
+  text-align: center;
+  color: #666;
+  width: 270px;
+  height: 265px;
+  margin-right: 10px;
+  background: linear-gradient( 180deg ,rgba(119,255,233,.05),rgba(0,93,70,.05));
+  
+}
+.flash-buy .flash-big img{
+  display: block;
+  width: 130px;
+  height: 130px;
+  margin: auto;
+}
+.flash-buy .flash-title{
+  margin-top: 75px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+.flash-buy .flash-items{
+  position: relative;
+  top: -30px;
+  overflow: hidden;
+  height: 295px;
+}
+.flash-buy .flash-items .flash-item{
+  float:left;
+  cursor: pointer;
+  width: 135px;
+  height: 100px;
+  margin-right: 2px;
+  color: #666;
+}
+.flash-buy .flash-items .flash-item img{
+  width: 100px;
+  height: 50px;
+  display: block;
+  margin: auto;
+}
+
+/* ==================好货=============================== */
+.special .nice-goods{
+  width: 100%;
+  height: 260px;
+  border: 1px solid;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+.nice-goods .nice-goods-left{
+  width: 190px;
+  float: left;
+  height: 100%;
+  border: 1px solid;
+  margin-right: 10px;
+  background-image: url(../img/nice-goods-title.png);
+}
+.nice-goods .nice-goods-left .nice-goods-left-info{
+  background-color: rgb(0, 0, 0, 0.7);
+  height: 80px;
+  width: 160px;
+  margin: auto;
+  margin-top: 15px;
+  border-bottom-right-radius: 35px;
+}
+/* 好货----右侧轮播 */
+.nice-goods .nice-goods-slider{
+  overflow: hidden;
+  height: 100%;
+  border: 1px solid;
 }
