@@ -1,6 +1,43 @@
 .main{
 
 }
+.top-mark{
+  position:absolute;
+  width: 28px;
+  height: 40px;
+  background-image: url(../img/top.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+.top-mark::after{
+  position: absolute;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  bottom: 4px;
+  left: 4px;
+}
+.top-1::after{
+  content: "01";
+}
+.top-2::after{
+  content: "02";
+}
+.top-3::after{
+  content: "03";
+}
+.top-mark::before{
+  content: "TOP";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 1px;
+  font-weight: bold;
+  color: #e6ac36;
+}
 .main .top {
   height: 470px;
   margin-left: 200px;
@@ -11,10 +48,24 @@
   height: 100%;
   float: left;
 }
-/* 轮播图-按钮 */
+/* ======公共样式-轮播图========== */
+/* 滑动条 */
+.slider-list{
+  position: absolute;
+  width: 4200px;
+  height: 100%;
+  left: 0;
+  transition: all 1s ease-in-out;
+}
+/* 滑动项 */
+.slider-item{
+  width: 800px;
+  height: 100%;
+  float: left;
+}
+/* 左右滑动按钮 */
 .slider-btn{
   position: absolute;
-  
   height: 35px;
   width: 25px;
   background-color: rgb(0,0,0,.15);
@@ -65,15 +116,9 @@
   border-radius: 50%;
   background: rgba(255,255,255,.4);
 }
-/* .slider-radius i:hover{
-  position: relative;
-  top: 2px;
-  left: 0px;
-  width: 9px;
-  height: 9px;
-  background-color: #fff;
-  border: 3px solid rgba(0, 0, 0, .1);
-} */
+
+
+
 /* 轮播图-主要 */
 /* 可视窗口-超出部分隐藏 */
 .main .top .focus .main-focus{
@@ -687,7 +732,6 @@
 .special .nice-goods{
   width: 100%;
   height: 260px;
-  border: 1px solid;
   margin-bottom: 20px;
   background-color: #fff;
 }
@@ -695,21 +739,325 @@
   width: 190px;
   float: left;
   height: 100%;
-  border: 1px solid;
   margin-right: 10px;
   background-image: url(../img/nice-goods-title.png);
 }
 .nice-goods .nice-goods-left .nice-goods-left-info{
-  background-color: rgb(0, 0, 0, 0.7);
-  height: 80px;
+  position: relative;
+  height: 90px;
   width: 160px;
   margin: auto;
   margin-top: 15px;
-  border-bottom-right-radius: 35px;
+}
+.nice-goods .nice-goods-left .nice-goods-left-info .pic{
+  width: 160px;
+  height: 90px;
+  margin: auto;
+  background-image: url(../img/nice-goods-found.png);
+}
+.nice-goods .nice-goods-left .nice-goods-left-info .tab-tit{
+  font-size: 16px;
+  font-weight: normal;
+  height: 20px;
+  text-align: center;
+  color: #999;
+  left: 32px;
+  top: 56px;
+   
 }
 /* 好货----右侧轮播 */
 .nice-goods .nice-goods-slider{
+  position: relative;
   overflow: hidden;
   height: 100%;
+}
+.nice-goods .nice-goods-slider .slider-list .slider-item{
+  position: relative;
+  width: 150px;
+  height: 100%;
+  padding: 20px 0;
+  margin:  0 24px;  
+}
+.nice-goods .nice-goods-slider .slider-list .slider-item .desc{
+  height: 20px;
+  width: 150px;
+  margin-bottom: 15px;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.nice-goods .nice-goods-slider .slider-list .slider-item .down{
+  position: absolute;
+  bottom: -25px;
+}
+.nice-goods .nice-goods-slider .slider-list .slider-item img{
+  display: block;
+  height: 150px;
+  width: 150px;
+}
+
+/* ==================新品首发=============================== */
+.main .special{
+  margin-bottom: 20px;
+}
+.special .core3{
+  height: 340px;
+  
+}
+.special .core3 .tab{
+  height: 340px;
+  width: 290px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.special .core3 .tab:last-child{
+  margin-right: 0;
+}
+.special .core3 .tab .tab-body{
+  position: relative;
+  margin-top: 50px;
+  height: 290px;
+  box-sizing: border-box;
+}
+/* ==========排行榜======== */
+.special .core3 .tab .tab-body .top-type{
+  float: left;
+  width: 62px;
+  margin: 5px 5px;
+  background-color: #f6f6f6;
+  color: #666;
+  border-radius: 15px;
+  text-align: center;
+}
+.special .core3 .tab .tab-body .top-type:hover{
+  color: #fff;
+  background-color: #e1251b;
+  cursor: pointer;
+}
+.special .core3 .tab .tab-body .top-type .type-body{
+  position: absolute;
+  display: none;
+  left: 0;
+  top: 15px;
+  height: 240px;
+  width: 290px;
+}
+.special .core3 .tab .tab-body .top-type:first-child .type-body{
+  display: block;
+}
+.special .core3 .tab .tab-body .top-type .type-body .type-item{
+  position: relative;
+  height: 70px;
+  width: 260px;
+  margin: 4px auto;
+}
+.special .core3 .tab .tab-body .top-type .type-body .type-item img{
+  height: 70px;
+  width: 70px;
+  float: left;
+  margin-left: 40px;
+}
+.special .core3 .tab .tab-body .top-type .type-body .type-item p{
+  overflow: hidden;
+  height: 33px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #333;
+}
+/* ==========逛好店======== */
+.tab .tab-body .shop-card{
+  width: 260px;
+  height: 128px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px auto;
+  background-color: #f0f8ff;
+}
+.tab .tab-body .shop-card .info{
+  float: left;
+  width: 120px;
+  height: 100%;
+  margin: 10px;
+  font-size: 14px;
+  color: #333;
+}
+.tab .tab-body .shop-card .info .tag span{
+  font-size: 12px;
   border: 1px solid;
+  border-radius: 3px;
+  padding: 0 3px;
+  color: #e1251b;
+}
+.tab .tab-body .shop-card .info .tag span:nth-of-type(2){
+  color: #e6ac36;
+}
+.tab .tab-body .shop-card .info .focus{
+  font-size: 12px;
+  color: #999;
+  margin-top: 20px;
+}
+.tab .tab-body .shop-card img{
+  display: block;
+  overflow: hidden;
+  height: 90px;
+  width: 90px;
+  margin-top: 20px;
+}
+/* ==========领券中心======== */
+.tab .tab-body .quans{
+  height: 100%;
+  width: 100%;
+  background-image: url(../img/quan-back.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.tab .tab-body .quans .quan-item{
+  width: 100%;
+  height: 88px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  padding-top: 7px;
+}
+.tab .tab-body .quans .quan-item .img{
+  float: left;
+  height: 66px;
+  width: 66px;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  background-color: #fff;
+  margin-right: 5px;
+}
+.tab .tab-body .quans .quan-item img{
+  padding-top: 10px;
+  height: 50px;
+  width: 50px;
+}
+.tab .tab-body .quans .quan-item .info{
+  width: 140px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.tab .tab-body .quans .quan-item .info .price{
+  background-color: transparent;
+  color: #e1251b;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: impact,sans-serif;
+}
+.tab .tab-body .quans .quan-item .info .price::first-letter{
+  font-size: 14px;
+}
+.tab .tab-body .quans .quan-item .info .condition{
+  color: #666;
+}
+.tab .tab-body .quans .quan-item .more{
+  float: right;
+  width: 10px;
+}
+/* =============================频道广场=================================== */
+.main .channel{
+  height: 1005px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.main .channel .channel-title{
+  height: 65px;
+  font-size: 24px;
+  line-height: 65px;
+  font-weight: bold;
+  text-align: center;
+}
+.main .channel .channel-title span::before{
+  width: 25px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 20px;
+  content: "";
+  background-image: url(../img/channel-title.png);
+}
+.main .channel .channel-title span::after{
+  width: 25px;
+  height: 20px;
+  display: inline-block;
+  margin-left: 20px;
+  content: "";
+  background-image: url(../img/channel-title.png);
+  background-position: -25px 0;
+}
+.channel .channel-item{
+  width: 290px;
+  float: left;
+  box-sizing: border-box;
+  
+}
+.channel .channel-item-1{
+  height: 180px;
+  background-color: #fff;
+}
+.channel .channel-item-2{
+  position: relative;
+  height: 370px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.channel .channel-item::after{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  background: rgba(255,255,255,.2);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.channel .channel-item:hover::after{
+  opacity: 1;
+}
+.channel  div:nth-of-type(4n){
+  margin-right: 0;
+}
+.channel .channel-item-2 .channel-item-1:first-child{
+  margin-bottom: 10px;
+}
+/* 大图 */
+.channel .channel-item-2 .big-img img{
+  height: 370px;
+  width: 290px;
+}
+.channel .channel-item .card{
+  height: 100%;
+  width: 100%;
+}
+.channel .channel-item .card .card-header{
+  height: 45px;
+  width: 150px;
+  margin-left: 35px;
+  margin-top: 15px;
+  width: 100%;
+}
+.channel .channel-item .card .card-header h1{
+  font-size: 22px;
+  font-weight:  bold;
+
+}
+.channel .channel-item .card .card-header h1 span{
+  font-size: 14px;
+  font-weight: normal;
+  color: #999;
+}
+.channel .channel-item .card .card-img{
+  height: 100px;
+  width: 100%;
+  text-align: center;
+}
+.channel .channel-item .card .card-img img{
+  height: 100px;
+  width: 100px;
+  margin: 0 10px;
 }

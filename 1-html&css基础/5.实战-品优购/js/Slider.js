@@ -9,7 +9,8 @@ class Slider{
     width = 400, // 元素宽度
     transitionSec = 1, // 过场动画时长，秒
     autoSlider = true, // 是否自动滑动
-    periodSec = 2.5 // 滑动周期
+    periodSec = 2.5, // 滑动周期,
+    moveType='ease-in-out'
   } = {}){
     this.slider = document.getElementById(sliderId);
     if(!this.slider){
@@ -24,7 +25,8 @@ class Slider{
     this.windowWidth = width;
     this.isAutoSlider = autoSlider;
     this.transitionSec = transitionSec;
-    this.periodSec = periodSec
+    this.periodSec = periodSec;
+    this.moveType = moveType;
     this._limitTimer = null;
     this.init();
   }
@@ -105,8 +107,9 @@ class Slider{
     if(this.isAutoSlider){
       clearInterval(this.intervalId)
       this.intervalId =  setInterval(() => {
-      this.nextWindow();
-    }, this.periodSec * 1000);
+        this.nextWindow();
+        console.log('一次循环'+Date.now());
+      }, this.periodSec * 1000);
     }
   }
 
@@ -116,7 +119,7 @@ class Slider{
       return;
     }
     this._currentIndex++;
-    this.slider.style.transition = `all ${this.transitionSec}s ease-in-out`;
+    this.slider.style.transition = `all ${this.transitionSec}s ${this.moveType}`;
     this.slider.style.left = (-this._currentIndex * this.windowWidth) + 'px';
     // 如果是最后一张，动画完成后删除动画效果，位置重置到第一张
     if(this._currentIndex === this.itemSize + 1){
@@ -124,6 +127,7 @@ class Slider{
         this._currentIndex = 1;
         this.slider.style.transition = 'none';
         this.slider.style.left = -this.windowWidth + 'px';
+        console.log('切过来了');
       }, this.transitionSec * 1000);
     }
   }
@@ -131,7 +135,7 @@ class Slider{
   prevWindow(){
     if(!this.limit()){ return; }
     this._currentIndex--;
-    this.slider.style.transition = `all ${this.transitionSec}s ease-in-out`;
+    this.slider.style.transition = `all ${this.transitionSec}s ${this.moveType}`;
     this.slider.style.left = (-this._currentIndex * this.windowWidth) + 'px';
     if(this._currentIndex === 0){
       this.resetTimmer = setTimeout(() => {
@@ -146,7 +150,7 @@ class Slider{
     if(!this.limit()){ return; }
     clearTimeout(this.resetTimmer)
     this._currentIndex = index;
-    this.slider.style.transition = `all ${this.transitionSec}s ease-in-out`;
+    this.slider.style.transition = `all ${this.transitionSec}s ${this.moveType}`;
     this.slider.style.left = (-this._currentIndex * this.windowWidth) + 'px';
   }
 
@@ -163,7 +167,7 @@ class Slider{
     }else {
       this._limitTimer = setTimeout(() => {
         this._limitTimer = null;
-      },this.transitionSec*1000);
+      },this.transitionSec*1000 - 10);
       return true;
     }
   }
