@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>守望先锋-官方网站</title>
-  <link rel="stylesheet" href="../source/reset.css">
+  <link rel="stylesheet" href=".../source/source/reset.css">
 </head>
 <style>
   .clearfix::after{
@@ -13,10 +13,10 @@
     clear: both;
   }
   .nav{
-    color: #4b535d;
     height: 48px;
     font-size: 16px;
     font-weight: 400;
+    color: #4b535d;
     background-color: rgb(242, 241, 237);
   }
    .nav .nav-log {
@@ -25,7 +25,7 @@
    .nav .nav-log .log{
     height: 48px;
     width: 58px;
-    background-image: url('./imgs/logo.jpg');
+    background-image: url('../source/imgs/logo.jpg');
     background-size: 53px 96px;
     background-position: 0 0;
     border: 1px solid #4b535d;;
@@ -37,14 +37,15 @@
     border-right: 1px solid #e5e3dc;
     position: relative;
   }
-   .nav .nav-menu>li a{
-    padding: 0 8px;
-    height: 100%;
-  }
   .nav .nav-menu>li:hover{
     background-color: #353c42;
     color: #ff9c00;
   }
+   .nav .nav-menu>li a{
+    padding: 0 8px;
+    height: 100%;
+  }
+  
   .nav .nav-menu>li:hover .submenu{
     display: block;
   }
@@ -78,7 +79,7 @@
   position: relative;
   margin-top: 20px;
   height: 280px;
-  background: url('./imgs/hengfu.jpg');
+  background: url('../source/imgs/hengfu.jpg');
   z-index: -2;
 }
 .bar .bar-content{
@@ -116,7 +117,7 @@
 .bar .bar-img{
   width: 680px;
   height: 370px;
-  background: url('./imgs/hero1.png');
+  background: url('../source/imgs/hero1.png');
   position: absolute;
   right: 0;
   bottom: 0;

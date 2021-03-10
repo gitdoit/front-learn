@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../source/reset.css">
+  <style>
+    .nav{
+      height: 50px;
+      font-size: 16px;
+      line-height: 50px;
+      text-align: center;
+      padding-left: 100px;
+      color: #4b535d;
+      background-color: rgb(242, 241, 237);
+    }
+    .nav .menu-item{
+      position: relative;
+      height: 100%;
+      width: 100px;
+      float: left;
+      border-right: 1px solid #e5e3dc;
+      box-sizing: border-box;
+    }
+    .nav .menu-item .sub-menu{
+      display: none;
+      position: absolute;
+      width: 150px;
+      color: #fff;
+    }
+    .nav .menu-item:hover{
+      background-color:  #353c42;
+      color: #ff9c00;
+      border: none;
+    }
+    .nav .menu-item:hover .sub-menu{
+      background-color:  #353c42;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <ul>
+      <li class="menu-item">
+        <h1 class="title">菜单1</h1>
+        <ul class="sub-menu">
+          <li>子菜单</li>
+          <li>子菜单</li>
+          <li>子菜单</li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <h1 class="title">菜单2</h1>
+        <ul class="sub-menu">
+          <li>子菜单</li>
+          <li>子菜单</li>
+          <li>子菜单</li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <h1 class="title">菜单3</h1>
+        <ul class="sub-menu">
+          <li>子菜单</li>
+          <li>子菜单</li>
+          <li>子菜单</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+    1、利用li列表来布局，每个li是一个菜单项，如果有子菜单，再在这个li下放另一个列表。 <br>
+    2、浮动顶层菜单项，然后隐藏子菜单项。子菜单项相对于父菜单项绝对定位。
+  </div>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B站登录练习</title>
+  <link rel="stylesheet" href="../source/reset.css">
+</head>
+<style>
+  .cleaerfix::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  a {
+    color: #00a1d6;
+    font-size: 12px;
+    font-family: "PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif"
+"PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" 
+  }
+  /* 顶部背景图 */
+  .top-banner {
+    background: #00a0d8;
+    height: 86px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  /* 标题 */
+  .title{
+    font-size: 38px;
+    width: 980px;
+    margin: 0 auto;
+    height: 28px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  .title span{
+    line-height: 56px;
+     background-color: #fff;
+     padding: 0 10px;
+  }
+  .container{
+    width: 980px;
+    margin: 0 auto;
+    padding: 60px 0;
+  }
+ 
+  .form-container .form-item{
+    width: 420px;
+    margin: 0 auto;
+    height: 40px;
+    position: relative;
+  }
+  .form-container .form-item input[type="text"],.form-container .form-item input[type="password"]{
+    width: 420px;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 15px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    color: #606266;;
+    font-size: 14px;
+  }
+  .form-container .form-item input:hover{
+    border-color: #c0c4cc;
+  }
+  .form-container .form-item input:focus{
+    border-color: #00a1d6;
+    outline: 0;
+  }
+  .form-container .form-hidden-item{
+    height: 40px;
+    width: 420px;
+    border: none;
+    margin: 0 auto;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: 700;
+    visibility: hidden;
+
+  }
+  .form-container .form-item .phone-left{
+    float: left;
+    width: 130px;
+    height: 40px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px 0 0 4px;
+    box-sizing: border-box;
+  }
+  .form-container .form-item .phone-left span{
+    line-height: 40px;
+    color: rgb(144, 147, 153);
+    padding: 0 35px 0 15px;
+  }
+  .form-container .form-item .phone-left span:hover+ul{
+    display: block;
+  }
+
+  .form-container .form-item .phone-left ul {
+    display: none;
+    cursor: pointer;
+    max-height: 274px;
+    border: 1px solid;
+    position: absolute;
+    z-index: 1;
+    top: 60px;
+    width: 128px;
+    overflow-y: auto;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    border-radius: 4px;
+
+  }
+  .form-container .form-item .phone-left ul li{
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 34px;
+    padding: 0 20px;
+  }
+  .form-container .form-item .phone-left ul li:hover{
+    background-color: #f5f7fa;
+  }
+  .form-container .form-item .phone-left ul li.active{
+    color: #00a1d6;
+    font-weight: 700;
+  }
+  .form-container .form-item .phone-right input{
+    float: right;
+    box-sizing: border-box;
+    border-radius: 0 4px 4px 0;
+    width: 290px;
+    border-left: none;
+  }
+
+  /* 短信 */
+  .form-container .form-item .msg_btn{
+    position: absolute;
+    height: 36px;
+    width: 130px;
+    border: 1px solid #dcdfe6;
+    padding: 0 4px;
+
+    color: #fff;
+    background-color: #00a1d6;
+    border-color: #00a1d6;
+    right: 2px;
+    top: 2px;
+    outline: 0;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .form-container .form-item .msg_btn:hover{
+    background: #33b4de;
+    border-color: #33b4de;
+    color: #fff;
+  }
+  /* 是否同意 */
+  .form-container .form-item label{
+    font-size: 12px;
+    display: block;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  /* 注册按钮 */
+  .form-container .form-item .reg_btn{
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background-color: #00a1d6;
+    border-color: #00a1d6;
+    border: 1px solid #dcdfe6;
+    cursor: pointer;
+  }
+  .form-container .form-item .reg_btn:hover{
+    background: #33b4de;
+    border-color: #33b4de;
+    color: #fff;
+  }
+  /* 直接登录 */
+  .form-container .form-item .to-login{
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    text-align: right;
+  }
+  /* 提醒消息 */
+  .form-container .form-item .notify_msg{
+    display: none;
+    position: absolute;
+    top: 14px;
+    right: -90px;
+    font-size: 12px;
+    color: #f45d90;
+  }
+  .form-container .form-item.has_error input{
+    border: 1px solid #f45d90;
+  }
+  .form-container .form-item.has_error .notify_msg{
+    display: block;
+  }
+  /* 安全提示 */
+  .form-container .form-hidden-item.show_safe{
+    display: block;
+    visibility:visible;
+  }
+
+  .form-container .form-hidden-item .safe{
+    height: 40px;
+    position: relative;
+  }
+  .form-container .form-hidden-item .safe p{
+    float: left;
+  }
+  .form-container .form-hidden-item .safe_line_group{
+    padding: 10px 0;
+  }
+  .form-container .form-hidden-item .safe_line_group .line{
+    float: left;
+    height: 5px;
+    width: 30px;
+    margin-top: 7px;
+    margin-left: 15px;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+  
+  .form-container .form-hidden-item .safe_line_group .line:nth-child(1){
+    background-color: red;
+  }
+  .form-container .form-hidden-item .safe_line_group .line:nth-child(2){
+    background: #ff7f00;
+  }
+  .form-container .form-hidden-item .safe_line_group .line:nth-child(3){
+    background: #f0f028;
+  }
+  .form-container .form-hidden-item .safe .text{
+    position: absolute;
+    font-size: 12px;
+    color: #49c519;;
+    right: 0;
+    top: 0;
+  }
+</style>
+
+<body>
+  <header class="top-banner">
+    <img src="./source/heae-bg.png" alt="">
+  </header>
+  <div class="title">
+    <span>注册</span>
+  </div>
+  <div class="container">
+    <div class="form-container">
+      <form action="#">
+        <!-- 昵称 -->
+        <div class="form-item has_error">
+          <input type="text" placeholder="昵称">
+          <span class="notify_msg">昵称被占用</span>
+        </div>
+        <div class="form-hidden-item">
+        <!-- 密码 -->
+        </div>
+        <div class="form-item">
+          <input type="password" placeholder="密码（6-16个字符组成，区分大小写）">
+        </div>
+        <div class="form-hidden-item show_safe">
+          <div class="safe">
+            <p>安全系数</p>
+            <div class="safe_line_group cleaerfix">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+            <div class="text">
+              安全
+            </div>
+          </div>
+        </div>
+        <div class="form-item">
+          <div class="phone-left">
+            <span>中国大陆</span>
+            <ul>
+              <li>Lorem.</li>
+              <li class="active">Sunt!</li>
+              <li>Ipsum.</li>
+              <li>Asperiores.</li>
+              <li>Nihil.</li>
+              <li>Rem?</li>
+              <li>Tempore.</li>
+              <li>Illo.</li>
+              <li>Et!</li>
+              <li>Iusto?</li>
+            </ul>
+          </div>
+          <div class="phone-right cleaerfix">
+            <input type="text" placeholder="填写常用手机号">
+          </div>
+          
+        </div>
+        <div class="form-hidden-item"></div>
+        <div class="form-item">
+          <input type="text" placeholder="请输入短信验证码">
+          <button class="msg_btn">点击获取</button>
+        </div>
+        <div class="form-item">
+          <label>
+            <input type="checkbox" name="is">
+             我已同意
+            <a href="">《哔哩哔哩弹幕网用户使用协议》</a>和
+            <a href="#">《哔哩哔哩隐私政策》</a>
+          </label>
+        </div>
+        <div class="form-item">
+          <button class="reg_btn">注册</button>
+        </div>
+        <div class="form-item">
+          <div class="to-login">
+            <a href="#">已有账号,直接登录></a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>

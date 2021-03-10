@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>消除图片白边</title>
+  <style>
+    .container{
+      border: 1px solid;
+      font-size: 3em;
+    }
+    img{
+      height: 200px;
+      width: 200px;
+    }
+    .no-white-side{
+      margin-top: 30px;
+      border: 1px solid;
+      font-size: 0;
+    }
+    .no-white-side p{
+      font-size: 16px;
+    }
+    .block{
+      margin-top: 30px;
+      border: 1px solid;
+    }
+    .block img{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>图片的白边</h1>
+  <p>
+    看看下面这个图片和父元素边框之间有空白，并且font-size越大，空白越大 <br>
+    1、可以将font-size设置为0解决，这样有副作用 <br>
+    2、将图片元素设置为块盒 <br>
+  </p>
+  <div class="container">
+    <p>当前图片所处的容器，字体大小为3em。底部白边很大</p>
+    <img  src="../source/imgs/图片2.jpg" alt="">
+  </div>
+  <div class="no-white-side">
+    <p>设置容器的字体大小为0,消除底部白边</p>
+    <img  src="../source/imgs/图片2.jpg" alt="">
+  </div>
+  <div class="block">
+    <p>设置图片为block类型，消除白边</p>
+    <img  src="../source/imgs/图片2.jpg" alt="">
+  </div>
+</body>
+</html>

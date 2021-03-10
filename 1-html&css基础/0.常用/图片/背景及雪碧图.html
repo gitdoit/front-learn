@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背景图</title>
+  <style>
+    .container{
+      width: 300px;
+      height: 300px;
+      border: 1px solid;
+    }
+    .bg-demo{
+      background-image: url('../source/imgs/图片2.jpg');
+      /* 表示是否重复，分为横轴和纵轴。在小图片重复铺满整个背景时很有用 */
+      background-repeat: no-repeat;
+      /* 背景范围 */
+      background-clip: border-box;
+      /* contain表示要按比例完整显示图片
+        cover表示撑满，并且比例不变，所以图片有些地方就不显示了
+        两个数字 或 两个百分比，手动控制背景图片大小
+      */
+      background-size: 100px 100px;
+      /* 
+        控制图片位置，第一个参数控制横向 第二个控制纵向
+      */
+      background-position: right center;
+  }
+  .bg-atta{
+    background-image: url('../source/imgs/图片3.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .spirit-demo{
+    width: 109px;
+    height: 98px;
+    background-image: url('../source/imgs/spirit.jpg');
+    background-repeat: no-repeat;
+    background-position: -97px -235px;
+    vertical-align: top;
+  }
+  </style>
+</head>
+<body>
+  <h3>背景图</h3>
+  <h4>有时候使用背景图片和img元素好像都可以，但是需要按照一下两个原则选择</h4>
+  <p>
+    1、图片属于网页内容时，使用img，例如广告、文章中的插图<br>
+    2、图片仅用于美化页面时，使用背景图。例如按钮元素的背景图
+  </p>
+  <h4> 背景图涉及到下面几个css属性</h4>
+  <p>
+    1、background-img: url('');设置背景图片<br>
+    2、background-clip: border-box; 背景覆盖范围<br>
+    3、background-size: content/cover/100px 100px/50% 50%;背景图片大小<br>
+    4、background-position: left top/center bottom/4px 3px;背景图片位置<br>
+    5、background-attachment: 控制背景图是否固定；<br>
+    6、background: url() no-repeat center/100% fixed #000,路径 是否重复，位置，尺寸，固定，背景色。顺序固定，但不是每个属性都要写，不写的可以省略。如果位置和尺寸都有，必须先写位置
+  </p>
+  <div class="container bg-demo" style="display: inline-block;">
+  </div>
+  <div class="container" style="display: inline-block;vertical-align: top;">
+    <div class="spirit-demo"></div>
+    使用雪碧图，及很多小图片合成大图片，然后利用属性只展示指定位置就行
+  </div>
+
+  <div class="container bg-atta" style="display: inline-block;">
+    
+  </div>
+</body>
+</html>
