@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      height: 100px;
+      width: 100px;
+      display: block;
+      margin: 0 auto;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      transition: all .3s ease-in-out;
+    }
+    img:hover{
+      transform: rotate(360deg);
+    }
+
+    #arrow{
+      height: 20px;
+      width: 200px;
+      margin: 0 auto;
+      border: 1px solid;
+      position: relative;
+    }
+    #arrow::after{
+      content: "";
+      display: block;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      height: 8px;
+      width: 8px;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      transform: rotate(-45deg);
+      transition: all .3s ease-in-out;
+    }
+    #arrow:hover::after{
+      transform: rotate(45deg);
+    }
+    #rotate-origin{
+      height: 100px;
+      width: 100px;
+      margin: 0 auto;
+      background-color: blueviolet;
+      transition: all 1s ease-in-out;
+      transform-origin: 100px 10px;
+    }
+    #rotate-origin:hover{
+      transform: rotate(360deg);
+    }
+
+    #show{
+      height: 100px;
+      width: 100px;
+      background-color: pink;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    #show::after{
+      content: "666";
+      display: block;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      line-height: 100px;
+      background-color: transparent;
+      transition: all s ease-in-out;
+      transform: rotate(90deg);
+      transform-origin: left bottom;
+    }
+    #show:hover::after{
+      transform: rotate(0deg);
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>
+      <strong>rotate()</strong>函数用于元素旋转，单位deg代表角度
+    </li>
+    <li>
+      可以只给元素右、下两个边框，然后旋转一下就是一个箭头
+    </li>
+  </ul>
+  <h1>1、旋转+过渡效果</h1>
+  <div>
+    <img src="../sources/imgs/hero1.png" alt="">
+  </div>  
+  <h1>2、旋转+border-right& border-bottom</h1>
+  <div id="arrow">
+  </div>
+  <h1>3、旋转中心点</h1>
+  <p>旋转默认围绕着元素的中心点来，即宽高的一半的那个点</p>
+  <p>transform-origin: right bottom;改变旋转中心点到右下角</p>
+  <p>transform-origin: 30px 60px;改变旋转中心到距左上角水平方向30px，垂直方向60px</p>
+  <div id="rotate-origin"></div>
+  <h1>4、案例-旋转出现</h1>
+  <div id="show">
+
+  </div>
+</body>
+</html>

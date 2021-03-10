@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画</title>
+  <style>
+
+    @keyframes move {
+      /* 0% === from */
+      0% {
+        transform: translateX(0px);
+      }
+      20%{
+        transform: translate(200px,200px);
+        background-color: blueviolet;
+      }
+      /* 100% === to */
+      50%{
+        transform: translateX(1000px);
+        border-radius: 50%;
+      }
+
+      75%{
+        transform: translate(1000px,300px);
+      }
+
+      90%{
+        transform: translate(0,300px);
+        border: 30px solid yellow;
+        box-sizing: border-box;
+      }
+
+      100%{
+        transform: translate(0,0);
+      }
+    }
+
+    div{
+      height: 100px;
+      width: 100px;
+      background-color: pink;
+      /* 动画名称，使用哪个动画 */
+      animation-name: move;
+      /* 持续时间 */
+      animation-duration: 5s;
+      /* 动画运动曲线 */
+      animation-timing-function: ease-in-out;
+      /* 延时执行 */
+      animation-delay: 1s;
+      /* 重复次数 */
+      animation-iteration-count: infinite;
+      /* 一轮结束后，反方向播放 */
+      animation-direction: alternate;
+      /* 结束后的状态，和重复播放以及反方向播放冲突 */
+      /* animation-fill-mode: forwards; */
+      /* animation: move 5s linear .5s infinite alternate backwards; */
+      
+      
+    }
+    div:hover{
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    
+  </div>
+  <ul>
+    <li>
+      使用@keyframes 动画名称{}定义动画
+    </li>
+    <li>
+      在@keyframes内部通过百分比的形式规定动画在哪个阶段做哪些事情
+    </li>
+    <li>
+      使用的时候通过 animation-name指定动画名称，animation-duration指定动画时长
+    </li>
+    <li>
+      简写： animation: name duration timing-function delay iteration-count direction fill-mode;
+      不包含暂停属性
+    </li>
+  </ul>
+</body>
+</html>

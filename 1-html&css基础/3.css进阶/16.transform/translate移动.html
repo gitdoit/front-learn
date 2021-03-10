@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div{
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+  }
+  #xy{
+    transform: translate(110px,44px);
+  }
+  
+  #percent{
+    background-color: blueviolet;
+    transform: translate(50%,0);
+  }
+  #x{
+    width: 400px;
+    transform: translateX(50%);
+  }
+ 
+</style>
+<body>
+  <h1>translate函数介绍</h1>
+  <ul>
+    <li>
+      <h3>transform Vs  相对定位</h3>
+      <strong>transform配合translate</strong>用来做元素的移动，虽然相对定位也能达到相同的效果(移动时不影像其他元素) <br>
+    但是后者是用来做布局使用的，前者在元素移动画面渲染方面有更好的性能，且移动的最小单位可以超过相对定位的1px限制，以<br>
+    更平滑的方式来移动。
+    </li>
+    <li>
+      <strong>translate不能用于行内元素</strong>
+    </li>
+    <li>
+      translate的百分比取值相对于自身的宽/高；translateX(50%)向右平移自身宽度的一半。
+    </li>
+  </ul>
+  <p>
+    
+  </p>
+  <div id="xy"> 
+    transform: translate(110px,44px);
+  </div>
+  <div id="percent">
+    transform: translate(50%,0);
+  </div>
+  <div id="x">
+    width: 400px;
+    transform: translateX(50%);
+  </div>
+</body>
+</html>

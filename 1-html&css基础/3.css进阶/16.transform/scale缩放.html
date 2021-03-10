@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scale放大缩小函数</title>
+  <style>
+    *{
+      margin: 0;
+    }
+    body{
+      padding: 0 20px;
+    }
+    #big{
+      height: 100px;
+      width: 100px;
+      background-color: pink;
+      margin: 50px auto;
+    }
+    #big:hover{
+      transform: scale(2);
+    }
+    #big-height{
+      height: 100px;
+      width: 100px;
+      background-color: pink;
+      margin: 0 auto;
+    }
+    #big-height:hover{
+      transform: scale(1,2);
+    }
+
+    #transform-origin{
+      height: 100px;
+      width: 100px;
+      background-color: pink;
+      margin: 0 auto;
+      transform-origin: right top;
+    }
+    #transform-origin:hover{
+      transform: scale(2);
+    }
+
+    #img{
+      height: 100px;
+      width: 100px;
+      margin: 0 atuo;
+      overflow: hidden;
+    }
+    #img img{
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      transition: all .3s ease-in-out;
+    }
+    #img:hover img{
+      transform: scale(1.2);
+    }
+
+    /* 分页 */
+    #page{
+      margin-top: 15px;
+      height: 30px;
+      width: 360px;
+      list-style: none;
+    }
+    #page li{
+      height: 30px;
+      width: 30px;
+      float: left;
+      line-height: 30px;
+      text-align: center;
+      margin: 0 10px;
+      border: 1px solid;
+      border-radius: 50%;
+      transition: all .3s ease-in-out;
+    }
+
+    #page li:hover{
+      transform: scale(1.2);
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>scale的优势</h1>
+  <p>我们可以通过变化宽高来达到同样的目的，但是同样，这还是会影响到周围的元素。</p>
+  <p>并且，宽高的变化无法控制 <strong>变化原点</strong> ，变化时它的顶部会固定不动</p>
+  <p>transform可以同时接收位移、旋转、缩放函数，但是要将位移函数放在首位</p>
+
+  <h1>transform: scale(2)</h1>
+  <p>以中心点开始，向四周变大为当前宽高的两倍</p>
+  <div id="big">
+  </div>
+  <h1>transform: scale(1,2)</h1>
+  <p>以中心点开始,宽不变，高变为2倍</p>
+  <div id="big-height"></div>
+  <h1>变化原点</h1>
+  <p>默认以中心点为变化原点，向四周扩散，同样可以通过 transform-origin:left bottom 来控制</p>
+  <div id="transform-origin">
+  </div>
+  <h1>案例-图片放大</h1>
+  <div id="img">
+    <img src="../sources/imgs/hero1.png" alt="">
+  </div>
+  <h1>案例-分页按钮</h1>
+  <ul id="page">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+  </ul>
+
+  
+
+</body>
+</html>
