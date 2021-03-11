@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      perspective: 500px;
+    }
+    .container{
+      perspective: 500px;
+    }
+    /* ***********3d旋转x ***********8*/
+    .rotatex{
+      height: 200px;
+      width: 200px;
+      margin: 50px auto;
+      background-color: pink;
+      transform: rotateX(0deg);
+      transition: all 1s linear;
+
+      text-align: center;
+      font-size: 24px;
+      line-height: 200px;
+    }
+    .rotatex:hover{
+      transform: rotateX(180deg);
+    }
+    /* ***********2D旋转******************* */
+    .rotate{
+      height: 200px;
+      width: 200px;
+      background-color: pink;
+      transform: rotate(0deg);
+      transition: all 1s linear;
+      float: left;
+      text-align: center;
+      font-size: 24px;
+      line-height: 200px;
+    }
+    .rotate:hover{
+      transform: rotate(180deg);
+    }
+    /* ***********3d旋转y ************/
+    .rotatey{
+      height: 200px;
+      width: 200px;
+      margin: 50px auto;
+      background-color: pink;
+      transform: rotateY(0deg);
+      transition: all 1s linear;
+
+      text-align: center;
+      font-size: 24px;
+      line-height: 200px;
+    }
+    .rotatey:hover{
+      transform: rotateY(180deg);
+    }
+    /* ***********3d旋转z ************/
+    .rotatez{
+      height: 200px;
+      width: 200px;
+      margin: 50px auto;
+      background-color: pink;
+      transform: rotatez(0deg);
+      transition: all 1s linear;
+
+
+      text-align: center;
+      font-size: 24px;
+      line-height: 200px;
+    }
+    .rotatez:hover{
+      transform: rotateZ(180deg);
+    }
+     /* ***********矢量3d旋转 ************/
+     .rotate3d{
+      height: 50px;
+      width: 200px;
+      margin: 50px auto;
+      background-color: pink;
+      transform: rotate(-45deg);
+      transition: all 1s linear;
+
+
+      text-align: center;
+      font-size: 24px;
+      line-height: 50px;
+    }
+    .rotate3d:hover{
+      transform: rotate3D(.5,-.25,0,180deg);
+    }
+     /* ***********矢量3d保持 ************/
+     .father{
+       position: relative;
+       height: 400px;
+       width: 400px;
+       margin: 0 auto;
+       border: 1px solid;
+       transition: all 2s;
+       /* 父元素加上这个 */
+       transform-style: preserve-3d;
+       transform: rotateY(-45deg);
+     }
+     .father:hover{
+       transform: rotateY(45deg);
+     }
+     .keep1{
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: pink;
+     }
+     .keep2{
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: rebeccapurple;
+        transform: rotateX(45deg);
+     }
+  </style>
+</head>
+<body>
+  <h1>3D旋转</h1>
+  <h2>层叠上下文：</h2>
+  <p>
+    按照我目前的理解，perspective设置在父元素上创建层叠上下文，也可以理解为3d舞台。<br>
+    一个立方体放在舞台中心，你只能看到一个面，x轴左右移动的时候你能看到两个面。所以啊 <br>
+    你把一个正方形放在舞台左边，在按照x轴旋转45度，会发现他是向右后方倒下去的，而不是直接倒下去的。<br>
+    这是因为他在舞台的左边啊，你坐在观众席的中心位置。懂我意思吗？
+  </p>
+  <ul>
+    <li>2d旋转只能按照某一点进行正逆时针，3d旋转可以按照3个轴进行旋转</li>
+    <li>
+      沿着x轴进行旋转rotateX(180deg)，向里为正，向外为负
+      <div class="container">
+        <div class="rotate">2D旋转</div>
+        <div class="rotatex">3D旋转</div>
+      </div>
+    </li>
+    <li>沿着y轴进行旋转rotateY(180deg),逆时针为正
+      <div class="container">
+        <div class="rotatey">3D旋转</div>
+      </div>
+    </li>
+    <li>沿着z轴进行旋转rotateZ(180deg)，和2d旋转一样按照默认的transform-origin来转，就是中心点；<br>
+      可以通过改变这个原点来改变z轴位置
+      <div class="container">
+        <div class="rotatez">3D旋转</div>
+      </div>
+    </li>
+    <li>矢量旋转:rotate3D(x,y,z,deg)
+      <div class="container">
+        <div class="rotate3d">3D旋转</div>
+      </div>
+    </li>
+  </ul>
+  <h1>3D旋转之3D呈现</h1>
+  <p>子元素为3D效果，旋转父元素的时候默认会把子元素二维化，通过设置呈现效果，保持子元素3D形态</p>
+  <div class="container">
+    <div class="father">
+      <div class="keep1"></div>
+      <div class="keep2"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      perspective: 500px;
+    }
+    .container{
+      height: 400px;
+      width: 400px;
+      border: 1px solid;
+      position: relative;
+      transition: all 2s;
+      transform-style: preserve-3d;
+    }
+    .item{
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 1px solid;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 24px;
+      line-height: 200px;
+      
+    }
+    .a {
+      transform: rotateY(0deg);
+      background-color: pink;
+      z-index: 1;
+    }
+    .b {
+      z-index: -1;
+      transform: rotateY(180deg);
+      background-color: yellowgreen;
+    }
+    .container:hover{
+      transform: rotateY(180deg);
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>笔记</h1>
+  <ul>
+    <li>反转的是父盒子，而不是卡片本身</li>
+    <li>父盒子需要transform-style: preserve-3d;保持子盒子3d效果</li>
+  </ul>
+  <div class="container">
+    <div class="item a">Hello</div>
+    <div class="item b">CSS3</div>
+  </div>
+</body>
+</html>

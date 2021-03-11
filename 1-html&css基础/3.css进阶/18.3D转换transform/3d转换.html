@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      perspective: 500px;
+    }
+    .transform{
+      height: 200px;
+      width: 200px;
+      margin: 50px auto;
+      /* transform: translateX(0px) translateY(0px) translateZ(0px); */
+      transform: translate3d(0px,0px,44px);
+      transition: all 1s linear;
+      background-color: brown;
+
+      text-align: center;
+      font-size: 24px;
+      line-height: 200px;
+    }
+    .transform:hover{
+      transform: translate3d(200px,0px,0px);
+    }
+  </style>
+</head>
+<body>
+  <h1>3D转换</h1>
+  <h2>
+    很重要的一点啊：默认屏幕的中心点就是你面对的平面。想象一个正方体，正面面对你的时候你只能看到前面<br>
+    那么此时这个正方体就在原点上，如果这个正方体靠屏幕最左侧，那么你能看到他的右面和前面两个面了。
+  </h2>
+  <ul>
+    <li>原点(transform-origin)默认在元素中心点，即(50%*width,50%height)处</li>
+    <li>x为水平轴向右为正，y为垂直轴向下为正，z为垂直屏幕轴向外为正。</li>
+    <li>
+        透视两要素：
+        <ul>
+          <li>人眼到屏幕的距离(perspective),越近值越小，z轴上的变化就越明显。单纯的改变</li>
+          <li>物体在z轴上移动的距离，值越大物体越大</li>
+        </ul>
+    </li>
+    <li>
+      perspective属性需要定义在被透视元素的父元素上
+    </li>
+  </ul>
+  <div class="container">
+    <p>移动的时候是不是感觉变小了？因为是3d移动，离你远了</p>
+    <div class="transform">3D转换</div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D导航栏</title>
+  <style>
+    *{
+      margin: 0;
+    }
+    .container{
+      height: 40px;
+      width: 560px;
+      margin: 50px auto;
+      
+    }
+    .container ul{
+      height: 100%;
+      width: 100%;
+    }
+    .container li{
+      float: left;
+      width: 70px;
+      height: 40px;
+    }
+    .box{
+      width: 70px;
+      height: 40px;
+      perspective: 500px;
+      position: relative;
+      /* 保持3d */
+      transform-style: preserve-3d;
+      transition: all .5s;
+    }
+    .front,.back{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      font-size: 16px;
+      text-align: center;
+      line-height: 40px;
+    }
+    .front{
+      transform: translate3d(0,0px,20px) rotateX(0deg);
+      background-color: pink;
+    }
+    .back{
+      transform: translate3d(0,20px,0px) rotateX(-90deg) ;
+      background-color: yellowgreen;
+    }
+    .container .box:hover{
+      transform: rotateX(90deg);
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <h1>笔记</h1>
+  <ul>
+    <li>
+      两个面做成三角铁，即一个立方体只显示前、下两个面
+    </li>
+    <li>
+      转起来就行了，注意x轴要在这个立方体的中心
+    </li>
+  </ul>
+  <div class="container">
+    <ul>
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="front">前</div>
+          <div class="back">后</div>
+        </div>
+      </li>
+     
+    </ul>
+  </div>
+</body>
+</html>
