@@ -7,6 +7,17 @@
   <title>旋转木马</title>
   <link rel="stylesheet" href="../../0.常用/source/reset.css">
   <style>
+
+
+    @keyframes run {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+
     body{
       perspective: 500px;
     }
@@ -21,9 +32,12 @@
     .container ul{
       height: 100%;
       width: 100%;
-      transform: rotateY(0deg);
       transform-style: preserve-3d;
       position: relative;
+      animation: run 8s linear infinite ;
+    }
+    .container ul:hover{
+      animation-play-state: paused;
     }
     .container ul li{
       height: 150px;
