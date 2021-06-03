@@ -21,7 +21,7 @@ m2();
 // module.foo = function(){}
 m3.foo();
 // 调用第三方包
-console.log('uniq去重：'+uniq(m3.arr));
+    console.log('uniq去重：'+uniq(m3.arr));
 
 
 console.log("=========================");
