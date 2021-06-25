@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <style>
+    .container {
+      margin: 0 auto;
+      height: 600px;
+      width: 1200px;
+    }
+
+    .list {
+      width: 100%;
+      height: 50%;
+      box-sizing: border-box;
+
+      perspective-origin: center center;
+    }
+
+    .list .item {
+      position: relative;
+      box-sizing: border-box;
+      float: left;
+      height: 260px;
+      width: 180px;
+      margin-right: 20px;
+      margin-top: 20px;
+      transition: all .5s ease-in-out;
+      transform-style: preserve-3d;
+      background: #e0e0e0;
+      box-shadow: 20px 20px 60px #bebebe,
+        -20px -20px 60px #ffffff;
+
+    }
+
+    .fliped {
+      transform: rotateY(180deg);
+    }
+
+    .un-fliped {
+      transform: rotateY(-0deg);
+    }
+
+
+
+    .item .front {
+      height: 100%;
+      width: 100%;
+      transform: rotateY(0deg);
+      z-index: 1;
+      background-image: url(./imgs/flower.webp);
+    }
+
+    .item .back {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      transform: rotateY(-180deg);
+      z-index: -1;
+      font-size: 28px;
+      text-align: center;
+      line-height: 260px;
+      background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+    }
+
+    .list .item .matched {
+      background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    }
+
+
+    @keyframes shake {
+
+      /* 0% === from */
+      0% {
+        transform: translateX(-15px) rotateY(-180deg);
+      }
+
+      25% {
+        transform: translateX(15px) rotateY(-180deg);
+      }
+
+      /* 100% === to */
+      50% {
+        transform: translateX(-10px) rotateY(-180deg);
+      }
+
+      75% {
+        transform: translateX(10px) rotateY(-180deg);
+      }
+
+      90% {
+        transform: translateX(-5px) rotateY(-180deg);
+      }
+
+      100% {
+        transform: translate(0, 0) rotateY(-180deg);
+      }
+    }
+
+    .wrong {
+      /* 动画名称，使用哪个动画 */
+      animation-name: shake;
+      /* 持续时间 */
+      animation-duration: .3s;
+      /* 动画运动曲线 */
+      animation-timing-function: ease-in-out;
+    }
+
+
+    .title {
+      height: 50px;
+      width: 450px;
+      margin: 0 auto;
+      margin-top: 20px;
+      margin-bottom: -10px;
+      text-align: left;
+    }
+
+    .title .item {
+      border-radius: 5px;
+      float: left;
+      display: block;
+      margin-right: 20px;
+      height: 35px;
+      width: 130px;
+      font-size: 24px;
+      line-height: 30px;
+      color: #ffffff;
+      text-align: center;
+      background-color: #37ecba;
+    }
+
+    .item.time .value {
+      font-size: 20px;
+    }
+
+    .title .value {
+      display: inline-block;
+      border-radius: 3px;
+      margin-top: 3px;
+      padding: 0 5px;
+
+      height: 80%;
+      color: #000;
+      background-color: #ffffff;
+    }
+
+
+    @keyframes jump {
+
+      /* 0% === from */
+      0% {
+        transform: translateY(0px) rotateY(-180deg);
+      }
+
+      25% {
+        transform: translateY(25px) rotateY(-180deg);
+      }
+
+      /* 100% === to */
+      50% {
+        transform: translateY(0px) rotateY(-180deg);
+      }
+
+      75% {
+        transform: translateY(15px) rotateY(-180deg);
+      }
+
+      85% {
+        transform: translateY(0px) rotateY(-180deg);
+      }
+
+      93% {
+        transform: translateY(10px) rotateY(-180deg);
+      }
+
+      100% {
+        transform: translateY(0px) rotateY(-180deg);
+      }
+    }
+
+    .success {
+      /* 动画名称，使用哪个动画 */
+      animation-name: jump;
+      /* 持续时间 */
+      animation-duration: .3s;
+      /* 动画运动曲线 */
+      animation-timing-function: ease-in-out;
+    }
+  </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+  <div class="container" id="el">
+    <div class="title">
+      <div class="item">
+        count:
+        <span class="value">
+          {{count}}
+        </span>
+      </div>
+      <div class="item time">
+        耗时:
+        <span class="value ">
+          {{time}}
+        </span>
+      </div>
+      <div class="item reset" @click="reset()">
+        重置
+      </div>
+    </div>
+    <ul class="list">
+      <li class="item" v-for="(card, index) in cards" :key="index" @click="flip(card)"
+        :class="[card.isFliped?'fliped' : 'un-fliped',card.wrong ? 'wrong' : '',card.success? 'success' : '']">
+        <div class="front"></div>
+        <div :class="['back',card.matched ? 'matched' : '']">
+          {{card.name}}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+</body>
+<script>
+  const vue = new Vue({
+    el: '#el',
+    created() {
+      const copyeArray = [];
+      this.cards.forEach(card => {
+        Vue.set(card, 'isFliped', false);
+        Vue.set(card, 'matched', false);
+        Vue.set(card, 'wrong', false);
+        Vue.set(card, 'success', false);
+        copyeArray.push(Object.assign({}, card))
+      });
+      this.cards.push(...copyeArray);
+      // 打乱
+      for (let index = 0; index < this.cards.length; index++) {
+        const random = this.selectFrom(0, this.cards.length - 1);
+        // 交换
+        const now = this.cards[index];
+        this.cards[index] = this.cards[random];
+        this.cards[random] = now;
+      }
+
+    },
+    data: {
+      timeSec: 0,
+      timeMin: 0,
+      count: 0,
+      activeCard: null,
+      cards: [
+        { id: 1, name: '香蕉' },
+        { id: 2, name: '苹果' },
+        { id: 3, name: '橘子' },
+        { id: 4, name: '菠萝' },
+        { id: 5, name: '西瓜' },
+        { id: 6, name: '草莓' },
+      ],
+      doning: null,
+      timeTaskId: null,
+    },
+    computed: {
+      time() {
+        let min = this.timeMin >= 10 ? this.timeMin : '0' + this.timeMin;
+        let sec = this.timeSec >= 10 ? this.timeSec : '0' + this.timeSec;
+        return `${min}:${sec}`;
+      }
+    },
+    methods: {
+
+      flip(card) {
+        if (card.matched || card === this.activeCard || !!this.doning) {
+          return;
+        }
+        if (this.count === 0) {
+          this.startTime();
+        }
+
+        this.count++;
+        card.isFliped = true;
+        if (this.activeCard) {
+          if (this.activeCard.id === card.id) {
+            this.doning = setTimeout(() => {
+              card.matched = this.activeCard.matched = true;
+              this.doning = this.activeCard = null;
+              this.cheack();
+            }, 500);
+
+          } else {
+            this.doning = setTimeout(() => {
+              card.wrong = true;
+            }, 500);
+            setTimeout(() => {
+              this.activeCard.isFliped = card.wrong = card.isFliped = false;
+              this.doning = this.activeCard = null;
+            }, 1000);
+          }
+        } else {
+          this.activeCard = card;
+        }
+      },
+      cheack() {
+        let ok = this.cards.filter(e => e.matched).length;
+        if (this.cards.length === ok) {
+          this.cards.forEach(e => e.success = true);
+          this.stopTime();
+        }
+      },
+      reset() {
+        this.stopTime();
+        this.count = 0;
+        this.timeMin = 0;
+        this.timeSec = 0;
+        this.cards.forEach(c => {
+          c.isFliped = c.matched = false;
+        });
+      },
+      startTime() {
+        this.timeTaskId = setInterval(() => {
+          if (this.timeSec === 59) {
+            this.timeMin++;
+            this.timeSec = 0;
+          } else {
+            this.timeSec++;
+          }
+        }, 1000)
+      },
+      stopTime() {
+        clearInterval(this.timeTaskId);
+      },
+      selectFrom(low, upper) {
+        let choices = upper - low + 1;
+        return Math.floor(Math.random() * choices + low);
+      }
+    }
+  })
+
+</script>
+
+</html>
