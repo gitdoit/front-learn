@@ -18,7 +18,7 @@ numberType = NaN;
 numberType = Infinity;
 
 
-// null和undefined是其他基本类型的自类型,所以可以赋给number
+// null和undefined是其他基本类型的子类型,所以可以赋给number
 let und :undefined = undefined;
 let nul :null = null;
 let num :number = 123;
@@ -54,9 +54,8 @@ b = 'sdfsdf'
 let unio :string|number = 123;
 unio = 'okok';
 unio = 7;
-// 这就不行
-// unio = false;
-// 这个API可不兴用啊 宝友,联合类型必须的api必须是多个类型的交集部分
-// unio.length
-//这个可以
-unio.toString
+// unio = false; 这就不行
+// unio.length 这个API可不兴用啊 宝友,联合类型必须的api必须是多个类型的交集部分
+unio.toString;//这个可以
+
+// 类型推断
