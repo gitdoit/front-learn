@@ -1,11 +1,13 @@
 <template>
   <div>
-    <img
-      @click="go()"
-      alt="Vue logo"
-      src="./assets/logo.png"
-    >
-    <h1>Vue 3基础demo</h1>
+    <div class="title">
+      <img
+        @click="go()"
+        alt="Vue logo"
+        src="./assets/logo.png"
+      >
+      <h1>Vue 3基础demo</h1>
+    </div>
     <router-view />
   </div>
 </template>
@@ -31,13 +33,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 30px;
+  font-size: 20px;
 }
-#app h1 {
+#app .title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+#app .title h1 {
   font-size: 24px;
   font-weight: 600;
 }
-#app img {
-  height: 80px;
-  width: 80px;
+#app .title img {
+  height: 60px;
+  width: 60px;
 }
 </style>

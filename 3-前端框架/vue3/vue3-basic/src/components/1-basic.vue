@@ -1,11 +1,15 @@
 <template>
   <div class="container">
-    <pre>
-      使用ref函数将基本类型的数据包装成响应式的:
-      let data = ref(0);
-      data.value++;
-      {{'{{data}\}'}}
-    </pre>
+    <m-code>
+      <pre>
+        <code class="language-javascript">
+          //使用ref函数将基本类型的数据包装成响应式的:
+          let data = ref(0);
+          data.value++;
+          {{'{{data}\}'}}
+        </code>
+      </pre>
+    </m-code>
     <div class="text">
       {{count}}
     </div>
