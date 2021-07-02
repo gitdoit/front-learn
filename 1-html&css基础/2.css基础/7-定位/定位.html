@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>定位基本概念</title>
 </head>
 <style>
-  .container{
+  .container {
     width: 300px;
     height: 300px;
     background-color: lightblue;
   }
-  .container .rel{
+
+  .container .rel {
     height: 100px;
     background-color: rebeccapurple;
     position: relative;
     left: 100px;
-    top:50px;
+    top: 50px;
 
   }
-  .container .ml{
+
+  .container .ml {
     height: 100px;
     background-color: red;
     margin-left: 100px;
     padding-top: 50px;
   }
-  
 </style>
+
 <body>
   <h1>
     定位：手动控制元素再包含块中的精准位置
@@ -50,7 +53,7 @@
   <div class="container">
     <div class="rel">
       相对定位左偏移100px、上偏移50px<br>
-      
+
     </div>
     <div class="ml"> 无定位，margin-left : 100 px</div>
   </div>
@@ -66,7 +69,9 @@
   </p>
   <div class="container" style="border: 1px solid;position: relative;">
     <div style="border: 1px solid; width: 100px; height: 100px; margin: 20px;">
-      <div style="border: 1px solid; width: 30px; height: 30px; background-color: red;position: absolute; top: 10px;left: 0;"></div>
+      <div
+        style="border: 1px solid; width: 30px; height: 30px; background-color: red;position: absolute; top: 10px;left: 0;">
+      </div>
     </div>
   </div>
   <h3>
@@ -131,4 +136,5 @@
     这两点和浮动元素一样，浮动元素也是脱离了文档流的元素
   </h3>
 </body>
+
 </html>
