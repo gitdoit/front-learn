@@ -1,14 +1,28 @@
 <template>
   <div id="app">
-    <GlobalHeader :info="user"></GlobalHeader>
-    <column-list :list="list"></column-list>
+    <global-header :info="user"></global-header>
+    <div v-if="false">
+      <column-list :list="list"></column-list>
+    </div>
+    <div class=" w-1/3 border mx-auto mt-3 rounded-md p-3 shadow-md">
+      <validate-form @form-submit="onFormSubmit">
+        <validate-input type="text" placeholder="请输入邮箱"
+          :rules="[Rules.NOT_NULL(''),Rules.EMAIL('')]" v-model="emailForm.val">
+          密码
+        </validate-input>
+        <template #submit>
+        </template>
+      </validate-form>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import ColumnList, { ColumnProps } from './components/ColumnList.vue'
 import GlobalHeader, { UserInfo } from './components/GlobalHeader.vue'
+import ValidateInput, { Rules } from './components/ValidateInput.vue'
+import ValidateForm from './components/ValidateForm.vue'
 const testData: ColumnProps[] = [
   {
     id: 1,
@@ -35,7 +49,7 @@ const testData: ColumnProps[] = [
     description: 'Say hello to the fastest smartphone chip ever. '
   }
 ]
-const user :UserInfo = {
+const user: UserInfo = {
   isLogin: true,
   userName: 'michael',
   id: 1
@@ -44,15 +58,28 @@ export default defineComponent({
   name: 'App',
   components: {
     ColumnList,
-    GlobalHeader
+    GlobalHeader,
+    ValidateInput,
+    ValidateForm
   },
   setup () {
     testData.forEach(e => {
       e.avatar = e.avatar || require('@/assets/logo.png')
     })
+    const emailForm = reactive({
+      val: '123',
+      error: false,
+      msg: ''
+    })
+    const onFormSubmit = (ok :boolean) => {
+      console.log('12121', ok)
+    }
     return {
       list: testData,
-      user
+      user,
+      emailForm,
+      Rules,
+      onFormSubmit
     }
   }
 })

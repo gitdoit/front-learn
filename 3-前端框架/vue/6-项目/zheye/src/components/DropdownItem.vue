@@ -10,7 +10,7 @@ export default defineComponent({
   name: 'DropdownItem',
   props: {
     disabled: {
-      required: true,
+      required: false,
       type: Boolean
     }
   }
