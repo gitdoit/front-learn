@@ -1,85 +1,42 @@
 <template>
-  <div id="app">
+  <div id="app" class="w-3/4 mx-auto">
     <global-header :info="user"></global-header>
-    <div v-if="false">
-      <column-list :list="list"></column-list>
-    </div>
-    <div class=" w-1/3 border mx-auto mt-3 rounded-md p-3 shadow-md">
-      <validate-form @form-submit="onFormSubmit">
-        <validate-input type="text" placeholder="请输入邮箱"
-          :rules="[Rules.NOT_NULL(''),Rules.EMAIL('')]" v-model="emailForm.val">
-          密码
-        </validate-input>
-        <template #submit>
-        </template>
-      </validate-form>
-    </div>
+    <router-view></router-view>
+    <Footer>
+      <ul class="flex justify-center leading-10 text-gray-400 cursor-pointer py-1">
+        <li class="mx-4">@ 2021 知乎者也专栏</li>
+        <li class="mx-4">课程</li>
+        <li class="mx-4">文档</li>
+        <li class="mx-4">联系</li>
+        <li class="mx-4">更多</li>
+      </ul>
+    </Footer>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import ColumnList, { ColumnProps } from './components/ColumnList.vue'
-import GlobalHeader, { UserInfo } from './components/GlobalHeader.vue'
-import ValidateInput, { Rules } from './components/ValidateInput.vue'
-import ValidateForm from './components/ValidateForm.vue'
-const testData: ColumnProps[] = [
-  {
-    id: 1,
-    title: 'test',
-    avatar: 'https://images.dog.ceo/breeds/shihtzu/n02086240_7170.jpg',
-    description: 'sm:移动手机 md:横版 lg:平板电脑 xl:cp端 '
-  },
-  {
-    id: 1,
-    title: 'test',
-    avatar: 'https://images.dog.ceo/breeds/shihtzu/n02086240_7170.jpg',
-    description: 'Say hello to the fastest smartphone chip ever. '
-  },
-  {
-    id: 1,
-    title: 'test',
-    avatar: 'https://images.dog.ceo/breeds/shihtzu/n02086240_7170.jpg',
-    description: 'Say hello to the fastest smartphone chip ever. '
-  },
-  {
-    id: 1,
-    title: 'test',
-    avatar: '',
-    description: 'Say hello to the fastest smartphone chip ever. '
-  }
-]
-const user: UserInfo = {
-  isLogin: true,
-  userName: 'michael',
-  id: 1
-}
+import { defineComponent, reactive, computed } from 'vue'
+import { GlobalProp } from './store'
+import { useStore } from 'vuex'
+import Footer from './components/Footer.vue'
+import GlobalHeader from './components/GlobalHeader.vue'
+
 export default defineComponent({
   name: 'App',
   components: {
-    ColumnList,
     GlobalHeader,
-    ValidateInput,
-    ValidateForm
+    Footer
   },
   setup () {
-    testData.forEach(e => {
-      e.avatar = e.avatar || require('@/assets/logo.png')
+    const store = useStore<GlobalProp>()
+    const user = computed(() => store.state.user)
+    const fromData = reactive({
+      email: '',
+      pwd: ''
     })
-    const emailForm = reactive({
-      val: '123',
-      error: false,
-      msg: ''
-    })
-    const onFormSubmit = (ok :boolean) => {
-      console.log('12121', ok)
-    }
     return {
-      list: testData,
       user,
-      emailForm,
-      Rules,
-      onFormSubmit
+      fromData
     }
   }
 })

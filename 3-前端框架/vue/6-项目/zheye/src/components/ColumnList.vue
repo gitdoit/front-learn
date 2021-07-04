@@ -1,13 +1,14 @@
 <template>
+  <h1 class=" text-2xl font-bold text-center mt-8">发现精彩</h1>
   <ul class="grid grid-cols-2 lg:grid-cols-3 gap-4 w-11/12 mx-auto my-4">
     <li
       v-for="item in list"
       :key="item.id"
-      class="text-center "
+      class="text-center  "
     >
-      <div class="border shadow-lg p-2">
+      <div class="border shadow-lg p-2 rounded-md">
         <img
-          class="w-full object-cover cursor-pointer max-h-52"
+          class="w-full object-cover cursor-pointer max-h-52 rounded-md"
           :src="item.avatar"
           :alt="item.title"
         />
@@ -31,7 +32,9 @@
             hover:bg-blue-500
             hover:text-white
           "
-          >进入专栏</a
+          >
+            <router-link :to="`/topic/${item.id}`">进入专栏</router-link>
+          </a
         >
       </div>
     </li>

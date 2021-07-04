@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <label for="email" class="block">
+  <div class="my-4">
+    <label  class="block font-bold">
       <slot></slot>
     </label>
-    <input id="email" v-bind="$attrs" :value="value" @input="onInput" @blur="onBlur"
+    <input  v-bind="$attrs" :value="value" @input="onInput" @blur="onBlur"
       class="px-2 border focus:outline-none focus:ring focus:border-blue-300 w-full h-8" />
     <div class="text-red-500" v-if="hasError">
       {{errorMsg}}
