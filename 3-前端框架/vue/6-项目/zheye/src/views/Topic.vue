@@ -25,7 +25,7 @@ export default defineComponent({
     const route = useRoute()
     const store = useStore<GlobalProp>()
     const topicId = +route.params.id
-    const currentTopic : ColumnProps| undefined = store.state.topic.find(e => e.id === topicId) || {
+    const currentTopic : ColumnProps = store.getters.getTopicById(topicId) || {
       id: 1,
       title: '',
       description: ''

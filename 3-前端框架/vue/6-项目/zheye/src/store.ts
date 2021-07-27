@@ -23,6 +23,11 @@ const store = createStore<GlobalProp>({
     login (state) {
       state.user = { ...state.user, isLogin: true, userName: '张三' }
     }
+  },
+  getters: {
+    getTopicById: (state) => (id :number) => {
+      return state.topic.find(e => e.id === id)
+    }
   }
 })
 export default store
