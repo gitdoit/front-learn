@@ -1,20 +1,23 @@
-import axios from 'axios'
-import {AxiosResponse} from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
-let http = axios.create({
-    baseURL: 'http://10.5.6.28:10081/v1/mini/manage'
+const http = axios.create({
+  baseURL: 'http://localhost:3000/v1/mini/manage'
 })
 
 interface Response<T> {
-    success: Boolean,
-    message: string,
-    data: T
+  success: boolean,
+  message: string,
+  data: T
 }
 
-async function listSensor() : Promise<AxiosResponse<Response<Array<any>>>> {
- return await http.get("/data/org");
+async function listSensor () : Promise<AxiosResponse<Response<Array<any>>>> {
+  return http.get('/data/org')
 }
 
+async function joinOrg (phone:string, orgId :string) : Promise<AxiosResponse<Response<any>>> {
+  return http.post(`/set-auth?phone=${phone}&orgId=${orgId}`)
+}
 export {
-    listSensor
+  listSensor,
+  joinOrg
 }

@@ -1,7 +1,7 @@
-<template></template>
+<template lang="pug">
+</template>
 <script lang="ts">
 import { h, resolveComponent, defineComponent, PropType } from 'vue'
-
 
 interface Col {
   name: string,
@@ -17,23 +17,23 @@ export default defineComponent({
       type: Object as PropType<Col>
     }
   },
-  setup(props) {
-    function render(header: Col): any {
-      let column = [];
+  setup (props) {
+    function render (header: Col): any {
+      const column = []
       // 如果表头还有子表头
       if (header.child) {
-        let child = [];
+        const child = []
         for (let i = 0; i < header.child.length; i++) {
           child.push(render(header.child[i]))
         }
         column.push(
           h(
-              resolveComponent('el-table-column'), 
-              {
-                label: header.name,
-                align: 'center',
-              }, 
-              child
+            resolveComponent('el-table-column'),
+            {
+              label: header.name,
+              align: 'center'
+            },
+            child
           )
         )
       } else {
@@ -45,17 +45,16 @@ export default defineComponent({
               prop: header.prop,
               width: header.width,
               align: 'center',
-              formatter: header.exeFun 
+              formatter: header.exeFun
             }
           )
         )
       }
       return column
     }
-    return () => render(props.col);
+    return () => render(props.col)
   }
 }
 )
-
 
 </script>
