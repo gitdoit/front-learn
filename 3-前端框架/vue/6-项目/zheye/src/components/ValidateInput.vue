@@ -1,13 +1,25 @@
 <template>
   <div class="my-4">
-    <label  class="block font-bold">
+    <label class="block font-bold">
       <slot></slot>
     </label>
-    <input  v-bind="$attrs" :value="value" @input="onInput" @blur="onBlur"
-      class="px-2 border focus:outline-none focus:ring focus:border-blue-300 w-full h-8" />
-    <div class="text-red-500" v-if="hasError">
-      {{errorMsg}}
-    </div>
+    <input
+      v-if="tag !== 'textarea'"
+      v-bind="$attrs"
+      :value="value"
+      @input="onInput"
+      @blur="onBlur"
+      class="px-2 border focus:outline-none focus:ring focus:border-blue-300 w-full h-8"
+    />
+    <textarea
+      v-else
+      v-bind="$attrs"
+      :value="value"
+      @input="onInput"
+      @blur="onBlur"
+      class="px-2 border focus:outline-none focus:ring focus:border-blue-300 w-full h-14"
+    />
+    <div class="text-red-500" v-if="hasError">{{ errorMsg }}</div>
   </div>
 </template>
 
@@ -18,6 +30,7 @@ interface ValidateRule {
   readonly rule: (value: string | null, notice?: string) => boolean,
   readonly message: string,
 }
+export type TagType = 'input' | 'textarea'
 /**
  * 1、属性校验
  *  定义一组校验规则，在组件的props上声明可以传入校验规则，这样在输入的时候可以进行自定义校验
@@ -31,6 +44,10 @@ export default defineComponent({
   // 属性继承(在组件上写属性会出现在template下最外层的那个div上)
   inheritAttrs: false,
   props: {
+    tag: {
+      type: String as PropType<TagType>,
+      default: 'input'
+    },
     modelValue: {
       required: true,
       type: String
@@ -44,7 +61,7 @@ export default defineComponent({
     const value = ref(props.modelValue || '')
     const hasError = ref(false)
     const errorMsg = ref('')
-    const onBlur = () :boolean => {
+    const onBlur = (): boolean => {
       if (props.rules) {
         hasError.value = !props.rules.every(r => {
           if (!r.rule(value.value)) {
@@ -56,7 +73,7 @@ export default defineComponent({
       }
       return !hasError.value
     }
-    const onInput = (event: KeyboardEvent) => {
+    const onInput = (event: Event) => {
       const inputValue = (event.target as HTMLInputElement).value
       value.value = inputValue
       context.emit('update:modelValue', inputValue)

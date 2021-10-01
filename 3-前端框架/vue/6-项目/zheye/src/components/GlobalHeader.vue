@@ -6,7 +6,9 @@
     <ul class="col-end-13 col-span-2 text-md leading-7 py-4">
       <li v-if="info.isLogin" >
         <Dropdown :title="`你好,${info.userName}`">
-          <DropdownItem>新建文章</DropdownItem>
+          <DropdownItem>
+            <router-link to='/createPost'>创建文章</router-link>
+          </DropdownItem>
           <DropdownItem disabled>管理账户</DropdownItem>
           <DropdownItem>退出登录</DropdownItem>
         </Dropdown>

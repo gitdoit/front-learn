@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Login from './views/Login.vue'
 import Home from './views/Home.vue'
 import Topic from './views/Topic.vue'
+import CreatePost from './views/CreatePost.vue'
 
 const routes :RouteRecordRaw[] = [
   {
@@ -17,8 +18,13 @@ const routes :RouteRecordRaw[] = [
   },
   {
     path: '/topic/:id',
-    name: 'tipic',
+    name: 'topic',
     component: Topic
+  },
+  {
+    path: '/createPost',
+    name: 'CreatePost',
+    component: CreatePost
   }
 ]
 const router = createRouter({
