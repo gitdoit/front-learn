@@ -6,13 +6,16 @@
       <p class="text-gray-400">{{topic.description}}</p>
     </div>
   </div>
-  <post-list :list="post"></post-list>
+  <div v-if="loading">加载中...</div>
+  <div v-else>
+    <post-list   :list="post" />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { PostProps, ColumnProps } from '../TestData'
+import { ColumnProps, PostProps } from '../model'
 import { GlobalProp } from '../store'
 import { useStore } from 'vuex'
 import PostList from '../components/PostList.vue'
@@ -24,16 +27,22 @@ export default defineComponent({
   setup () {
     const route = useRoute()
     const store = useStore<GlobalProp>()
-    const topicId = +route.params.id
-    const currentTopic : ColumnProps = store.getters.getTopicById(topicId) || {
-      id: 1,
-      title: '',
-      description: ''
-    }
-    const post :PostProps[] = store.state.posts.filter(e => e.topicId === topicId)
+    const topicId = route.params.id
+
+    const loading = computed(() => {
+      console.log('xxx')
+      return store.state.loading
+    })
+    onMounted(() => {
+      store.dispatch('fetchColum', topicId)
+      store.dispatch('fetchPosts', topicId)
+    })
+    const currentTopic : ColumnProps = store.getters.getTopicById(topicId)
+    const post :PostProps[] = store.state.posts
     return {
       post,
-      topic: currentTopic
+      topic: currentTopic,
+      loading
     }
   }
 })

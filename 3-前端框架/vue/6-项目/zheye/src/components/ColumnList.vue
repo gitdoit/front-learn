@@ -3,13 +3,13 @@
   <ul class="grid grid-cols-2 lg:grid-cols-3 gap-4 w-11/12 mx-auto my-4">
     <li
       v-for="item in list"
-      :key="item.id"
+      :key="item._id"
       class="text-center  "
     >
       <div class="border shadow-lg p-2 rounded-md">
         <img
           class="w-full object-cover cursor-pointer max-h-52 rounded-md"
-          :src="item.avatar"
+          :src="item.avatar ? item.avatar.url : ''"
           :alt="item.title"
         />
         <h5 class="text-xl font-bold text-gray-800">{{ item.title }}</h5>
@@ -33,7 +33,7 @@
             hover:text-white
           "
           >
-            <router-link :to="`/topic/${item.id}`">进入专栏</router-link>
+            <router-link :to="`/topic/${item._id}`">进入专栏</router-link>
           </a
         >
       </div>
@@ -43,12 +43,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-export interface ColumnProps {
-  id: number;
-  title: string;
-  avatar: string;
-  description: string;
-}
+import { ColumnProps } from '../model'
 export default defineComponent({
   setup () {
     console.log()

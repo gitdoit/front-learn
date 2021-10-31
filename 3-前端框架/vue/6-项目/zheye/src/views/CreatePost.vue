@@ -13,7 +13,7 @@ import ValidateInput, { Rules } from '../components/ValidateInput.vue'
 import { reactive } from 'vue'
 import { GlobalProp } from '../store'
 import { useStore } from 'vuex'
-import { PostProps } from '../TestData'
+import { PostProps } from '../model'
 import { useRouter } from 'vue-router'
 
 const data = reactive({

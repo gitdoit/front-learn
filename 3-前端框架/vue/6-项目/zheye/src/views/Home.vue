@@ -9,50 +9,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import ColumnList, { ColumnProps } from '../components/ColumnList.vue'
+import { defineComponent, onMounted, computed } from 'vue'
+import { useStore } from 'vuex'
+import { GlobalProp } from '../store'
+import ColumnList from '../components/ColumnList.vue'
+
 export default defineComponent({
   name: 'Home',
   components: { ColumnList },
   setup () {
-    const list : ColumnProps[] = [
-      {
-        id: 1,
-        title: 'God Job',
-        avatar: 'https://images.dog.ceo/breeds/terrier-lakeland/n02095570_6222.jpg',
-        description: 'Vue is a good good youossdf ewsce!'
-      },
-      {
-        id: 2,
-        title: 'God Job',
-        avatar: 'https://images.dog.ceo/breeds/papillon/n02086910_2648.jpg',
-        description: 'Vue is a good good youossdf ewsce!'
-      },
-      {
-        id: 3,
-        title: 'God Job',
-        avatar: 'https://images.dog.ceo/breeds/papillon/n02086910_2648.jpg',
-        description: 'Vue is a good good youossdf ewsce!'
-      },
-      {
-        id: 4,
-        title: 'God Job',
-        avatar: 'https://images.dog.ceo/breeds/papillon/n02086910_2648.jpg',
-        description: 'Vue is a good good youossdf ewsce!'
-      },
-      {
-        id: 5,
-        title: 'God Job',
-        avatar: 'https://images.dog.ceo/breeds/papillon/n02086910_2648.jpg',
-        description: 'Vue is a good good youossdf ewsce!'
-      },
-      {
-        id: 6,
-        title: 'God Job',
-        avatar: 'https://images.dog.ceo/breeds/papillon/n02086910_2648.jpg',
-        description: 'Vue is a good good youossdf ewsce!'
-      }
-    ]
+    const store = useStore<GlobalProp>()
+    const list = computed(() => store.state.topic)
+    onMounted(() => {
+      store.dispatch('fetchColums')
+    })
     return {
       list
     }
