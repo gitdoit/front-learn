@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+        有名字的插槽
+        定义时给<slot>标签插入一个name属性，指定这个插槽的名字
+        使用的时候，对应的标签体上添加 slot="slotName"就行了
+        多个标签的slot值相同，那就都插入到哪个插槽里，或者用<template>包裹一下，这样省的写多个了
+
+    -->
+    <named-slot>
+        <!--这里的位置和最终页面的位置没关系，那取决于定义时的插槽顺序-->
+        <h3 slot="footer">这里插入脚</h3>
+        <!--template本身不会被渲染-->
+        <template slot="header">
+            <p>这里插入头部~</p>
+            <p>这里插入头部~</p>
+        </template>
+        <!--没有指定名字的统一放到匿名插槽里，如果没有匿名插槽就不显示了-->
+        <h5>没指定名字的都插入匿名插槽</h5>
+        <!--会追加到哪个插槽里，而不是替换-->
+        <h5 slot="header">再次插入会不会叠加？？？</h5>
+    </named-slot>
+</div>
+<script src="lib/vue.js"></script>
+<script>
+    Vue.component('named-slot', {
+        data: function () {
+            return {}
+        },
+        template: `
+            <div>
+                <header><slot name="header"></slot></header>
+                <main><slot></slot></main>
+                <footer><slot name="footer"></slot></footer>
+            </div>
+        `
+    });
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'test',
+            responsive: {}
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

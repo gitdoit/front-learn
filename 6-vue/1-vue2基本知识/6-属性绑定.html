@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .red {
+        background-color: red;
+    }
+    .blue {
+        background-color: blue;
+    }
+    .size200{
+        width: 200px;
+        height: 200px;
+    }
+    .inline{
+        display:inline-block;
+    }
+</style>
+<body>
+<div id="app">
+    <!--
+        v-bin 可以用来绑定HTML元素的属性
+        缩写就是一个 :
+    -->
+
+    <!--
+        将属性绑定到class上
+        class的取值不再写死，而是绑定到Vue的属性上，会动态变动；
+        如果存在class属性那么 :class会和class共存
+    -->
+    <h1>将属性绑定到class上</h1>
+    <div :class="div1" class="size200"></div>
+    <button @click="changeRed('div1')">点我变红</button>
+    <button @click="changeBlue('div1')">点我变蓝</button>
+    <hr>
+    <h1>将数组绑定到class上</h1>
+    <div :class="['size200','blue']" ></div>
+    <hr>
+    <h1>在数组中使用三元表达式</h1>
+    <div :class="['size200',isActive ? 'blue' : '']" ></div>
+    <hr>
+    <h1>在数组中嵌套对象</h1>
+    <div :class="['size200',{'blue':isActive}]" ></div>
+    <hr>
+    <h1>将对象绑定到class上</h1>
+    <div :class="{red:true,size200:true,blue:false}" ></div>
+
+    <hr>
+    <h1>动态跳转</h1>
+    <a :href="href">动态跳转</a>
+    <button @click="changeHref">点我改变超链接</button>
+
+</div>
+<script src="lib/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            div1: 'red',
+            href: 'http://www.baidu.com',
+            isActive: true
+        },
+        methods: {
+            changeRed(attr){
+                this[attr] = 'red';
+            },
+            changeBlue(attr){
+                this[attr] = 'blue';
+            },
+            changeHref(){
+              this.href = this.href === 'http://www.baidu.com' ? 'http://www.bilibili.com' : 'http://www.baidu.com';
+            },
+        }
+    })
+</script>
+</body>
+</html>

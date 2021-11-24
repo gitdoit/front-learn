@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <!--
+        数据的双向绑定使用 v-model
+        这个指令只能用在表单元素的：input,select textarea components中
+
+        注意事项：  
+            由于Js的限制，Vue不能检测对象属性的添加或删除，如在data中添加一个新的属性 a， 那么这个 a 不是响应式的。
+            对于已经创建的实例，Vue不允许动态添加跟级别的响应式属性，这意味着我们可以事先定义一个属性，如果
+            需要动态添加新的属性，可以在这个属性中去添加，此时他是响应式的。
+
+    -->
+    
+        <form name="form">
+            <label>
+                input1:<input name="i1" v-model="msg">
+            </label>
+            <hr>
+            <h3>演示响应式属性</h3>
+            <p>{{responsive.a}}</p>
+        </form>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'test',
+                responsive: {
+
+                }
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

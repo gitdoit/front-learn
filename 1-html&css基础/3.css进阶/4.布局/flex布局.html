@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex布局</title>
+  <style>
+    .container{
+      display: flex;
+      border: 1px solid #ccc;
+    }
+    .container .item {
+      width: 30px;
+      height: 30px;
+      background-color: #ccc;
+      border: 1px solid;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <h1>Flex 布局</h1>
+  <h2>主轴和交叉轴</h2>
+  <p>
+    容器默认存在两根轴,水平的主轴(main-axis)和垂直的交叉轴(cross axis). <br>
+    主轴开始的位置叫做 main-start,结束的位置叫做main end;<br>
+    交叉轴开始的位置叫做cross start,结束的位置叫做 cross end
+  </p>
+  <h2>justify-content</h2>
+  <ul>
+    <li>
+      <h3>center</h3>
+      <p>项目居中</p>
+      <div class="container" style="justify-content: center;">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </li>
+    <li>
+      <h3>space-between</h3>
+      <p>左右两端对齐,项目间隔相等</p>
+      <div class="container" style="justify-content: space-between;">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </li>
+    <li>
+      <h3>space-around</h3>
+      <p>项目之间的间距为左右两个项目到容器距离的二倍</p>
+      <div class="container" style="justify-content: space-around;">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </li>
+    <li>
+      <h3>space-evenly</h3>
+      <p>项目之间的间距与项目和容器之间的间距相等</p>
+      <div class="container" style="justify-content: space-evenly;">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </li>
+  </ul>
+  <h2>align-items</h2>
+  <ul>
+    <li>
+      <h3>flex-start</h3>
+      <p>交叉轴头部排列</p>
+      <div class="container" style="height: 100px; width: 100%;align-items: flex-start;">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </li>
+    <li>
+      <h3>flex-end</h3>
+      <p>交叉轴尾部排列</p>
+      <div class="container" style="height: 100px; width: 100%;align-items: flex-end;">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </li>
+    <li>
+      <h3>center</h3>
+      <p>交叉轴中间位置排列</p>
+      <div class="container" style="height: 100px; width: 100%;align-items: center;">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </li>
+  </ul>
+  <h2>flex-direction</h2>
+  <p style="font-size: 13px; color: #ccc;">项目排列方象</p>
+  <ul>
+    <li>
+      <h3>row(默认)</h3>
+      <p>横向排列</p>
+      <div class="container" style="flex-direction: row;">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+      </div>
+    </li>
+    <li>
+      <h3>column</h3>
+      <p>纵向排列</p>
+      <div class="container" style="flex-direction: column;">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+      </div>
+    </li>
+  </ul>
+  <h2>flex-warp</h2>
+  <p style="font-size: 13px; color: #ccc;">项目换行方式</p>
+  <ul>
+    <li>
+      <h3>no-warp(默认)</h3>
+      <p>当使用flex布局时,项目总宽度大于容器宽度的时候不换行.亲测应该是使用各元素宽度所占百分比来分配容器宽度</p>
+      <div class="container" style="width: 200px;flex-wrap: nowrap;">
+        <div class="item" style="width: 70px;">A</div>
+        <div class="item" style="width: 70px;">B</div>
+        <div class="item" style="width: 70px;">C</div>
+      </div>
+    </li>
+    <li>
+      <h3>warp</h3>
+      <p>超出换行</p>
+      <div class="container" style="width: 200px;flex-wrap: wrap;">
+        <div class="item" style="width: 70px;">A</div>
+        <div class="item" style="width: 70px;">B</div>
+        <div class="item" style="width: 70px;">C</div>
+      </div>
+    </li>
+  </ul>
+  <h1>元素属性</h1>
+  <h2>order</h2>
+  <p>元素的排列优先级,值越小,越靠前</p>
+  <ul>
+    <li>
+      <h2>order:1</h2>
+      <p>只针对其中一个项目设置order的话,那么他就是最靠后的,应该默认都是0.</p>
+    </li>
+    <div class="container">
+      <div class="item" style="order: 1;">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </ul>
+
+  <h2>align-self</h2>
+  <p>项目自身的对齐方式,应该是针对容器属性:align-items的细化. 使只改变某个元素本身的对其方式</p>
+  <ul>
+    <li>
+      <h2>flex-end</h2>
+      <p>交叉轴尾部排列</p>
+    </li>
+    <div class="container" style="height: 100px;">
+      <div class="item">1</div>
+      <div class="item" style="align-self: flex-end;">2</div>
+      <div class="item">3</div>
+    </div>
+  </ul>
+
+  <h2>flex-grow</h2>
+  <p>默认0,容器剩余宽度分配权重;如果容器有剩余宽度,并且元素如果设置了该值,那么元素自身的width会失效,并根据权重进行分配</p>
+  <ul>
+    <div class="container" style="height: 100px;">
+      <div class="item">1</div>
+      <div class="item" style="flex-grow: 1;">2</div>
+      <div class="item" style="flex-grow: 2;">3</div>
+    </div>
+  </ul>
+
+  <h2>flex-shrink</h2>
+  <p>默认取值为1,在项目空间不足时是否缩小,默认1,大家一起缩小(即使有固定宽度),如果设置为0,就是不缩小</p>
+  <ul>
+    <div class="container" style="width: 100px;">
+      <div class="item" style="width:40px; flex-shrink: 0;">1</div>
+      <div class="item" style="width:40px">2</div>
+      <div class="item" style="width:40px">3</div>
+    </div>
+  </ul>
+
+  <h2>flex-basis</h2>
+  <p>默认auto,设置项目宽度;如果设置了该属性,那么会优先使用它,无视width</p>
+  <ul>
+    <div class="container" style="height: 100px;">
+      <div class="item" style="width:40px; flex-basis: 20px;">1</div>
+      <div class="item" style="width:40px">2</div>
+      <div class="item" style="width:40px">3</div>
+    </div>
+  </ul>
+
+  <h2>flex</h2>
+  <p>flex-grow flex-shrink flex-basis 的简写;
+    默认 0 1 auto 就是不分配剩余宽度,等比缩小,宽度自动 <br>
+    简写属性 flex:auto; 代表flex:1, 1 ,auto; 
+  </p>
+  <ul>
+    <div class="container" style="height: 100px;">
+      <div class="item" style="width:40px; flex: auto">1</div>
+      <div class="item" style="width:40px; flex: auto">2</div>
+      <div class="item" style="width:40px">3</div>
+    </div>
+  </ul>
+  
+</body>
+</html>

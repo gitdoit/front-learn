@@ -1,0 +1,50 @@
+<template>
+  <div>
+    <div class="title">
+      <img
+        @click="go()"
+        alt="Vue logo"
+        src="./assets/logo.png"
+      >
+      <h1>Vue 3基础demo</h1>
+    </div>
+    <router-view />
+  </div>
+</template>
+
+<script lang="ts">
+import router from "./route/index";
+export default {
+  setup() {
+    function go() {
+      router.push("/");
+    }
+    return {
+      go,
+    };
+  },
+};
+</script>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 30px;
+  font-size: 20px;
+}
+#app .title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+#app .title h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+#app .title img {
+  height: 60px;
+  width: 60px;
+}
+</style>

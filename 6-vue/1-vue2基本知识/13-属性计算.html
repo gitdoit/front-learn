@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+        为什么使用属性计算？
+            一个数据的展示依赖于多个数据的计算得来，那么如果在插值表达式中
+            写太复杂的逻辑就不好维护，不如就抽出来做一个getter，将逻辑进行封装。那就是属性计算
+        定义一个方法能完成同样的事情，为什么使用属性计算？
+            虽然使用方法和属性计算最终的效果一直，但是
+            属性计算依赖响应式依赖进行缓存的，也就是相关依赖没有发生改变，就不执行函数进行计算；
+
+    -->
+    <h3>直接显示数据</h3>
+    <p>{{msg}}</p>
+    <h3>通过调用方法</h3>
+    <p>{{callMethod()}}</p>
+    <h3>通过属性计算</h3>
+    <p>{{byMsg}}</p>
+    <button @click="msg+=1">点我改值</button>
+</div>
+<script src="lib/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            msg: 1,
+        },
+        methods: {
+            callMethod(){
+                console.info("调用了方法")
+                return this.msg +'msg变了！'
+            }
+        },
+        computed:{
+            byMsg: function () {
+                console.info("调用了计算")
+                return this.msg +'msg变了！'
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  .fade-enter-active, .fade-leave-active{
+    transition: opacity 1s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: .5;
+  }
+
+  /* 在元素进入过程中生效的样式，对所有属性，应用一个1s的过渡动画 
+    该样式对应的过程包含了move-enter和move-enter-to;
+  */
+  .move-enter-active{
+    transition: all 1s;
+  }
+  /* 入场动画开始的初始状态，在入场后的第一帧被移除 */
+  .move-enter{
+    /* 入场前偏移了100像素，然后在下一帧样式被移除
+       但是由于上面的那个1秒动画，所以这个效果并不是立马被移除
+       而是会应用一个1秒的过渡动画，在这一秒之中慢慢的被移除；
+       所以看到的效果就是从右向左慢慢入场
+    */
+    transform: translateX(100px);
+  }
+  /* 入场动画结束时的状态 */
+  .move-enter-to{
+    /* 在入场结束后应用12px字体大小，之后立马被移除，所以会看到一个闪动 */
+    font-size: 12px;
+  }
+
+
+  /* 在元素离开过程中生效的样式，对所有属性，应用一个3秒的过渡动画 
+     改样时对应的过程包含了move-leave和move-leave-to
+  */
+  .move-leave-active{
+    transition: all 3s;
+  }
+  /* 在元素进入出场时的状态(前一个步骤是.move-leave)，由于有过渡动画
+    所以下面的三个样式会被慢慢应用，会看到字体慢慢变大，慢慢变透明，慢慢位移
+  */
+   .move-leave-to {
+    font-size: 32px;
+    opacity: 0;
+    transform: translateX(60px);
+  }
+</style>
+</head>
+
+<body>
+  <div id="app"> 
+    <button @click="isShow=!isShow">toggle</button>
+    <transition name="fade">
+      <p v-show="isShow">hello</p>
+    </transition>
+    
+    <button @click="move=!move">move</button>
+    <transition name="move">
+      <p v-show="move">move--></p>
+    </transition>
+  </div>
+  <script src="lib/vue.js"></script>
+  <script>
+     const app = new Vue({
+         el: "#app",
+         data:{
+           isShow: true,
+           move: true
+         },
+         methods:{}
+         
+     })
+  </script>
+</body>
+</html>

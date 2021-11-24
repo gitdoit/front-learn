@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <!-- 
+    使用Vue的路由嵌套
+    路由嵌套就是相当于组件中再配置路由规则，放置路由链接和占位符，点击后显示在子组件中
+
+   -->
+  <div id="app">
+    <router-link to="/user">用户</router-link>
+    <router-link to="/info">信息</router-link>
+    <router-view></router-view>
+  </div>
+  <script src="lib/vue.js"></script>
+  <script src="lib/vue-router_3.0.2.js"></script>
+  <script>
+    const Info = {
+      template: `
+          <div>
+            <h1>This is info from Vue!!</h1>  
+          </div>
+      `
+    }
+    const User = {
+      template: `<div>
+                  <router-link to="/user/tab1">点击显示tab1</router-link>
+                  <router-link to="/user/tab2">点击显示tab2</router-link>
+                  </br>
+                  <router-view></router-view>
+                </div>`
+    }
+    const Tab1 = {
+      template: `
+        <div>
+          <h1>这是tab1</h1>  
+        </div>
+      `
+    }
+    const Tab2 = {
+      template: `
+        <div>
+          <h1>这是tab2</h1>  
+        </div>
+      `
+    }
+
+    const router = new VueRouter({
+      routes: [
+        { path: '/info', component: Info },
+        {
+          path: '/user', component: User, children: [
+            { path: '/user/tab1', component: Tab1 },
+            { path: '/user/tab2', component: Tab2 }
+          ]
+        }
+      ]
+    });
+
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      methods: {},
+      router
+    })
+  </script>
+</body>
+
+</html>

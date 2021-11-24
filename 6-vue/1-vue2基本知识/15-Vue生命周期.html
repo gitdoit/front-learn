@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+        在哪个阶段调用API初始化数据呢？
+        https://www.jianshu.com/p/ff8f9bbc7551
+
+        根据api返回的数据决定哪个表单元素被禁用
+            1、自定义指令 v-authority="authority"
+            2、在bind和update钩子中(钩子函数简写)获取 binding.value
+               即指令中指定的authority
+            3、API接口动态更新authority数据
+            4、当数据被更新后会调用指令的钩子方法
+            5、通过数据来确定el对象更新与否
+
+    -->
+    <h3 id="h3">{{msg}}</h3>
+    <label>
+        测试权限：<input name="test"  v-authority="authority">
+    </label>
+</div>
+<script src="lib/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            authority:{},
+            msg: 'test',
+        },
+        methods: {
+            showAlert(){
+                console.info('what?')
+            },
+            setData(){
+                this.authority = {
+                    test: '1'
+                }
+            }
+        },
+        directives:{
+            // bind 和 update
+            authority: function (el,binding) {
+                console.info("指令=======================");
+                // binding.value 即权限数据集，在指令中指定
+                // 当权限数据被更新的时候，例如API接口返回了数据,这里会被调用
+                el.disabled = binding.value[el.name] !== '1' ? 'disabled' : undefined;
+                // 添加一个事件函数
+                if(!el.hasEvent){
+                    alert('没有事件');
+                    el.hasEvent = 'true';
+                    el.addEventListener('click',function () {
+                        alert('点击我')
+                    })
+                }
+            },
+
+        },
+        beforeCreate(){
+            console.info('beforeCreate')
+            // 表示实例完全创建出来之前会执行它
+            // 此时 data和method还没被初始化，这里用不了
+            // this.showAlert(); --> TypeError: this.showAlert is not a function
+        },
+        created(){
+            // 表示data和method都被初始化好了
+            //this.showAlert();
+            var _this = this;
+            setTimeout(function () {
+                _this.setData();
+                console.info('装在结束...')
+            },2000);
+            console.info('created')
+        },
+        beforeMount(){
+            console.info('beforeMount')
+            // 表示模板已经在内存中编辑完成了，但是尚未被渲染
+            // 此时页面中的元素还是我们写的一些语法
+            // {{msg}}
+            //console.info('beforeMount:'+document.getElementById('h3').innerText)
+        },
+        mounted(){
+            console.info('mounted')
+            // 模板已经被渲染了，这里是创建实例的最后一个步骤
+            // test
+            //console.info('mount:'+document.getElementById('h3').innerText)
+        },
+        // 下面两个阶段都是运行时发生的
+        beforeUpdate(){
+            // 数据被更新，导致视图被重新渲染前的阶段，此时
+            // 内存中的数据已经被更新
+            console.info('beforeUpdate：data中的数据：'+this.msg+'   h3标签中的数据：'+document.getElementById('h3').innerText);
+            // 但是还没有被实际的渲染到浏览器
+            // 值得注意的是，如果定义的数据没有被使用，那么更新这个数据不会触发这个钩子函数
+        },
+        updated(){
+            // 数据已经被同步
+            console.info('updated：data中的数据：'+this.msg+ '  h3标签中的数据：'+document.getElementById('h3').innerText);
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .wapper {
+    height: 100px;
+    width: 300px;
+    background-color: antiquewhite;
+    display: flex;
+  }
+
+  button {
+    background-color: brown;
+  }
+</style>
+
+<body>
+  <!-- 
+    编程式导航，就是使用API操作
+      this.$router.push('/user')
+      注意，只有在使用命名导航的时候才能传params
+      this.$router.push({name: 'prop',params:{xx:'xx'}})
+   -->
+  <div id="app">
+    <div class="wapper">
+      <button @click="go(1)">点我到用户1</button>
+      <button @click="go(2)">点我到用户2</button>
+      <button @click="gogo">点我看传参</button>
+    </div>
+    <hr>
+    <router-view></router-view>
+  </div>
+  <script src="lib/vue.js"></script>
+  <script src="lib/vue-router_3.0.2.js"></script>
+  <script>
+    const User = {
+      template: `<div><h1>这里是用户{{$route.params.id}}</h1></div>`
+    }
+
+    const Props = {
+      template: `<div><h1>使用props来传值-->{{name}}-------{{age}}</h1></div>`,
+      props: ['name','age']
+    }
+
+
+    const router = new VueRouter({
+      routes: [
+        { path: '/user/:id', component: User },
+        { path: '/props/:name', name:'pros', component: Props, props: true },
+      ]
+    });
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        go(id) {
+          this.$router.push('/user/'+id)
+        },
+        gogo(){
+          this.$router.push({name:'pros',params:{name:'s',age:44}})
+        }
+      },
+      router
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+        Vue自定义的<slot>元素可以在组件中提供
+        一个位置让使用者随意的在组件中插入内容；
+        当前用的是Vue2.5，官网的例子是2.6的，用法变了
+        这里是2.5的
+    -->
+
+    <!--不提供任何内容，使用插槽默认值-->
+    <my-slot></my-slot>
+    <!--在组件标签中填写任何内容都会替换插槽默认值-->
+    <my-slot>
+        <p>替换插槽默认值~</p>
+    </my-slot>
+    <!--
+        注意 <slot>{{data}}</slot> 中的data
+        取决于子模版中的数据。
+    -->
+    <my-scope data="我的数据"></my-scope>
+    <!--
+        若直接在父模板引用子模版的时候
+        想使用子模版中的数据是不可能的！！
+        所以这个会编译报错！！
+    -->
+    <my-scope data="我的数据">{{data}}</my-scope>
+
+</div>
+<script src="lib/vue.js"></script>
+<script>
+
+    Vue.component('my-slot',{
+        data:function () {
+            return {}
+        },
+        template: `<div>
+                    <h3>演示插槽~~</h3>
+                    <slot>我是插槽默认值！</slot>
+                   </div>`
+    });
+    Vue.component('my-scope',{
+        data:function () {
+            return {}
+        },
+        props:['data'],
+        template: `<div>
+                    <h3>演示插槽编译作用域~~</h3>
+                    <slot>{{data}}</slot>
+                   </div>`
+    });
+    let app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'test',
+            responsive:{
+
+            }
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>
