@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import useURLLoader from "../hooks/useURLLoader";
+import useURLLoader from "../../hooks/useURLLoader";
 import { toRefs } from "vue";
 
 interface DogResponse {

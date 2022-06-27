@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import Modal from "./modal.vue";
+import Modal from "../modal.vue";
 import { ref } from "vue";
 export default {
   setup() {

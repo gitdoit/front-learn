@@ -16,8 +16,8 @@
   </div>
 </template>
 
-<script>
-import useMousePosition from '../hooks/useMousePosition'
+<script lang="ts">
+import useMousePosition from '../../hooks/useMousePosition'
 
 export default {
   setup() {
