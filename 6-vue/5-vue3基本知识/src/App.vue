@@ -6,24 +6,24 @@
         alt="Vue logo"
         src="./assets/logo.png"
       >
-      <h1>Vue 3基础demo</h1>
+      <h1>{{currentActiveRouter}}</h1>
     </div>
     <router-view />
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import router from "./route/index";
-export default {
-  setup() {
-    function go() {
-      router.push("/");
-    }
-    return {
-      go,
-    };
-  },
-};
+import { ref } from 'vue'
+const currentActiveRouter = ref("")
+router.beforeEach(e => {
+  console.log(e);
+  currentActiveRouter.value = e?.meta?.cnName as string
+})
+
+function go() {
+  router.push("/");
+}
 </script>
 <style>
 #app {

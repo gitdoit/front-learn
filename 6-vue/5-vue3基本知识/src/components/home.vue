@@ -6,7 +6,7 @@
       :key="index"
     >
       <router-link :to="item.path">
-        {{item.cnName}}
+        {{item.meta.cnName}}
       </router-link>
     </li>
   </ul>
@@ -17,9 +17,8 @@ import { routes } from "../route/index";
 
 export default {
   setup() {
-    const ok = routes.filter((e) => !!e.cnName);
     return {
-      list: ok,
+      list: routes.filter(e => !e?.meta?.skip ?? true),
     };
   },
 };
