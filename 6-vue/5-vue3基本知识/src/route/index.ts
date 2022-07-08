@@ -124,6 +124,14 @@ const routes: RouteRecordRaw[] = [
       cnName: 'inject'
     }
   },
+  {
+    path: '/mitt',
+    name: 'Mitt',
+    component:  () => import(/* webpackChunkName: "mitt" */ '../components/15-mitt/index.vue'),
+    meta: {
+      cnName: '消息总线'
+    }
+  },
 
 ];
 const router = createRouter({
