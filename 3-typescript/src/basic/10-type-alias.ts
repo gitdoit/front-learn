@@ -1,10 +1,10 @@
 /* ***类型别名**** */
 let sum: (x: number,y :number) => number;// 函数类型
-const result = sum(1,2); // sum没有实现!!只是定义了
+//const result = sum(1,2); // sum没有实现!!只是定义了
 
 type PlusMethod = (x :number,y: number) => number;// 给那一长串使用type关键字定义一个别名
 let sum2 : PlusMethod; // 直接引用别名定义
-const result2 = sum2(1,2);
+//const result2 = sum2(1,2);
 
 /* *****别名常量???***** */
 const str : 'wtf?' = 'wtf?'; // 这都是什么奇葩语法?

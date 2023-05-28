@@ -1,34 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
-    
-<script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '{your-app-id}',
-        cookie     : true,
-        xfbml      : true,
-        version    : '{api-version}'
-      });
-        
-      FB.AppEvents.logPageView();   
-        
-    };
-  
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  </script>
+
+    <div id="app">
+        <button @click="doLogin">点击登录</button>
+        <br />
+        <button @click="showSate">检查登录回调！</button>
+        <br />
+        <button @click="showMe">shopwMe</button>
+    </div>
+
+    <script src="https://connect.facebook.net/en_US/sdk.js" id="facebook-jssdk"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '229165766262631',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.7'
+            });
+        };
+    </script>
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+
+        createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!'
+                }
+            },
+
+            methods: {
+                showSate() {
+                    FB.getLoginStatus(res => {
+                        console.log('检查登录回调！')
+                        console.log(res)
+                    })
+                },
+                doLogin() {
+                    console.log('点击了登录')
+                    FB.login(res => {
+                        console.log(res);
+                    }, {scope: 'public_profile,email'})
+                },
+                showMe() {
+
+                    FB.api(
+                        '/me',
+                        'GET',
+                        { "fields": "id,name,age_range,email" },
+                        function (response) {
+                            console.log(response)
+                        }
+                    );
+                }
+            }
+        }).mount('#app')
+    </script>
+
+
+
 </body>
+
 </html>

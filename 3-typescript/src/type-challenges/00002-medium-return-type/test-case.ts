@@ -1,5 +1,14 @@
-import {MyReturnType} from './template'
 import type { Equal, Expect } from '@type-challenges/utils'
+
+/**
+ * @link https://github.com/type-challenges/type-challenges/blob/main/questions/00002-medium-return-type/README.zh-CN.md
+ * 获取函数的返回值类型，类似原生自带的ReturnType类型工具类
+ * 这里使用infer 关键字，对返回值类型设R
+ * 满足则返回返回值类型，否则返回never
+ */
+export type MyReturnType<T> = T extends (...arg : any) => infer R ? R : never
+
+
 
 type cases = [
   Expect<Equal<string, MyReturnType<() => string>>>,
@@ -21,7 +30,3 @@ const fn = (v: boolean) => v ? 1 : 2
 const fn1 = (v: boolean, w: any) => v ? 1 : 2
 
 
-const fun = (s: boolean) => {
-    return 1
-}
-type a = MyReturnType<typeof fun>
