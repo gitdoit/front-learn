@@ -22,9 +22,6 @@ type cases = [
   Expect<Equal<TupleToUnion<[123, '456', true]>, 123 | '456' | true>>,
   Expect<Equal<TupleToUnion<[123]>, 123>>,
 ]
-type What = [a: string]
-let c: What = ['']
-
 
 
 type PickEaceType<T> = T extends any[] ? T[number] : T
