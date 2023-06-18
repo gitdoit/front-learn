@@ -1,4 +1,5 @@
 // ts的类和java的基本类似
+export const a = 1;
 class Animal {
   name: string;
 

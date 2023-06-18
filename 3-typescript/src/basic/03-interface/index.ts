@@ -1,3 +1,10 @@
+export {}
+
+
+// 一个经典的问题，Type和interface有什么区别？
+// 基本上可以平替，只是type不能extends继承，但Type可以运算
+
+
 interface IPerson{
   // 接口中声明的属性,实例必须定义
   age :number;
