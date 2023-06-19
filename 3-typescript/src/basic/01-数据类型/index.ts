@@ -1,3 +1,5 @@
+export {}
+
 let stringType :string = 'ok!!!';
 // 原始数据类型.ts:2:1 - error TS2322: Type 'number' is not assignable to type 'string'.
 // stringType = 123
@@ -19,13 +21,18 @@ numberType = Infinity;
 
 
 // null和undefined是其他基本类型的子类型,所以可以赋给number
-let und :undefined = undefined;
+// 注意，当在 tsconfig.json中设置 strictNullChecks = true时
+// null或undefined将不再可以赋值给其他类型
 let nul :null = null;
+let und :undefined = undefined;
 let num :number = 123;
-num = und;
-num = nul;
 
-let fuck :number = undefined;
+
+
+//num = und;
+//num = nul;
+
+//let fuck :number = undefined;
 
 
 // 和java一样  不返回东西就是个void

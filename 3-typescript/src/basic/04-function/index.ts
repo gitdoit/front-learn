@@ -1,3 +1,5 @@
+export {}
+
 // 函数声明
 function add(a : number, b: number ,c ?: number) :number {
   if(typeof c === "number"){
