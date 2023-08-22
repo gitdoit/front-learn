@@ -5,35 +5,41 @@
   <meta charset="UTF-8">
   <title>多级表头excel导出</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.13/lib/theme-chalk/index.css">
+  <link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.4.7/theme-chalk/index.css">
 </head>
 
 <body>
   <div id="app">
-    <el-button @click="exportData">导出</el-button>
-    <el-table @selection-change="handleSelectionChange" :data="list" style="width: 100%" size="mini">
-      <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column label="姓名" prop="name" align="center"></el-table-column>
-      <el-table-column label="专业技能" align="center">
-        <el-table-column label="前端" align="center">
-          <el-table-column label="JavaScript" prop="js" align="center"></el-table-column>
-          <el-table-column label="CSS" prop="css" align="center"></el-table-column>
-        </el-table-column>
-        <el-table-column label="后端" align="center">
-          <el-table-column label="java" align="center">
-            <el-table-column label="nio" prop="nio" align="center"></el-table-column>
-            <el-table-column label="基础" prop="basic" align="center"></el-table-column>
+    <div class="container">
+      <el-table height="90vh" @selection-change="handleSelectionChange" :data="list" style="width: 100%" size="mini">
+        <el-table-column type="selection" width="55"></el-table-column>
+        <el-table-column label="姓名" prop="name" align="center"></el-table-column>
+        <el-table-column label="专业技能" align="center">
+          <el-table-column label="前端" align="center">
+            <el-table-column label="JavaScript" prop="js" align="center"></el-table-column>
+            <el-table-column label="CSS" prop="css" align="center"></el-table-column>
           </el-table-column>
-          <el-table-column label="框架" align="center">
-            <el-table-column label="SpringBoot" prop="springboot" align="center"></el-table-column>
-            <el-table-column label="MyBatis" prop="mybatis" align="center"></el-table-column>
+          <el-table-column label="后端" align="center">
+            <el-table-column label="java" align="center">
+              <el-table-column label="nio" prop="nio" align="center"></el-table-column>
+              <el-table-column label="基础" prop="basic" align="center"></el-table-column>
+            </el-table-column>
+            <el-table-column label="框架" align="center">
+              <el-table-column label="SpringBoot" prop="springboot" align="center"></el-table-column>
+              <el-table-column label="MyBatis" prop="mybatis" align="center"></el-table-column>
+            </el-table-column>
           </el-table-column>
         </el-table-column>
-      </el-table-column>
-    </el-table>
+      </el-table>
+    </div>
+    <div class="btns">
+      <el-button @click="appendData" class="btn" type="success">追加数据</el-button>
+      <el-button @click="exportData" class="btn" type="primary">导出</el-button>
+
+    </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.9/dist/vue.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/element-ui@1.4.9/lib/index.min.js"></script>
+  <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.5.1/vue.min.js"></script>
+  <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.4.7/index.js"></script>
 
   <script src="lib/style/xlsx.full.min.js"></script>
   <script>
@@ -43,9 +49,6 @@
         return {
           selectionData: [],
           list: [
-            { name: '张三', js: '熟练', css: '一般', nio: '了解', basic: '精通', springboot: '熟练', mybatis: '了解' },
-            { name: '张三', js: '熟练', css: '一般', nio: '了解', basic: '精通', springboot: '熟练', mybatis: '了解' },
-            { name: '张三', js: '熟练', css: '一般', nio: '了解', basic: '精通', springboot: '熟练', mybatis: '了解' },
             { name: '张三', js: '熟练', css: '一般', nio: '了解', basic: '精通', springboot: '熟练', mybatis: '了解' },
           ],
           revealList: [
@@ -106,6 +109,11 @@
         }
       },
       methods: {
+        appendData() {
+          for(let i = 0; i < 100; i++) {
+            this.list.push({ name: '张三', js: '熟练', css: '一般', nio: '了解', basic: '精通', springboot: '熟练', mybatis: '了解' })
+          }
+        },
         handleSelectionChange(selection) {
           this.selectionData = selection
         },
@@ -308,10 +316,11 @@
             for (let y = 0; y < deep; y++) {
               if (arr[y][x] === '!$ROW_SPAN_PLACEHOLDER') {
                 arr[y][x] = undefined;
+                rowSpan++;
                 if(y+1 === deep){
                   merges.push({ s: { r: y - rowSpan , c: x }, e: { r: y , c: x } })
                 }
-                rowSpan++;
+                
               } else if (rowSpan > 0 && y > rowSpan) {
                 merges.push({ s: { r: y - rowSpan - 1, c: x }, e: { r: y - 1, c: x } })
                 rowSpan = 0;
@@ -469,6 +478,21 @@
       }
     })
   </script>
+  <style>
+    .container {
+      margin: auto;
+      width: 80%;
+      height:90vh;
+    }
+    .btns {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+    .btn {
+      width: 30%;
+    }
+  </style>
 </body>
 
 </html>

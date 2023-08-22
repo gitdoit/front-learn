@@ -18,6 +18,10 @@ console.info("使用无参构造函数构造的日期实例为:%o", curDate);
 // 可以这样创建指定日期
 curDate = new Date('2005-03-11T12:12:12');
 
+
+let testDate = new Date('2023-11-11')
+console.log(testDate.getTime())
+
 // 使用Date.parse静态方法，将传入的字符串解析成为格林威治毫秒数
 // 然后再通过Date的构造方法创建一个指定时间的日期
 curDate = new Date(Date.parse('2005-03-11T12:12:12'));
