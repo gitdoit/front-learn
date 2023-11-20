@@ -44,10 +44,10 @@ Object.defineProperty(set,'x',{
     configurable:true,
 })
 // 不可枚举了，返回空集合
-console.log('不可枚举：Object.keys:'+Object.keys(set));
+console.log('不可枚举:Object.keys:'+Object.keys(set));
 // 不可写了，再赋值就没用了，还是2
 set.x = 3;
-console.log('不可写：对它进行赋值3'+set.x);
+console.log('不可写:对它进行赋值3'+set.x);
 // 再设置回来
 Object.defineProperty(set,'x',{writable:true});
 set.x = 4;

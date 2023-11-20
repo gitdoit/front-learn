@@ -24,12 +24,20 @@ var dog = {
   },
 };
 dog.getAge();
+dog.getName();
 
 
 // 2.字面量对象-使用时赋值
 var person = {};
 person.name = 'jean';
 person.age = 12;
+person.say = () => {
+  console.log('hallo~')
+}
+person.run = function () {
+  console.log(`run ${this.name}`)
+}
+person.run();
 
 
 // 3. ES6中简便的定义方式

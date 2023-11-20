@@ -25,20 +25,20 @@ for (let value of iterable) {
 }
 
 // 4、迭代Map
-let iterable = new Map([["a", 1], ["b", 2], ["c", 3]]);
+let iterableMap = new Map([["a", 1], ["b", 2], ["c", 3]]);
 
-for (let entry of iterable) {
+for (let entry of iterableMap) {
   // ["a", 1]
   console.log(entry);
 }
 // 解构的方式
-for (let [key, value] of iterable) {
+for (let [key, value] of iterableMap) {
   console.log(value);
 }
 
 // 5、迭代Set
-let iterable = new Set([1, 1, 2, 2, 3, 3]);
-for (let value of iterable) {
+let iterableSet = new Set([1, 1, 2, 2, 3, 3]);
+for (let value of iterableSet) {
   console.log(value);
 }
 

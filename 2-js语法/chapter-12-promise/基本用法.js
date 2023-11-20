@@ -99,4 +99,4 @@ async function testWait(){
   });
   console.log('执行后')
 }
-testWait();
+ testWait();
