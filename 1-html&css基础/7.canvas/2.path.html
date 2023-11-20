@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+<script>
+
+
+  function draw() {
+    var canvas = document.getElementById("canvas");
+    if (canvas instanceof HTMLCanvasElement) {
+      let ctx = canvas.getContext("2d");
+      // 新建一个路径
+      // 生成路径的第一步叫做 beginPath()。
+      // 本质上，路径是由很多子路径构成，这些子路径都是在一个列表中，所有的子路径（线、弧形、等等）构成图形。
+      // 而每次这个方法调用之后，列表清空重置，然后我们就可以重新绘制新的图形。
+
+      // 1.把手抬起来
+      ctx.beginPath();
+
+      // 当前路径为空，即调用 beginPath() 之后，或者 canvas 刚建的时候，第一条路径构造命令通常被视为是 moveTo（），
+      // 无论实际上是什么。出于这个原因，你几乎总是要在设置路径之后专门指定你的起始位置。
+
+      // 2. 把笔尖按在 200,200这个坐标上
+      ctx.moveTo(200,200);
+
+      // 对我来说比较迷惑的一点是,lintTo的参数,每次都是相对于原点来说的
+      // 并不是相对于上次一落笔的位置
+
+      // 3.按着笔向右滑动50
+      ctx.lineTo(250,200);
+      // 4.按着笔再向下滑动100
+      ctx.lineTo(250,300);
+      // 5.按着笔再向左滑动50
+      ctx.lineTo(200,300);
+      // 6.按着笔再向上滑动100,这不就是一个矩形了吗
+      // 也可以直接调用ctx.closePath() 让画笔滑动到开始坐标就是上面ctx.moveTo(200,200)那个位置
+      ctx.lineTo(200,200);
+      
+      // 7. 描边 在界面上显示
+      ctx.stroke();
+
+      // 上面的描完边之后,咱开启一段新的绘制
+      ctx.beginPath();
+      ctx.moveTo(200,100);
+      ctx.lineTo(250,100)
+      ctx.lineTo(225,150)
+      // MSDN:当你调用 fill() 函数时，所有没有闭合的形状都会自动闭合，所以你不需要调用 closePath() 函数。
+      // 这里直接从(225,150),(200,100)补上一条线了
+      ctx.fill()
+      
+
+
+      // 再来一个
+      ctx.beginPath();
+      ctx.moveTo(0,100)
+      ctx.lineTo(100,100);
+      ctx.lineTo(100,200);
+      // ctx.stroke()描边不会自动闭合路径
+      // 需要的话手动调用,但是这样产生的线咋比lineTo的黑呢?
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+
+  }
+  draw();
+</script>
+
+</html>

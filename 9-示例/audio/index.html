@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>音频剪切</title>
+		<script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+		<script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
+		<script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/minimap.min.js"></script>
+		<script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/timeline.min.js"></script>
+		<script src="./wavesurferEdit.js"></script>
+	</head>
+	<body>
+		<div>
+			<input type="file" id="input" />
+			<div id="wave-minimap"></div>
+			<div id="waveform" onclick="removeRegion()"></div>
+			<div id="wave-timeline"></div>
+			<div class="btn-group">
+				<button onclick="handleEvent('play')">播放</button>
+				<button onclick="handleEvent('pause')">暂停</button>
+				<button disabled id="cut" onclick="handleOperate('cut')">
+					剪切
+				</button>
+				<button disabled id="remove" onclick="handleOperate('remove')">
+					删除
+				</button>
+				<button disabled id="copy" onclick="handleOperate('copy')">
+					复制
+				</button>
+				<button disabled id="paste" onclick="handleOperate('paste')">
+					粘贴
+				</button>
+				<button disabled id="insert" onclick="handleOperate('insert')">
+					插入
+				</button>
+				<button
+					disabled
+					id="backout"
+					onclick="handleOperate('backout')"
+				>
+					撤销
+				</button>
+				<button
+					disabled
+					id="renewal"
+					onclick="handleOperate('renewal')"
+				>
+					重做
+				</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		let input = document.getElementById('input');
+		let buffer = null;
+		let currentRegion = null; // 当前选中region
+		let operate = {
+			copy: document.getElementById('copy'),
+			paste: document.getElementById('paste'),
+			insert: document.getElementById('insert'),
+			cut: document.getElementById('cut'),
+			remove: document.getElementById('remove'),
+			backout: document.getElementById('backout'),
+			renewal: document.getElementById('renewal'),
+		};
+		// 创建 wavesurfer 实例
+		var wavesurfer = WaveSurfer.create({
+			container: '#waveform', // 音波图容器
+			splitChannels: true, // 使用音频通道的单独波形渲染
+			waveColor: 'rgba(109,117,203,1)', // 波形颜色
+			progressColor: 'rgba(109,117,203,1)', // 播放过的波形颜色
+			plugins: [
+				WaveSurfer.regions.create({
+					dragSelection: true, // 允许拖拽选中创建region
+				}),
+				WaveSurfer.minimap.create({
+					container: '#wave-minimap', // 迷你音波图容器
+					waveColor: 'rgba(109,117,203,1)', // 波形颜色
+					progressColor: 'rgba(109,117,203,1)', // 播放过的波形颜色
+					height: 40, // 迷你音波图高度
+				}),
+				WaveSurfer.timeline.create({
+					container: '#wave-timeline', // 时间线容器
+				}),
+			],
+		});
+
+		input.onchange = e => {
+			let file = e.target.files[0];
+			wavesurfer.loadBlob(file);
+			// 监听 region 单击
+			wavesurfer.on('ready', () => {
+				buffer = wavesurfer.backend.buffer; // 获取wavesurfer返回的audioBuffer
+				editor = new WavesurferEdit({
+					buffer,
+					ac: wavesurfer.backend.ac,
+					maxCount: 20,
+				});
+			});
+			wavesurfer.on('region-click', (region, e) => {
+				e.stopPropagation(); // 阻止冒泡
+				currentRegion = region;
+			});
+			// 监听 region 更新时
+			wavesurfer.on('region-updated', (region, e) => {
+				currentRegion = region;
+				removeRegion(region); // 只保留最后一个region
+			});
+			// 监听 region 更新结束
+			wavesurfer.on('region-update-end', (region, e) => {
+				currentRegion = region;
+				isDisabled();
+			});
+		};
+		function handleOperate(e) {
+			if (!editor) return alert('请先选择音频');
+			let val = null;
+			let timeArr = ['paste', 'insert'];
+			// 粘贴、插入传参为当前光标时间点，复制、剪切、删除传参为当前选中区域
+			if (timeArr.includes(e)) val = wavesurfer.getCurrentTime();
+			else val = currentRegion;
+
+			let res = editor[e](val);
+			if (!res) return;
+			operate.paste.disabled = res.copyData ? false : true; // 如果没有复制的数据，粘贴按钮禁用
+			operate.insert.disabled = res.copyData ? false : true; // 如果没有复制的数据，插入按钮禁用
+			operate.backout.disabled = res.curIndex > 0 ? false : true; // 如果已经撤销到第一步操作，撤销按钮禁用
+			operate.renewal.disabled =
+				res.curIndex < res.maxIndex - 1 ? false : true; // 如果已经是最新的操作，重做按钮禁用
+			if (e !== 'copy') {
+				// 如果不是复制操作，则将返回的buffer赋值，加载新的buffer，重新渲染音波图，因为复制操作只是复制了内容，没有做任何更改
+				buffer = res.buffer;
+				render();
+			}
+			if (e === 'cut' || e === 'remove') {
+				// 如果是剪切、删除操作，则移除当前的region
+				removeRegion();
+			}
+		}
+		/* 只保留一个区域 */
+		function removeRegion(region = {}) {
+			// 如果当前没有选中的region 重置currentRegion 为 null
+			if (!Object.keys(region).length) currentRegion = null;
+			let regions = wavesurfer.regions.list;
+			for (const key in regions) {
+				if (region.id === regions[key].id) continue;
+				regions[key].remove();
+			}
+			isDisabled();
+		}
+		/* 复制、剪切、删除按钮是否禁用 */
+		function isDisabled() {
+			// 只有currentRegion有选中区域的时候 复制、剪切、删除才允许点击
+			operate.copy.disabled = currentRegion ? false : true;
+			operate.cut.disabled = currentRegion ? false : true;
+			operate.remove.disabled = currentRegion ? false : true;
+		}
+		/* 重新渲染 音波图 */
+		function render() {
+			wavesurfer.backend.load(buffer); // 加载新的audioBuffer
+			wavesurfer.drawBuffer(); // 重新渲染音波图
+			wavesurfer.minimap.render(); // 重新渲染迷你音波图
+		}
+
+		/* 播放暂停 测试音频是否正常 */
+		function handleEvent(e) {
+			wavesurfer[e]();
+		}
+	</script>
+</html>

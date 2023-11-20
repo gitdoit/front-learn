@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvas" width="150" height="150"></canvas>
+</body>
+<script>
+  function draw() {
+    var canvas = document.getElementById("canvas");
+    if (canvas instanceof HTMLCanvasElement) {
+      let ctx = canvas.getContext("2d");
+      // 支持 #666 ,red ,rgb,rgba
+      ctx.fillStyle = "#333";
+      // 坐标原点在左上角
+      // x,y,width,height
+      // [填充]一个矩形
+      ctx.fillRect(10, 10, 70, 50);
+
+      // 再[填充]一个矩形
+      ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+      ctx.fillRect(30, 30, 55, 50);
+
+      // [绘制]一个矩形,只有边框
+      ctx.strokeRect(80, 80, 20, 20)
+
+      // 橡皮擦,清除指定矩形区域的内容
+      ctx.clearRect(45, 45, 60, 60);
+
+      
+    }
+
+
+  }
+  draw();
+
+  
+</script>
+
+</html>

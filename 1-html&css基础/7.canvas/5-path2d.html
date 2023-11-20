@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+<script>
+
+
+
+
+  /**
+   * 面向对象的方式,封装图形
+   */
+  function draw() {
+    var elem = document.getElementById("canvas");
+    if (elem instanceof HTMLCanvasElement) {
+      let ctx = elem.getContext("2d");
+      let path = roundedRect(100,100,100,100,10)
+      ctx.stroke(path)
+    }
+  }
+  draw();
+
+
+  function roundedRect(x, y, width, height, radius) {
+    let round = new Path2D();
+    round.moveTo(x + radius, y);
+    round.quadraticCurveTo(x, y, x, y + radius);
+    round.lineTo(x, y + height - radius);
+    round.quadraticCurveTo(x, y + height, x + radius, y + height);
+    round.lineTo(x + width - radius, y + height)
+    round.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+    round.lineTo(x + width, y + radius);
+    round.quadraticCurveTo(x + width, y, x + width - radius, y);
+    round.closePath();
+    return round;
+  }
+</script>
+
+</html>

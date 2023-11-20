@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+<script>
+
+
+/**
+ * arc(x, y, radius, startAngle, endAngle, anticlockwise)
+ * 画一个以（x,y）为圆心的
+ * 以 radius 为半径的圆弧（圆），
+ * 从 startAngle 开始到 endAngle 结束，
+ * 按照 anticlockwise 给定的方向（默认为顺时针）来生成。
+ * 
+ * 弧度小学学的吧?忘了
+ * 弧度是角度的另一种表述方式
+ * 1弧度 = 圆上弧长整好等于半径时的角度
+ * 
+ * 
+ * 圆的周长 = 2PI * 半径
+ * 一个满圆的弧度不就等于2PI
+ * 
+ * 简单点
+ * 半个圆 = 180°(角度表示) = 1*PI(弧度表示)
+ * 四分之一个圆 = 90° = PI/2
+ * 
+ * 1° = 180/PI = 一点点圆
+ * 1弧度 = PI = 180° = 半个圆
+ */
+  function draw() {
+    var elem = document.getElementById("canvas");
+    if (elem instanceof HTMLCanvasElement) {
+      let ctx = elem.getContext("2d");
+
+     
+      // 画一个下半圆
+      ctx.beginPath();
+      //                 不就是从0度到180度顺时针画圆吗
+      //       圆心  半径  起始弧度  结束弧度   顺时针
+      ctx.arc(50,50,  50 ,  0  ,  Math.PI   ,false);
+      ctx.stroke();
+
+      // 画一个下半圆
+      ctx.beginPath();
+      ctx.arc(160,50,50,0,Math.PI,true)
+      ctx.stroke()
+     
+      // 画个左半圆
+      ctx.beginPath();
+      ctx.arc(100,150,50, Math.PI/2, Math.PI + Math.PI/2, false)
+      ctx.stroke()
+
+      // 画个又半圆
+      ctx.beginPath();
+      ctx.arc(150,150,50, Math.PI/2, Math.PI + Math.PI/2, true)
+      ctx.stroke()
+
+      // 画个大圆圈
+      ctx.beginPath();
+      ctx.arc(280,150,50, 0, 2*Math.PI, true)
+      ctx.fill()
+
+      // 画个苹果logo??
+      // 先画一个大黑圆, 再画一个小半圆覆盖出来一个缺口
+      ctx.beginPath();
+      ctx.arc(100,300,50, 0, 2*Math.PI, true)
+      ctx.fill()
+      ctx.beginPath();
+      ctx.arc(140,260,30, 0, 2*Math.PI, true)
+      ctx.fillStyle = "#fff"
+      ctx.fill()
+    }
+
+
+  }
+  draw();
+</script>
+
+</html>
