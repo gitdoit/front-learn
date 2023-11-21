@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+<script>
+
+  (function draw() {
+    var elem = document.getElementById("canvas");
+    if (elem instanceof HTMLCanvasElement) {
+      let ctx = elem.getContext("2d");
+      // 字体样式
+      ctx.font = "48px serif";
+      // 在指定的位置绘制文本
+      ctx.fillText("Hello world", 50, 50);
+      // 在指定的位置绘制文本（没有填充）
+      ctx.strokeText("Hello world", 50, 100);
+    }
+  })();
+
+
+</script>
+
+</html>

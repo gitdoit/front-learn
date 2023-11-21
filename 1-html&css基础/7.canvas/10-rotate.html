@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvasTr" width="400" height="400"></canvas>
+  <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+<script>
+
+function round(x, y, width, height, radius) {
+    let round = new Path2D();
+    round.moveTo(x + radius, y);
+    round.quadraticCurveTo(x, y, x, y + radius);
+    round.lineTo(x, y + height - radius);
+    round.quadraticCurveTo(x, y + height, x + radius, y + height);
+    round.lineTo(x + width - radius, y + height)
+    round.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+    round.lineTo(x + width, y + radius);
+    round.quadraticCurveTo(x + width, y, x + width - radius, y);
+    round.closePath();
+    return round;
+  } 
+
+  /**
+   * 通过移动原点坐标的方式来改变图形位置
+   */
+  (function drawTr() {
+    var elem = document.getElementById("canvasTr");
+    if (elem instanceof HTMLCanvasElement) {
+      let ctx = elem.getContext("2d");
+
+      // 这里用之前写的 圆角矩形
+      let [x, y, width, height, radius] = [0,0,100,100,10]
+      let rec = round(x ,y,width,height,radius);
+      // 先画第一个图形,基于默认的0 0 原点
+      ctx.fillStyle = "rgba(255,0,0,0.2)"
+      ctx.fill(rec);
+
+      // 旋转45度
+      ctx.translate(100,100)
+      ctx.rotate((Math.PI / 180) * 15)
+      ctx.fillStyle = "rgba(0,255,0,1)"
+      ctx.fill(rec);  
+
+    }
+  })();
+
+  function run() {
+    var elem = document.getElementById("canvas");
+    if (elem instanceof HTMLCanvasElement) {
+      let ctx = elem.getContext("2d");
+      // 在中间画个正方形,然后每2秒钟旋转一圈
+      // 360 / 15 = 24
+      // 2000 / 24 = 83
+      ctx.translate(150,150);
+      ctx.fillStyle = "pink"
+      ctx.fillRect(0,0,100,100);
+      setInterval(() => {
+        ctx.rotate((Math.PI / 180) * 15)
+        ctx.clearRect(-150,-150,300,300)
+        ctx.fillStyle = "pink"
+        ctx.fillRect(0,0,100,100);
+      }, 83);
+    }
+  }
+  run();
+
+</script>
+
+</html>

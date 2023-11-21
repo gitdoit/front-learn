@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <canvas id="canvasTr" width="400" height="400"></canvas>
+</body>
+<script>
+
+/**
+ * save() 方法把当前状态的一份拷贝压入到一个保存图像状态的栈中。
+ * 这就允许你临时地改变图像状态，然后，通过调用 restore() 来恢复以前的值。
+ * 啥意思呢?
+ * 比如说你一开始画一个正方形,给个红色,再来个阴影.
+ * 下次我向画一个正方形,给个蓝色,不要阴影.
+ * 这时候就可以用save()和restore()来保存之前的状态,然后再恢复之前的状态 
+ */
+  (function draw() {
+    var elem = document.getElementById("canvas");
+    if (elem instanceof HTMLCanvasElement) {
+      let ctx = elem.getContext("2d");
+      ctx.fillStyle = "greenyellow";
+      ctx.shadowOffsetX = 5;
+      ctx.shadowOffsetY = 5;
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = "rgba(0,0,0,0.5)";
+      ctx.fillRect(0, 0, 100, 100); 
+      ctx.fillText("我是第一个图形",150,100)
+      ctx.save();
+
+      // 第二个图形,我不要阴影,我要蓝色
+      ctx.fillStyle = "blue";
+      ctx.shadowColor = "transparent";
+      ctx.fillText("我是第二个图形",150,220)
+      ctx.fillRect(0,120,100,100);
+
+      // 第三个图形,我再使用第一次的颜色,阴影
+      // 这里就可以用restore()来恢复之前的状态
+      ctx.restore();
+      ctx.fillRect(0,240,100,100);
+      ctx.fillText("我是第三个图形",150,340)
+    }
+  })();
+
+
+  function round(x, y, width, height, radius) {
+    let round = new Path2D();
+    round.moveTo(x + radius, y);
+    round.quadraticCurveTo(x, y, x, y + radius);
+    round.lineTo(x, y + height - radius);
+    round.quadraticCurveTo(x, y + height, x + radius, y + height);
+    round.lineTo(x + width - radius, y + height)
+    round.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+    round.lineTo(x + width, y + radius);
+    round.quadraticCurveTo(x + width, y, x + width - radius, y);
+    round.closePath();
+    return round;
+  } 
+
+  // 通过 translate 来移动图形
+  (function drawTr() {
+    var elem = document.getElementById("canvasTr");
+    if (elem instanceof HTMLCanvasElement) {
+      let ctx = elem.getContext("2d");
+
+      // 这里用之前写的 圆角矩形
+      let [x, y, width, height, radius] = [0,0,100,100,10]
+      let rec = round(x ,y,width,height,radius);
+      // 先画第一个图形,基于默认的0 0 原点
+      ctx.stroke(rec)
+
+
+      // 保存一下,然后改变原点坐标 
+      ctx.save();
+      ctx.translate(110,0);
+      // 以原点为中心,顺时针旋转10度
+      ctx.rotate((Math.PI / 180) * 45);
+      // 这里可以复用矩形,但是移动了原点坐标,就可以看到俩矩形了
+      ctx.stroke(rec)
+      // 恢复到默认原点
+      ctx.restore();
+
+      // 保存一下,然后改变原点坐标
+      ctx.save();
+      ctx.translate(0,110);
+      // 这里可以复用矩形,但是移动了原点坐标,就可以看到俩矩形了
+      ctx.stroke(rec)
+      // 恢复到默认原点
+      ctx.restore();
+   
+    }
+  })();
+</script>
+
+</html>

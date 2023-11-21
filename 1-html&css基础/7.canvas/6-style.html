@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  canvas {
+    border: 1px solid;
+  }
+</style>
+
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <canvas id="canvasGap" width="400" height="400"></canvas>
+  <canvas id="canvasJoin" width="400" height="400"></canvas>
+  <canvas id="canvasGradients" width="400" height="400"></canvas>
+  <canvas id="canvasShadow" width="400" height="400"></canvas>
+</body>
+<script>
+
+
+
+  // 线条宽度
+  (function drawLineWidth() {
+    var ctx = document.getElementById("canvas").getContext("2d");
+    for (var i = 0; i < 10; i++) {
+      // 线条宽度默认1.0
+      // 线宽是指给定路径的中心到两边的粗细
+      // 也就是说这条线的两边各占指定宽度的一半
+      // 如果是1.0,那左边0.5,右边0.5,总共1.0
+      // 但是这样绘制出来的线条, 比较模糊
+      // 虽然宽度是1.0,但是实际上占用了2个像素
+      // 其中左右两边的像素会议近似的方式绘制
+      ctx.lineWidth = 1 + i;
+      ctx.beginPath();
+      ctx.moveTo(5 + i * 14, 5);
+      ctx.lineTo(5 + i * 14, 140);
+      ctx.stroke();
+    }
+  })();
+
+
+  // 线条末端
+  (function drawLineGap() {
+    var ctx = document.getElementById("canvasGap").getContext("2d");
+    // 属性 lineCap 的值决定了线段端点显示的样子。
+    // 它可以为下面的三种的其中之一：butt，round 和 square。默认是 butt。
+    // butt 与辅助线齐平的
+    // round 端点处加上了半径为一半线宽的半圆
+    // square 端点处加上了半径为一半线宽的矩形
+    var lineCap = ["butt", "round", "square"];
+    // 创建路径
+    ctx.strokeStyle = "#09f";
+    ctx.beginPath();
+    ctx.moveTo(10, 10);
+    ctx.lineTo(140, 10);
+    ctx.moveTo(10, 140);
+    ctx.lineTo(140, 140);
+    ctx.stroke();
+
+    // 画线条
+    ctx.strokeStyle = "black";
+    for (var i = 0; i < lineCap.length; i++) {
+      ctx.lineWidth = 15;
+      ctx.lineCap = lineCap[i];
+      ctx.beginPath();
+      ctx.moveTo(25 + i * 50, 10);
+      ctx.lineTo(25 + i * 50, 140);
+      ctx.stroke();
+    }
+  })();
+
+
+  // 线条交汇处
+  (function draw() {
+    var ctx = document.getElementById("canvasJoin").getContext("2d");
+    // 属性 lineJoin 设置或返回两条线段相交时，所创建的拐角类型。
+    // miter 尖角
+    // bevel 斜角
+    // round 圆角
+    var lineJoin = ["round", "bevel", "miter"];
+    ctx.lineWidth = 10;
+    for (var i = 0; i < lineJoin.length; i++) {
+      ctx.lineJoin = lineJoin[i];
+      ctx.beginPath();
+      ctx.moveTo(-5, 5 + i * 40);
+      ctx.lineTo(35, 45 + i * 40);
+      ctx.lineTo(75, 5 + i * 40);
+      ctx.lineTo(115, 45 + i * 40);
+      ctx.lineTo(155, 5 + i * 40);
+      ctx.stroke();
+    }
+  })();
+
+  // 线性渐变色
+  // 和css动画关键帧差不多,都是在指定位置设置颜色,从A位置到B位置渐变
+  (function draw() {
+    var ctx = document.getElementById("canvasGradients").getContext("2d");
+    if (ctx instanceof CanvasRenderingContext2D) {
+      // createLinearGradient(x0,y0,x1,y1)
+      //                                         (起点坐标,终点坐标)
+      var lineGradient = ctx.createLinearGradient(0, 0, 100, 100);
+      // addColorStop(0, color) 
+      // 第一个参数表示颜色渐变的位置，从 0 到 1。
+      // 第二个参数表示颜色值。
+      lineGradient.addColorStop(0, "white");
+      lineGradient.addColorStop(1, "black");
+
+      
+      ctx.strokeStyle = lineGradient;
+      ctx.lineWidth = 100;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(140, 0);
+      ctx.stroke();
+    }
+  })();
+
+  // 阴影
+  (function draw() {
+    var ctx = document.getElementById("canvasShadow").getContext("2d");
+    if (ctx instanceof CanvasRenderingContext2D) {
+      // shadowOffsetX 阴影距形状的水平距离
+      // 意思就是阴影向右偏移5个像素
+      ctx.shadowOffsetX = 5;
+      // shadowOffsetY 阴影距形状的垂直距离
+      // 意思就是阴影向下偏移5个像素
+      ctx.shadowOffsetY = 2;
+      // shadowBlur 模糊尺寸
+      ctx.shadowBlur = 2;
+      ctx.shadowColor = "rgba(0,0,0,0.5)";
+      ctx.font = "20px Times New Roman";
+      ctx.fillStyle = "Black";
+      ctx.fillText("Sample String", 5, 30);
+    }
+  })();
+
+</script>
+
+</html>
