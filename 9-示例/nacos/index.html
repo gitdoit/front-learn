@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-plus@2.5.6/dist/index.css" />
+  <!-- Import Vue 3 -->
+  <script src="https://unpkg.com/vue@3.4.20/dist/vue.global.js"></script>
+  <!-- Import component library -->
+  <script src="https://unpkg.com/element-plus@2.5.6/dist/index.full.js"></script>
+  <style>
+  
+    #app {
+      margin: 0 auto;
+      width: 80%;
+      height: 90vh;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+      <el-table stripe :data="data.instanceList" height="250" style="width: 100%">
+        <el-table-column prop="name" label="服务名"  ></el-table-column>
+        <el-table-column prop="healthyInstanceCount" label="实例数" ></el-table-column>
+      </el-table>
+
+    
+  </div>
+
+  <script>
+    const { createApp, reactive} = Vue
+
+    const app = createApp({
+    
+      setup() {
+        const data = reactive({
+          username: 'nacos',
+          password: 'nacos',
+          token: '',
+          instanceList: [
+            
+          ]
+        })
+
+
+
+
+        const login = async () => {
+          const response = await fetch('http://10.5.5.105:8848/nacos/v1/auth/users/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+              username: data.username,
+              password: data.password
+            })
+          }).then(res => res.json());
+          data.token = response.accessToken
+        }
+        
+        const fetchData = async () => {
+          const url = `http://10.5.5.105:8848/nacos/v1/ns/catalog/services?hasIpCount=true&withInstances=false&pageNo=1&pageSize=100&serviceNameParam=gas&groupNameParam=&accessToken=${data.token}&namespaceId=f1f496bf-2de5-413e-9eed-7062a039a5a3`
+          fetch(url).then(res => res.json()).then(res => {
+            data.instanceList = res.serviceList;
+          })
+        }
+
+
+
+        const init = async () => {
+          await login()
+          fetchData()
+        }
+
+        init();
+        return {
+          data
+        }
+      }
+    })
+
+    app.use(ElementPlus);
+    app.mount('#app');
+  </script>
+</body>
+
+</html>

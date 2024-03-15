@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <title>Element Plus demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <el-table stripe :data="instanceList" style="width: 100%">
+        <el-table-column prop="healthyInstanceCount" label="3"  />
+        <el-table-column prop="name" label="3" />
+      </el-table>
+    </div>
+    <script >
+      const { createApp, reactive} = Vue
+      const App = {
+        setup() {
+
+          return {
+            instanceList: [{
+              healthyInstanceCount: 0,
+              name: 'test'
+            }],
+          }
+        }
+      };
+      const app = Vue.createApp(App);
+      app.use(ElementPlus);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
