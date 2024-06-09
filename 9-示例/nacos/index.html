@@ -11,7 +11,6 @@
   <!-- Import component library -->
   <script src="https://unpkg.com/element-plus@2.5.6/dist/index.full.js"></script>
   <style>
-  
     #app {
       margin: 0 auto;
       width: 80%;
@@ -23,28 +22,56 @@
 <body>
 
   <div id="app">
-      <el-table stripe :data="data.instanceList" height="250" style="width: 100%">
-        <el-table-column prop="name" label="服务名"  ></el-table-column>
-        <el-table-column prop="healthyInstanceCount" label="实例数" ></el-table-column>
-      </el-table>
+    <el-table ref="table" stripe :data="data.instanceList" height="90vh" style="width: 100%" @expand-change="onExpand">
+      <el-table-column type="expand">
+        <template #default="props">
+          <div class="expand">
+            <div class="row" v-for="(item) in data.instance[props.row.name]">
+              <div class="item">
+                IP: {{item.ip}}
+              </div>
+              <div class="item">
+                端口: {{item.port}}
+              </div>
+              <div class="item">
+                元数据: sdfsdf
+              </div>
+              <div class="item">
+                <el-button type="primary">下线</el-button>
+              </div>
+            </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="name" label="服务名"></el-table-column>
+      <el-table-column prop="healthyInstanceCount" label="实例数"></el-table-column>
+    </el-table>
 
-    
+
   </div>
 
   <script>
-    const { createApp, reactive} = Vue
-
-    const app = createApp({
+    const { createApp, reactive ,ref} = Vue;
     
-      setup() {
+    const namespaceId = 'f1f496bf-2de5-413e-9eed-7062a039a5a3';
+    const app = createApp({
+
+      setup(props,context) {
+        const table = ref(null)
         const data = reactive({
           username: 'nacos',
           password: 'nacos',
           token: '',
-          instanceList: [
-            
-          ]
+          // 服务列表
+          serviceList: [
+
+          ],
+          // 实例列表
+          instance: {
+
+          }
         })
+
+        
 
 
 
@@ -62,24 +89,43 @@
           }).then(res => res.json());
           data.token = response.accessToken
         }
-        
-        const fetchData = async () => {
-          const url = `http://10.5.5.105:8848/nacos/v1/ns/catalog/services?hasIpCount=true&withInstances=false&pageNo=1&pageSize=100&serviceNameParam=gas&groupNameParam=&accessToken=${data.token}&namespaceId=f1f496bf-2de5-413e-9eed-7062a039a5a3`
+
+        const fetchService = async () => {
+          const url = `http://10.5.5.105:8848/nacos/v1/ns/catalog/services?hasIpCount=true&withInstances=false&pageNo=1&pageSize=100&serviceNameParam=gas&groupNameParam=&accessToken=${data.token}&namespaceId=${namespaceId}`
           fetch(url).then(res => res.json()).then(res => {
             data.instanceList = res.serviceList;
           })
         }
 
 
+       
+
+        const fetchInstance = async (serviceName) => {
+          const url = `http://10.5.5.105:8848/nacos/v1/ns/catalog/instances?&accessToken=${data.token}&serviceName=${serviceName}&clusterName=DEFAULT&groupName=DEFAULT_GROUP&pageSize=10&pageNo=1&namespaceId=${namespaceId}`;
+          return fetch(url).then(res => res.json()).then(res => {
+            return res.list || []
+          })
+        }
+
+        const onExpand = (row,expandedRows) => {
+          const {name} = row;
+          fetchInstance(name).then(list => {
+            data.instance[name] = list;
+          })
+          
+        }
+
 
         const init = async () => {
           await login()
-          fetchData()
+          fetchService()
         }
 
         init();
         return {
-          data
+          data,
+          onExpand,
+          table
         }
       }
     })
@@ -87,6 +133,18 @@
     app.use(ElementPlus);
     app.mount('#app');
   </script>
+  <style>
+    .expand {
+    }
+    .expand .row{
+      display: flex;
+      padding-left: 30px;
+      border: 1px solid #ccc;
+    }
+    .expand .row .item {
+      width: 300px;
+    }
+  </style>
 </body>
 
 </html>
